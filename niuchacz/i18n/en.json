@@ -35,6 +35,7 @@
   "confidence.ami_docs": "AMI documentation",
   "confidence.ami_docs_observed": "AMI documentation + observation",
   "confidence.confirmed": "confirmed",
+  "confidence.observed": "observed on a real board",
   "confidence.undocumented": "not in vendor documentation",
   "confidence.unverified": "to be verified",
   "conn.connected": "connected",

@@ -2219,23 +2219,24 @@
     {
       "code": "DE",
       "stage": {
-        "en": "Code not on the generic AMIBIOS8 list – seen on ASRock 775V88 just before D4 (boot block)",
-        "pl": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 tuż przed D4 (blok startowy)"
+        "en": "Code not on the generic AMIBIOS8 list – on ASRock 775V88 seen just before D4 (memory init in the boot block); with NO RAM installed the board stops here",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 – na ASRock 775V88 widziany tuż przed D4 (inicjalizacja pamięci w bloku startowym); BEZ pamięci RAM płyta staje właśnie tutaj"
       },
       "fault": {
-        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
-        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+        "en": "No RAM detected: modules missing, wrong type, dirty contacts or a faulty slot / memory controller",
+        "pl": "Nie wykryto pamięci RAM: brak modułów, zły typ, brudne styki albo uszkodzony slot / kontroler pamięci"
       },
       "check": {
-        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
-        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+        "en": "RAM modules (one module in the first slot, clean the contacts), module type and voltage, memory power",
+        "pl": "Moduły RAM (jeden moduł w pierwszym slocie, czyszczenie styków), typ i napięcie modułów, zasilanie pamięci"
       },
       "bios_version": {
         "en": "AMIBIOS8 (e.g. v02.54)",
         "pl": "AMIBIOS8 (np. v02.54)"
       },
-      "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "undocumented"
+      "source": "NIUCHACZ: ASRock 775V88, AMIBIOS v02.54 – stop on DE with RAM removed (23.10.2026)",
+      "confidence": "observed",
+      "board": ""
     },
     {
       "code": "86",

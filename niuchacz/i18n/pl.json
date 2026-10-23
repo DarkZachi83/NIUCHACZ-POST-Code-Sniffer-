@@ -35,6 +35,7 @@
   "confidence.ami_docs": "dokumentacja AMI",
   "confidence.ami_docs_observed": "dokumentacja AMI + obserwacja",
   "confidence.confirmed": "potwierdzone",
+  "confidence.observed": "zaobserwowane na prawdziwej płycie",
   "confidence.undocumented": "brak w dokumentacji producenta",
   "confidence.unverified": "do weryfikacji",
   "conn.connected": "połączony",

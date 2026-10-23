@@ -47,8 +47,8 @@ Example: [full report of a real run](docs/sample_report_asrock_775v88.txt).
 The first version read the card's 7-segment display. Multiplexing, analog levels and segment mapping
 made that slow and fragile, and the display is slower than the BIOS anyway.
 
-The current version reads the card's **74LCX374 latch**. The card stores the byte written to port `80h`
-there, and the latch outputs (Q0–Q7) are plain, static logic levels. Eight wires and ground, no
+The current version reads the **output pins of the 74LCX374 chip** on the card. The card stores the byte
+written to port `80h` in this chip, and its output pins (Q0–Q7) carry plain, static logic levels. Eight wires and ground, no
 calibration. Every change of the byte is a new POST code; an ESP32 polls the lines at ~1.4 MHz and catches
 codes the card's own display never shows.
 
@@ -72,7 +72,7 @@ PC Analyzer card ── 74LCX374 Q0–Q7 + GND ── ribbon / DB25 ──► NI
 | 3D-printed box | OpenSCAD source and STL in [`enclosure/`](enclosure) |
 
 Wiring: [card → DB25](docs/img/card_374_wiring.png) · [inside the box](docs/img/box_wiring.png)
-(the box drawing still uses the old display-era channel names; in latch mode DB25 pins 1–8 carry Q0–Q7).
+(the box drawing still uses the old display-era channel names; when reading the 74LCX374 pins, DB25 pins 1–8 carry Q0–Q7).
 
 > ⚠️ **The wire order on DB25 is configurable, the pin roles are not.** If Q0–Q7 end up in a different
 > order, set `LATCH_ORDER` in `firmware/sampler.py` (or override it in `config.py`).
@@ -108,10 +108,10 @@ Tests: `python -m unittest discover -s tests -t .`
 
 ### Roadmap
 
-- [x] Code capture from the 74LCX374 latch, Wi-Fi and USB
+- [x] Code capture from the 74LCX374 pins, Wi-Fi and USB
 - [x] Sessions, stall/wait detection, reports, golden runs
 - [x] AMIBIOS8 database based on AMI's checkpoint list
-- [ ] CLK/IRDY/FRAME/RESET activity LEDs, latch CLK to count missed writes
+- [ ] CLK/IRDY/FRAME/RESET activity LEDs, 74LCX374 CLK pin to count missed writes
 - [ ] Reference build on a second card, DIY guide with photos
 - [ ] Card profiles (bit order per card) in the app instead of firmware
 - [ ] Award / Phoenix databases verified on real boards
@@ -155,8 +155,8 @@ Przykład: [pełny raport z prawdziwego przebiegu](docs/sample_report_asrock_775
 Pierwsza wersja czytała 7-segmentowy wyświetlacz karty. Multipleks, poziomy analogowe i mapowanie
 kresek sprawiały, że było to wolne i zawodne, a sam wyświetlacz i tak nie nadąża za BIOS-em.
 
-Obecna wersja czyta **zatrzask 74LCX374** na karcie. Karta trzyma w nim bajt zapisany do portu `80h`,
-a wyjścia Q0–Q7 to zwykłe, stałe stany logiczne. Osiem przewodów i masa, bez kalibracji. Każda zmiana
+Obecna wersja czyta **piny (nóżki) układu 74LCX374** na karcie. Karta trzyma w tym układzie bajt zapisany
+do portu `80h`, a jego piny wyjściowe Q0–Q7 to zwykłe, stałe stany logiczne. Osiem przewodów i masa, bez kalibracji. Każda zmiana
 bajtu to nowy kod POST. ESP32 sprawdza linie ok. 1,4 mln razy na sekundę i łapie kody, których
 wyświetlacz karty nigdy nie pokazuje.
 
@@ -171,7 +171,7 @@ wyświetlacz karty nigdy nie pokazuje.
 | Obudowa z drukarki 3D | źródła OpenSCAD i STL w [`enclosure/`](enclosure) |
 
 Połączenia: [karta → DB25](docs/img/card_374_wiring.png) · [wnętrze pudełka](docs/img/box_wiring.png)
-(rysunek pudełka ma jeszcze nazwy kanałów z czasów odczytu wyświetlacza; w trybie zatrzasku piny DB25 1–8 to Q0–Q7).
+(rysunek pudełka ma jeszcze nazwy kanałów z czasów odczytu wyświetlacza; przy odczycie z pinów 74LCX374 piny DB25 1–8 to Q0–Q7).
 
 > ⚠️ **Kolejność przewodów na DB25 można ustawić w programie, roli nóżek – nie.** Jeśli Q0–Q7 trafią
 > w innej kolejności, ustaw `LATCH_ORDER` w `firmware/sampler.py` (albo nadpisz w `config.py`).
@@ -207,10 +207,10 @@ Testy: `python -m unittest discover -s tests -t .`
 
 ### Plan
 
-- [x] Odczyt kodu z zatrzasku 74LCX374, Wi-Fi i USB
+- [x] Odczyt kodu z pinów układu 74LCX374, Wi-Fi i USB
 - [x] Sesje, wykrywanie postoju i oczekiwania, raporty, wzorce
 - [x] Baza AMIBIOS8 według listy punktów kontrolnych AMI
-- [ ] Diody aktywności CLK/IRDY/FRAME/RESET, CLK zatrzasku do liczenia zgubionych zapisów
+- [ ] Diody aktywności CLK/IRDY/FRAME/RESET, pin CLK układu 74LCX374 do liczenia zgubionych zapisów
 - [ ] Egzemplarz wzorcowy na drugiej karcie, instrukcja „zrób to sam” ze zdjęciami
 - [ ] Profile kart (kolejność bitów) w aplikacji zamiast w firmware
 - [ ] Bazy Award / Phoenix sprawdzone na prawdziwych płytach

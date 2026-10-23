@@ -25,10 +25,11 @@ from niuchacz.domain.models import (
     CodeChange, CodeEvent, CommandReply, DeviceError, DeviceHello, FrameEvent, Heartbeat,
     LedState, PostCode, ReplayEvent, SessionStart,
 )
+from niuchacz.i18n import t
 from niuchacz.knowledge.diagnosis_service import DiagnosisService
 from niuchacz.protocol import commands
 from niuchacz.session import exporter, golden
-from niuchacz.session.recorder import Session, SessionRecorder
+from niuchacz.session.recorder import LIVE, Session, SessionRecorder
 from niuchacz.session.report import ReportMeta, build_report
 from niuchacz.transport.base import Transport, TransportError
 
@@ -56,6 +57,7 @@ class AppController:
         self.last_raw: Optional[tuple] = None   # ostatni surowy stan linii (do kalibracji)
         self.raw_history: deque = deque(maxlen=3000)   # ramki do kalibracji automatycznej
         self.calibrating = False                # otwarty kreator kalibracji – bez wyskakujących raportów
+        self.last_change: Optional[CodeChange] = None   # do odtworzenia wyświetlacza po przebudowie okna
 
     # ---------- ustawienia ----------
 
@@ -102,6 +104,14 @@ class AppController:
         self.send(commands.set_debounce(self.settings.get("debounce_ms", 16)))
         self.send(commands.ping())
 
+    @property
+    def is_connected(self) -> bool:
+        return self._transport is not None
+
+    @property
+    def transport_name(self) -> str:
+        return getattr(self._transport, "name", "") if self._transport else ""
+
     def disconnect(self) -> None:
         if self._reader:
             self._reader.stop()
@@ -121,7 +131,7 @@ class AppController:
         try:
             self._transport.write_line(line)
         except TransportError as exc:
-            self.bus.publish(ev.STATUS, f"Nie wysłano komendy: {exc}")
+            self.bus.publish(ev.STATUS, t("status.send_failed", error=exc))
 
     # ---------- pętla zdarzeń (wątek GUI) ----------
 
@@ -136,8 +146,7 @@ class AppController:
         if self._transport and not self._silence_warned and time.monotonic() - self._last_rx > 5:
             # ESP32 wysyła "heartbeat" co 1 s – 5 s ciszy znaczy, że dane nie dochodzą
             self._silence_warned = True
-            self.bus.publish(ev.STATUS, "Brak jakichkolwiek danych z urządzenia od 5 s – port otwarty, "
-                                        "ale ESP32 milczy (zrestartuj ESP32 przyciskiem EN)")
+            self.bus.publish(ev.STATUS, t("status.silence"))
         hang = self.assembler.check_hang(float(self.settings.get("hang_seconds", 15)))
         if hang:
             self._on_stall(hang)
@@ -148,18 +157,18 @@ class AppController:
         nowy kod, przebieg leci dalej."""
         session = self.recorder.current
         code = hang.code.value if hang.code else None
-        stage = self._stage_for(code) if code else ""
-        if stage.upper().startswith("CZEKA"):
+        entries = self.diagnosis.repository.find(code, self.vendor) if code else []
+        wait = next((e for e in entries if e.kind == "wait"), None)
+        if wait is not None:
             kind = "wait"
-            session.result = f"CZEKA NA UŻYTKOWNIKA – kod {code}: {stage.split(':', 1)[-1].strip()}"
+            session.set_result("result.wait", code=code, stage=wait.stage)
         elif code in ("FF", "00") and len(session.items) > 1:
             kind = "done"
-            session.result = f"POST zakończony – kod {code} (przekazanie sterowania do systemu)"
+            session.set_result("result.done", code=code)
         else:
             kind = "stop"
             self.recorder.mark_hang(code)
-            session.result = (f"POSTÓJ na kodzie {code or '?'} – brak zmian {hang.seconds:.0f} s "
-                              f"(zawieszenie albo płyta czeka – sprawdź monitor)")
+            session.set_result("result.stop", code=code or "?", seconds=f"{hang.seconds:.0f}")
         self.bus.publish(ev.HANG, replace(hang, kind=kind))
         self.bus.publish(ev.STATUS, session.result)
         if kind == "done":
@@ -175,7 +184,7 @@ class AppController:
             self._last_rx = time.monotonic()
             if self._silence_warned:
                 self._silence_warned = False
-                self.bus.publish(ev.STATUS, "Dane z urządzenia dochodzą")
+                self.bus.publish(ev.STATUS, t("status.data_back"))
         if isinstance(event, FrameEvent):
             self.last_raw = tuple(event.digits_raw)
             self.raw_history.append(self.last_raw)
@@ -190,11 +199,11 @@ class AppController:
             self._new_session(event.session_id)
         elif isinstance(event, DeviceHello):
             self.bus.publish(ev.DEVICE, event)
-            self.bus.publish(ev.STATUS, f"Urządzenie: firmware {event.firmware}, kanałów {event.channels}")
+            self.bus.publish(ev.STATUS, t("status.device", firmware=event.firmware, channels=event.channels))
         elif isinstance(event, Heartbeat):
             pass
         elif isinstance(event, DeviceError):
-            self.bus.publish(ev.STATUS, f"Urządzenie zgłasza: {event.message}")
+            self.bus.publish(ev.STATUS, t("status.device_error", message=event.message))
         elif isinstance(event, CommandReply):
             self.bus.publish(ev.REPLY, event)
         elif isinstance(event, ReplayEvent):
@@ -212,21 +221,22 @@ class AppController:
         if session.ended or not session.items:
             return
         self._compare_golden()
-        if not session.result:
+        if not session.result_key:
             if session.last_code == "FF" and len(session.items) > 1:
-                session.result = "POST zakończony – kod FF (przekazanie do systemu)"
+                session.set_result("result.done", code="FF")
             else:
-                session.result = f"Przerwana resetem – ostatni kod {session.last_code}"
+                session.set_result("result.reset", code=session.last_code)
         session.ended = True
         self.bus.publish(ev.SESSION_END, session)
 
-    def _new_session(self, session_id: Optional[int] = None, source: str = "na żywo") -> None:
+    def _new_session(self, session_id: Optional[int] = None, source: str = LIVE) -> None:
         self._finish_session()
         self.assembler.reset()
         session = self.recorder.start(session_id, source)
         self.bus.publish(ev.SESSION, session)
 
     def _on_code(self, change: CodeChange) -> None:
+        self.last_change = change
         if not change.is_new:
             self.bus.publish(ev.CODE, change)   # tylko odświeżenie wyświetlacza
             return
@@ -238,9 +248,9 @@ class AppController:
             # płyta startuje od nowa (np. AMI: kod bloku startowego D0–DF po kodach POST)
             self._new_session()
         session = self.recorder.current
-        if session.result and not session.ended:
+        if session.result_key and not session.ended:
             # po postoju / oczekiwaniu przyszedł nowy kod – płyta pracuje dalej
-            session.result = ""
+            session.set_result()
             session.hung_on = None
         self.bus.publish(ev.CODE, change)
         item = self.recorder.record(change)
@@ -257,7 +267,7 @@ class AppController:
         self.config.save_display_order(solution.display_order)
         self.profile = self.config.load_card_profile()
         self.assembler = CodeAssembler(SevenSegmentDecoder(self.segment_map), self.profile)
-        self.bus.publish(ev.STATUS, "Zapisano kalibrację wyświetlacza")
+        self.bus.publish(ev.STATUS, t("status.calibration_saved"))
 
     def _is_new_boot(self, code: str) -> bool:
         """Czy ten kod oznacza początek nowego startu płyty (bez linii RESET)."""
@@ -280,8 +290,8 @@ class AppController:
         self.bus.publish(ev.DIAGNOSIS, (diag, DiagnosisService.format(diag)))
 
     def _on_replay(self, event: ReplayEvent) -> None:
-        if self.recorder.current.source != f"ESP32 #{event.session_id}":
-            self._new_session(event.session_id, source=f"ESP32 #{event.session_id}")
+        if self.recorder.current.source != f"esp32:{event.session_id}":
+            self._new_session(event.session_id, source=f"esp32:{event.session_id}")
         if isinstance(event.event, FrameEvent):
             for change in self.assembler.feed_all(event.event):
                 self._on_code(change)
@@ -291,7 +301,7 @@ class AppController:
 
     def reload_codes(self, directory: Path) -> int:
         count = self.diagnosis.repository.import_directory(directory)
-        self.bus.publish(ev.STATUS, f"Przeładowano bazę kodów: {count} wpisów")
+        self.bus.publish(ev.STATUS, t("status.codes_reloaded", n=count))
         code = self.assembler.current_code
         if code:
             self._publish_diagnosis(code)
@@ -310,20 +320,21 @@ class AppController:
     def save_golden(self, path: Path, **meta) -> None:
         run = golden.GoldenRun.from_session(self.recorder.current, bios_vendor=self.vendor, **meta)
         run.save(path)
-        self.bus.publish(ev.STATUS, f"Zapisano wzorzec: {path.name} ({len(run.codes)} kodów)")
+        self.bus.publish(ev.STATUS, t("status.golden_saved", name=path.name, n=len(run.codes)))
 
     def load_golden(self, path: Path) -> None:
         self.golden_run = golden.GoldenRun.load(path)
-        self.bus.publish(ev.STATUS, f"Wzorzec: {self.golden_run.board} ({len(self.golden_run.codes)} kodów)")
+        self.bus.publish(ev.STATUS, t("status.golden_loaded", board=self.golden_run.board,
+                                      n=len(self.golden_run.codes)))
         self._compare_golden()
 
     def _compare_golden(self) -> None:
         if not self.golden_run or not self.recorder.current.items:
             return
         div = golden.compare(self.recorder.current.codes, self.golden_run.codes)
-        text = f"{golden.describe(div, self.golden_run)} (wzorzec: {self.golden_run.board})"
-        self.recorder.current.golden_text = text
-        self.bus.publish(ev.GOLDEN, text)
+        key, fields = golden.describe(div, self.golden_run)
+        self.recorder.current.set_golden(key, **fields)
+        self.bus.publish(ev.GOLDEN, (key, fields))
 
     # ---------- raport tekstowy ----------
 
@@ -334,23 +345,34 @@ class AppController:
             self.bus.publish(ev.SESSION_END, session)
             return
         if not session.items:
-            self.bus.publish(ev.STATUS, "Bieżąca sesja nie ma jeszcze żadnych kodów.")
+            self.bus.publish(ev.STATUS, t("status.no_codes_yet"))
             return
-        session.result = f"Zakończona ręcznie – ostatni kod {session.last_code}"
+        session.set_result("result.manual", code=session.last_code)
         self._finish_session()
 
-    def _stage_for(self, code: str) -> str:
+    def _stage_for(self, code: str, lang: Optional[str] = None) -> str:
         entries = self.diagnosis.repository.find(code, self.vendor)
-        return entries[0].stage if entries else ""
+        return DiagnosisService.stage(entries[0], lang) if entries else ""
 
-    def report_text(self, session: Session, meta: ReportMeta) -> str:
+    def report_text(self, session: Session, meta: ReportMeta, lang: Optional[str] = None) -> str:
         diag_text = ""
         if session.last_code:
             post = PostCode.parse(session.last_code)
             if post:
-                diag_text = DiagnosisService.format(self.diagnosis.diagnose(post, self.vendor, meta.board))
+                diag_text = DiagnosisService.format(self.diagnosis.diagnose(post, self.vendor, meta.board), lang)
         vendor_label = BiosVendor(self.vendor).label if self.vendor in [v.value for v in BiosVendor] else self.vendor
-        return build_report(session, vendor_label, meta, self._stage_for, diag_text)
+        return build_report(session, vendor_label, meta, lambda c: self._stage_for(c, lang), diag_text, lang=lang)
+
+    def refresh_language(self) -> None:
+        """Po zmianie języka: ponownie publikuje teksty, które widoki pokazują na stałe."""
+        if self.last_change is not None:
+            self.bus.publish(ev.CODE, self.last_change)
+        code = self.assembler.current_code
+        if code:
+            self._publish_diagnosis(code)
+        session = self.recorder.current
+        if session.golden_key:
+            self.bus.publish(ev.GOLDEN, (session.golden_key, session.golden_fields))
 
     def default_report_meta(self) -> ReportMeta:
         return ReportMeta(board=self.settings.get("board", ""),
@@ -358,17 +380,17 @@ class AppController:
 
     def save_report(self, path: Path, text: str) -> None:
         printing.save_text(path, text)
-        self.bus.publish(ev.STATUS, f"Zapisano raport: {path}")
+        self.bus.publish(ev.STATUS, t("status.report_saved", path=path))
 
     def print_report(self, path: Path, text: str) -> None:
         """Zapisuje (jeśli trzeba) i drukuje. Rzuca printing.PrintError."""
         printing.save_text(path, text)
         printing.print_file(path)
-        self.bus.publish(ev.STATUS, f"Wysłano do drukarki: {path.name}")
+        self.bus.publish(ev.STATUS, t("status.printed", name=path.name))
 
     def export_report(self, path: Path) -> None:
         self.save_report(path, self.report_text(self.recorder.current, self.default_report_meta()))
 
     def export_csv(self, path: Path) -> None:
         exporter.export_csv(self.recorder.current, path)
-        self.bus.publish(ev.STATUS, f"Zapisano CSV: {path.name}")
+        self.bus.publish(ev.STATUS, t("status.csv_saved", name=path.name))

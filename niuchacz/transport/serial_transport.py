@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import Optional
 
+from niuchacz.i18n import t
 from niuchacz.transport.base import Transport, TransportError
 
 try:
@@ -43,12 +44,14 @@ class SerialTransport(Transport):
         try:
             ser.open()
         except serial.SerialException as exc:
-            hint = " (zamknij Thonny – port może mieć otwarty tylko jeden program)" if "busy" in str(exc).lower() \
-                or "denied" in str(exc).lower() or "odmow" in str(exc).lower() else ""
-            if not hint:
-                hint = (f" – dostępne porty: {', '.join(ports)}; wybierz właściwy w Ustawieniach" if ports
-                        else " – system nie widzi żadnego portu USB: sprawdź kabel (czy nie tylko do ładowania)")
-            raise TransportError(f"Nie można otworzyć {self.port}: {exc}{hint}") from exc
+            text = str(exc).lower()
+            if "busy" in text or "denied" in text or "odmow" in text:
+                hint = t("serial.hint_busy")
+            elif ports:
+                hint = t("serial.hint_ports", ports=", ".join(ports))
+            else:
+                hint = t("serial.hint_no_ports")
+            raise TransportError(t("serial.open_failed", port=self.port, error=exc, hint=hint)) from exc
         self._ser = ser
 
     def close(self) -> None:
@@ -62,17 +65,17 @@ class SerialTransport(Transport):
 
     def read_line(self, timeout: float = 0.5) -> Optional[str]:
         if not self._ser:
-            raise TransportError("Port zamknięty")
+            raise TransportError(t("serial.closed"))
         self._ser.timeout = timeout
         try:
             raw = self._ser.readline()
         except serial.SerialException as exc:
-            raise TransportError(f"Błąd portu: {exc}") from exc
+            raise TransportError(t("serial.error", error=exc)) from exc
         if not raw:
             return None
         return raw.decode("utf-8", errors="replace").rstrip("\r\n")
 
     def write_line(self, line: str) -> None:
         if not self._ser:
-            raise TransportError("Port zamknięty")
+            raise TransportError(t("serial.closed"))
         self._ser.write(line.encode("utf-8") + b"\n")

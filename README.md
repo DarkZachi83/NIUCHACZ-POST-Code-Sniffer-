@@ -89,6 +89,10 @@ python main.py
 
 Connect to the **NIUCHACZ** Wi-Fi network, choose **Wi-Fi (TCP)**, click **Connect** and set the BIOS vendor.
 
+The app starts in your system language (Polish or English) – switch any time in **Language**, or start with
+`python main.py --lang en`. All texts live in `niuchacz/i18n/en.json` and `pl.json`; POST code descriptions
+are bilingual in `data/post_codes/*.json`. Adding a language = one more JSON file (see `niuchacz/i18n/__init__.py`).
+
 **Firmware** (MicroPython on ESP32, e.g. with Thonny)
 
 1. Copy `firmware/*.py` to the ESP32. **Change `AP_PASSWORD` in `config.py` first.**
@@ -115,7 +119,7 @@ Tests: `python -m unittest discover -s tests -t .`
 - [ ] Reference build on a second card, DIY guide with photos
 - [ ] Card profiles (bit order per card) in the app instead of firmware
 - [ ] Award / Phoenix databases verified on real boards
-- [ ] English UI
+- [x] English and Polish UI (switch in the **Language** menu)
 - [ ] Future: own ISA port-80h module (74HC688 + 74HC574), no third-party card needed
 
 ### How it was made
@@ -188,6 +192,11 @@ python main.py
 
 Połącz się z siecią Wi-Fi **NIUCHACZ**, wybierz **Wi-Fi (TCP)**, kliknij **Połącz** i ustaw producenta BIOS.
 
+Aplikacja startuje w języku systemu (polski albo angielski) – zmienisz go w każdej chwili w menu **Język**
+albo uruchamiając `python main.py --lang pl`. Wszystkie teksty są w `niuchacz/i18n/en.json` i `pl.json`,
+opisy kodów POST – dwujęzycznie w `data/post_codes/*.json`. Nowy język = jeden plik JSON więcej
+(opis w `niuchacz/i18n/__init__.py`).
+
 **Firmware** (MicroPython na ESP32, np. przez Thonny)
 
 1. Skopiuj `firmware/*.py` na ESP32. **Najpierw zmień `AP_PASSWORD` w `config.py`.**
@@ -214,7 +223,7 @@ Testy: `python -m unittest discover -s tests -t .`
 - [ ] Egzemplarz wzorcowy na drugiej karcie, instrukcja „zrób to sam” ze zdjęciami
 - [ ] Profile kart (kolejność bitów) w aplikacji zamiast w firmware
 - [ ] Bazy Award / Phoenix sprawdzone na prawdziwych płytach
-- [ ] Interfejs po angielsku
+- [x] Interfejs po angielsku i po polsku (przełącznik w menu **Język**)
 - [ ] W przyszłości: własny moduł ISA na port 80h (74HC688 + 74HC574), bez cudzej karty
 
 ### Jak powstał

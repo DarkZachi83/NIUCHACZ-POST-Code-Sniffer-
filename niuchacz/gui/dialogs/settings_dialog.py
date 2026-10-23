@@ -4,13 +4,14 @@ from __future__ import annotations
 import tkinter as tk
 from tkinter import messagebox, ttk
 
+from niuchacz.i18n import t
 from niuchacz.transport.serial_transport import available_ports
 
 
 class SettingsDialog(tk.Toplevel):
     def __init__(self, master, controller):
         super().__init__(master)
-        self.title("Ustawienia NIUCHACZA")
+        self.title(t("settings.title"))
         self.resizable(False, False)
         self.transient(master)
         self.controller = controller
@@ -26,8 +27,8 @@ class SettingsDialog(tk.Toplevel):
         }
         frm = ttk.Frame(self, padding=12)
         frm.pack(fill="both")
-        rows = (("Adres ESP32 (Wi-Fi)", "host"), ("Port TCP", "port"), ("Port COM (USB)", "com"),
-                ("Badana płyta", "board"), ("Postój po [s]", "hang"), ("Filtr stabilności [ms]", "debounce"))
+        rows = ((t("settings.host"), "host"), (t("settings.port"), "port"), (t("settings.com"), "com"),
+                (t("settings.board"), "board"), (t("settings.hang"), "hang"), (t("settings.debounce"), "debounce"))
         for r, (label, key) in enumerate(rows):
             ttk.Label(frm, text=label).grid(row=r, column=0, sticky="w", pady=3)
             if key == "com":
@@ -36,12 +37,12 @@ class SettingsDialog(tk.Toplevel):
                 w = ttk.Entry(frm, textvariable=self.vars[key], width=30)
             w.grid(row=r, column=1, sticky="ew", padx=(8, 0), pady=3)
         self.auto_report = tk.BooleanVar(value=bool(s.get("report_auto_open", True)))
-        ttk.Checkbutton(frm, text="Otwieraj okno raportu po zakończeniu sesji",
+        ttk.Checkbutton(frm, text=t("settings.auto_report"),
                         variable=self.auto_report).grid(row=len(rows), column=0, columnspan=2, sticky="w", pady=(8, 0))
         btns = ttk.Frame(frm)
         btns.grid(row=len(rows) + 1, column=0, columnspan=2, sticky="e", pady=(10, 0))
-        ttk.Button(btns, text="Anuluj", command=self.destroy).pack(side="right")
-        ttk.Button(btns, text="Zapisz", command=self._save).pack(side="right", padx=6)
+        ttk.Button(btns, text=t("btn.cancel"), command=self.destroy).pack(side="right")
+        ttk.Button(btns, text=t("btn.save"), command=self._save).pack(side="right", padx=6)
         self.grab_set()
 
     def _save(self) -> None:
@@ -56,7 +57,7 @@ class SettingsDialog(tk.Toplevel):
                 "report_auto_open": bool(self.auto_report.get()),
             }
         except ValueError:
-            messagebox.showerror("Ustawienia", "Port, czas i filtr muszą być liczbami.", parent=self)
+            messagebox.showerror(t("settings.title"), t("settings.err_numbers"), parent=self)
             return
         self.controller.update_settings(changes)
         self.destroy()

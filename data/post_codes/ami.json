@@ -1,1050 +1,2388 @@
 {
   "vendor": "ami",
-  "_opis": "Punkty kontrolne AMIBIOS8 (ekran startowy 'American Megatrends v02.xx') według 'AMIBIOS8 Check Point and Beep Code List v2.0' (AMI). Pewność: dokumentacja_AMI = opis z dokumentu, brak_w_dokumentacji = kod widziany na płycie, nieopisany przez AMI (zwykle kod producenta płyty/chipsetu). Kody oczekiwania na użytkownika zaczynają się od 'CZEKA NA UŻYTKOWNIKA'.",
+  "_opis": {
+    "en": "AMIBIOS8 checkpoints (boot screen 'American Megatrends v02.xx') based on AMI's 'AMIBIOS8 Check Point and Beep Code List v2.0'. Confidence: ami_docs = description from the document, undocumented = code seen on a board but not described by AMI (usually a board/chipset vendor code). kind=wait marks codes where the BIOS waits for the user (F1, Setup).",
+    "pl": "Punkty kontrolne AMIBIOS8 (ekran startowy 'American Megatrends v02.xx') według 'AMIBIOS8 Check Point and Beep Code List v2.0' (AMI). Pewność: ami_docs = opis z dokumentu, undocumented = kod widziany na płycie, nieopisany przez AMI (zwykle kod producenta płyty/chipsetu). kind=wait oznacza kody, w których BIOS czeka na użytkownika (F1, Setup)."
+  },
   "entries": [
     {
       "code": "D0",
-      "stage": "Blok startowy: wczesna inicjalizacja CPU (BSP) i chipsetu",
-      "fault": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU",
-      "check": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: early CPU (BSP) and chipset initialization",
+        "pl": "Blok startowy: wczesna inicjalizacja CPU (BSP) i chipsetu"
+      },
+      "fault": {
+        "en": "Damaged/badly programmed BIOS, chipset, CPU",
+        "pl": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU"
+      },
+      "check": {
+        "en": "BIOS chip (reprogram), bridge power and clock, CPU",
+        "pl": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D1",
-      "stage": "Blok startowy: wczesna inicjalizacja Super I/O, RTC i kontrolera klawiatury, test BAT, tryb flat z GA20",
-      "fault": "Super I/O, kontroler klawiatury, RTC, mostek południowy",
-      "check": "Super I/O, klawiatura (odłącz), bateria/RTC, mostek południowy",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: early Super I/O, RTC and keyboard controller init, BAT test, flat mode with GA20",
+        "pl": "Blok startowy: wczesna inicjalizacja Super I/O, RTC i kontrolera klawiatury, test BAT, tryb flat z GA20"
+      },
+      "fault": {
+        "en": "Super I/O, keyboard controller, RTC, southbridge",
+        "pl": "Super I/O, kontroler klawiatury, RTC, mostek południowy"
+      },
+      "check": {
+        "en": "Super I/O, keyboard (disconnect), battery/RTC, southbridge",
+        "pl": "Super I/O, klawiatura (odłącz), bateria/RTC, mostek południowy"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D2",
-      "stage": "Blok startowy: sprawdzenie sumy kontrolnej bloku startowego – przy błędzie płyta staje",
-      "fault": "Uszkodzona zawartość BIOS",
-      "check": "Przeprogramowanie kości BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: boot block checksum check – the board halts if it is bad",
+        "pl": "Blok startowy: sprawdzenie sumy kontrolnej bloku startowego – przy błędzie płyta staje"
+      },
+      "fault": {
+        "en": "Corrupted BIOS contents",
+        "pl": "Uszkodzona zawartość BIOS"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip",
+        "pl": "Przeprogramowanie kości BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D3",
-      "stage": "Blok startowy: wymiarowanie pamięci i dodatkowa inicjalizacja chipsetu (cache wyłączony na czas operacji)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: memory sizing and extra chipset init (cache disabled during the operation)",
+        "pl": "Blok startowy: wymiarowanie pamięci i dodatkowa inicjalizacja chipsetu (cache wyłączony na czas operacji)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D4",
-      "stage": "Blok startowy: test pierwszych 512 KB pamięci, cache pierwszych 8 MB, ustawienie stosu",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: test of the first 512 KB of memory, cache the first 8 MB, set up the stack",
+        "pl": "Blok startowy: test pierwszych 512 KB pamięci, cache pierwszych 8 MB, ustawienie stosu"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D5",
-      "stage": "Blok startowy: kopiowanie bloku startowego do RAM i dalsze wykonywanie z RAM, suma kontrolna głównego BIOS",
-      "fault": "Pamięć RAM albo uszkodzony główny obszar BIOS",
-      "check": "RAM, przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: copy the boot block to RAM and continue from RAM, main BIOS checksum",
+        "pl": "Blok startowy: kopiowanie bloku startowego do RAM i dalsze wykonywanie z RAM, suma kontrolna głównego BIOS"
+      },
+      "fault": {
+        "en": "RAM or a corrupted main BIOS area",
+        "pl": "Pamięć RAM albo uszkodzony główny obszar BIOS"
+      },
+      "check": {
+        "en": "RAM, reprogram the BIOS",
+        "pl": "RAM, przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D6",
-      "stage": "Blok startowy: sprawdzenie, czy wymuszono odzyskiwanie BIOS (wtedy dalej kody E0+)",
-      "fault": "Zła suma kontrolna BIOS / zworka odzyskiwania",
-      "check": "Zworka recovery, przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: check whether BIOS recovery is forced (then codes E0+ follow)",
+        "pl": "Blok startowy: sprawdzenie, czy wymuszono odzyskiwanie BIOS (wtedy dalej kody E0+)"
+      },
+      "fault": {
+        "en": "Bad BIOS checksum / recovery jumper",
+        "pl": "Zła suma kontrolna BIOS / zworka odzyskiwania"
+      },
+      "check": {
+        "en": "Recovery jumper, reprogram the BIOS",
+        "pl": "Zworka recovery, przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D7",
-      "stage": "Blok startowy: odtworzenie CPUID, przeniesienie interfejsu runtime do pamięci",
-      "fault": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU",
-      "check": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: restore CPUID, move the runtime interface to memory",
+        "pl": "Blok startowy: odtworzenie CPUID, przeniesienie interfejsu runtime do pamięci"
+      },
+      "fault": {
+        "en": "Damaged/badly programmed BIOS, chipset, CPU",
+        "pl": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU"
+      },
+      "check": {
+        "en": "BIOS chip (reprogram), bridge power and clock, CPU",
+        "pl": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D8",
-      "stage": "Blok startowy: dekompresja modułu runtime, zapis informacji CPUID",
-      "fault": "Uszkodzony obraz BIOS, pamięć",
-      "check": "Przeprogramowanie BIOS, RAM",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: decompress the runtime module, store CPUID information",
+        "pl": "Blok startowy: dekompresja modułu runtime, zapis informacji CPUID"
+      },
+      "fault": {
+        "en": "Corrupted BIOS image, memory",
+        "pl": "Uszkodzony obraz BIOS, pamięć"
+      },
+      "check": {
+        "en": "Reprogram the BIOS, RAM",
+        "pl": "Przeprogramowanie BIOS, RAM"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "D9",
-      "stage": "Blok startowy: kopiowanie głównego BIOS do pamięci (cień F000h)",
-      "fault": "Pamięć, cień BIOS",
-      "check": "RAM, przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: copy the main BIOS to memory (F000h shadow)",
+        "pl": "Blok startowy: kopiowanie głównego BIOS do pamięci (cień F000h)"
+      },
+      "fault": {
+        "en": "Memory, BIOS shadow",
+        "pl": "Pamięć, cień BIOS"
+      },
+      "check": {
+        "en": "RAM, reprogram the BIOS",
+        "pl": "RAM, przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "DA",
-      "stage": "Blok startowy: przekazanie sterowania do POST",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: pass control to POST",
+        "pl": "Blok startowy: przekazanie sterowania do POST"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI",
-      "fault": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU",
-      "check": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU"
+      "confidence": "ami_docs",
+      "fault": {
+        "en": "Damaged/badly programmed BIOS, chipset, CPU",
+        "pl": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU"
+      },
+      "check": {
+        "en": "BIOS chip (reprogram), bridge power and clock, CPU",
+        "pl": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU"
+      }
     },
     {
       "code": "DC",
-      "stage": "Blok startowy: wybudzenie z ACPI S3 (uśpienie w pamięci)",
-      "fault": "Zwykle nie usterka – powrót z uśpienia",
-      "check": "Jeśli płyta nie startowała z uśpienia: CMOS clear",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Boot block: waking from ACPI S3 (suspend to RAM)",
+        "pl": "Blok startowy: wybudzenie z ACPI S3 (uśpienie w pamięci)"
+      },
+      "fault": {
+        "en": "Usually not a fault – resuming from sleep",
+        "pl": "Zwykle nie usterka – powrót z uśpienia"
+      },
+      "check": {
+        "en": "If the board was not resuming from sleep: clear CMOS",
+        "pl": "Jeśli płyta nie startowała z uśpienia: CMOS clear"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "00",
-      "stage": "Koniec POST – przekazanie sterowania do programu startowego systemu (INT 19h)",
-      "fault": "Jeśli brak dalszego startu: dysk, system, urządzenie startowe",
-      "check": "Dysk, kolejność startu, nośnik",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "End of POST – control passed to the OS loader (INT 19h)",
+        "pl": "Koniec POST – przekazanie sterowania do programu startowego systemu (INT 19h)"
+      },
+      "fault": {
+        "en": "If nothing boots after this: disk, operating system, boot device",
+        "pl": "Jeśli brak dalszego startu: dysk, system, urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "03",
-      "stage": "POST: wyłączenie NMI, inicjalizacja obszaru danych BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: disable NMI, initialize the BIOS data area",
+        "pl": "POST: wyłączenie NMI, inicjalizacja obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "04",
-      "stage": "POST: sprawdzenie bajtu diagnostycznego i sumy CMOS, baterii",
-      "fault": "Bateria CMOS / RTC",
-      "check": "Bateria CMOS, zworka Clear CMOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: check the CMOS diagnostic byte, checksum and battery",
+        "pl": "POST: sprawdzenie bajtu diagnostycznego i sumy CMOS, baterii"
+      },
+      "fault": {
+        "en": "CMOS battery / RTC",
+        "pl": "Bateria CMOS / RTC"
+      },
+      "check": {
+        "en": "CMOS battery, Clear CMOS jumper",
+        "pl": "Bateria CMOS, zworka Clear CMOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "05",
-      "stage": "POST: inicjalizacja przerwań i tablicy wektorów",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize interrupts and the vector table",
+        "pl": "POST: inicjalizacja przerwań i tablicy wektorów"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "06",
-      "stage": "POST: test i ustawienie kanału 0 timera jako zegara systemowego, IRQ0",
-      "fault": "Mostek południowy",
-      "check": "Mostek południowy, kwarc 14,318 MHz",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: test and set timer channel 0 as the system timer, IRQ0",
+        "pl": "POST: test i ustawienie kanału 0 timera jako zegara systemowego, IRQ0"
+      },
+      "fault": {
+        "en": "Southbridge",
+        "pl": "Mostek południowy"
+      },
+      "check": {
+        "en": "Southbridge, 14.318 MHz crystal",
+        "pl": "Mostek południowy, kwarc 14,318 MHz"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "07",
-      "stage": "POST: poprawka wskaźnika wywołań interfejsu POST procesora",
-      "fault": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU",
-      "check": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: fix the CPU POST interface call pointer",
+        "pl": "POST: poprawka wskaźnika wywołań interfejsu POST procesora"
+      },
+      "fault": {
+        "en": "Damaged/badly programmed BIOS, chipset, CPU",
+        "pl": "Uszkodzony/źle zaprogramowany BIOS, chipset, CPU"
+      },
+      "check": {
+        "en": "BIOS chip (reprogram), bridge power and clock, CPU",
+        "pl": "Kość BIOS (przeprogramowanie), zasilanie i zegar mostków, CPU"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "08",
-      "stage": "POST: inicjalizacja CPU, test BAT kontrolera klawiatury",
-      "fault": "Procesor / kontroler klawiatury",
-      "check": "Super I/O, procesor",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: CPU init, keyboard controller BAT test",
+        "pl": "POST: inicjalizacja CPU, test BAT kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "CPU / keyboard controller",
+        "pl": "Procesor / kontroler klawiatury"
+      },
+      "check": {
+        "en": "Super I/O, CPU",
+        "pl": "Super I/O, procesor"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "0A",
-      "stage": "POST: inicjalizacja kontrolera klawiatury 8042",
-      "fault": "Kontroler klawiatury / Super I/O",
-      "check": "Super I/O, odłącz klawiaturę i mysz",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize the 8042 keyboard controller",
+        "pl": "POST: inicjalizacja kontrolera klawiatury 8042"
+      },
+      "fault": {
+        "en": "Keyboard controller / Super I/O",
+        "pl": "Kontroler klawiatury / Super I/O"
+      },
+      "check": {
+        "en": "Super I/O, disconnect the keyboard and mouse",
+        "pl": "Super I/O, odłącz klawiaturę i mysz"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "0B",
-      "stage": "POST: wykrywanie myszy PS/2",
-      "fault": "Mysz / port PS/2",
-      "check": "Odłącz mysz, sprawdź port",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: detect a PS/2 mouse",
+        "pl": "POST: wykrywanie myszy PS/2"
+      },
+      "fault": {
+        "en": "Mouse / PS/2 port",
+        "pl": "Mysz / port PS/2"
+      },
+      "check": {
+        "en": "Disconnect the mouse, check the port",
+        "pl": "Odłącz mysz, sprawdź port"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "0C",
-      "stage": "POST: wykrycie klawiatury na porcie kontrolera klawiatury",
-      "fault": "Klawiatura / port PS/2",
-      "check": "Odłącz klawiaturę, sprawdź port i bezpiecznik 5V",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: detect the keyboard on the keyboard controller port",
+        "pl": "POST: wykrycie klawiatury na porcie kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard / PS/2 port",
+        "pl": "Klawiatura / port PS/2"
+      },
+      "check": {
+        "en": "Disconnect the keyboard, check the port and the 5 V fuse",
+        "pl": "Odłącz klawiaturę, sprawdź port i bezpiecznik 5V"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "0E",
-      "stage": "POST: urządzenia wejściowe, dekompresja modułów (język, logo)",
-      "fault": "Uszkodzony obraz BIOS",
-      "check": "Przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: input devices, decompress modules (language, logo)",
+        "pl": "POST: urządzenia wejściowe, dekompresja modułów (język, logo)"
+      },
+      "fault": {
+        "en": "Corrupted BIOS image",
+        "pl": "Uszkodzony obraz BIOS"
+      },
+      "check": {
+        "en": "Reprogram the BIOS",
+        "pl": "Przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "13",
-      "stage": "POST: wczesna inicjalizacja rejestrów chipsetu",
-      "fault": "Chipset",
-      "check": "Mostki, zasilania chipsetu",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: early chipset register initialization",
+        "pl": "POST: wczesna inicjalizacja rejestrów chipsetu"
+      },
+      "fault": {
+        "en": "Chipset",
+        "pl": "Chipset"
+      },
+      "check": {
+        "en": "Bridges, chipset power rails",
+        "pl": "Mostki, zasilania chipsetu"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "20",
-      "stage": "POST: przeniesienie wektora SMI dla procesorów",
-      "fault": "Procesor",
-      "check": "Procesor, VRM",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: relocate the SMI vector for the CPUs",
+        "pl": "POST: przeniesienie wektora SMI dla procesorów"
+      },
+      "fault": {
+        "en": "CPU",
+        "pl": "Procesor"
+      },
+      "check": {
+        "en": "CPU, VRM",
+        "pl": "Procesor, VRM"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "24",
-      "stage": "POST: dekompresja i inicjalizacja modułów zależnych od płyty",
-      "fault": "Uszkodzony obraz BIOS",
-      "check": "Przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: decompress and initialize platform-specific modules",
+        "pl": "POST: dekompresja i inicjalizacja modułów zależnych od płyty"
+      },
+      "fault": {
+        "en": "Corrupted BIOS image",
+        "pl": "Uszkodzony obraz BIOS"
+      },
+      "check": {
+        "en": "Reprogram the BIOS",
+        "pl": "Przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "2A",
-      "stage": "POST: inicjalizacja urządzeń przez DIM (magistrale)",
-      "fault": "Urządzenie na PCI/AGP",
-      "check": "Wyjmij karty rozszerzeń",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize devices through DIM (buses)",
+        "pl": "POST: inicjalizacja urządzeń przez DIM (magistrale)"
+      },
+      "fault": {
+        "en": "Device on PCI/AGP",
+        "pl": "Urządzenie na PCI/AGP"
+      },
+      "check": {
+        "en": "Remove expansion cards",
+        "pl": "Wyjmij karty rozszerzeń"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "2C",
-      "stage": "POST: inicjalizacja urządzeń, wykrywanie karty graficznej i jej ROM",
-      "fault": "Karta graficzna lub slot AGP/PCI-E",
-      "check": "Inna karta graficzna, slot, zasilanie karty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize devices, detect the graphics card and its ROM",
+        "pl": "POST: inicjalizacja urządzeń, wykrywanie karty graficznej i jej ROM"
+      },
+      "fault": {
+        "en": "Graphics card or AGP/PCI-E slot",
+        "pl": "Karta graficzna lub slot AGP/PCI-E"
+      },
+      "check": {
+        "en": "Another graphics card, the slot, card power",
+        "pl": "Inna karta graficzna, slot, zasilanie karty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "2E",
-      "stage": "POST: inicjalizacja urządzeń wyjścia (obraz)",
-      "fault": "Karta graficzna",
-      "check": "Inna karta graficzna, monitor/kabel",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize output devices (video)",
+        "pl": "POST: inicjalizacja urządzeń wyjścia (obraz)"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Another graphics card, monitor/cable",
+        "pl": "Inna karta graficzna, monitor/kabel"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "30",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "31",
-      "stage": "POST: przydział pamięci i dekompresja modułu ADM",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: allocate memory for and decompress the ADM module",
+        "pl": "POST: przydział pamięci i dekompresja modułu ADM"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "33",
-      "stage": "POST: inicjalizacja cichego startu, okno komunikatów",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize silent boot, message window",
+        "pl": "POST: inicjalizacja cichego startu, okno komunikatów"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "37",
-      "stage": "POST: komunikat startowy, informacja o CPU i klawiszu Setup",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: sign-on message, CPU information and Setup key prompt",
+        "pl": "POST: komunikat startowy, informacja o CPU i klawiszu Setup"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "38",
-      "stage": "POST: inicjalizacja urządzeń przez DIM (m.in. USB)",
-      "fault": "Kontroler USB / urządzenie USB",
-      "check": "Odłącz urządzenia USB",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize devices through DIM (incl. USB)",
+        "pl": "POST: inicjalizacja urządzeń przez DIM (m.in. USB)"
+      },
+      "fault": {
+        "en": "USB controller / USB device",
+        "pl": "Kontroler USB / urządzenie USB"
+      },
+      "check": {
+        "en": "Disconnect USB devices",
+        "pl": "Odłącz urządzenia USB"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "39",
-      "stage": "POST: inicjalizacja kontrolerów DMA",
-      "fault": "Mostek południowy",
-      "check": "Mostek południowy",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize the DMA controllers",
+        "pl": "POST: inicjalizacja kontrolerów DMA"
+      },
+      "fault": {
+        "en": "Southbridge",
+        "pl": "Mostek południowy"
+      },
+      "check": {
+        "en": "Southbridge",
+        "pl": "Mostek południowy"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "3A",
-      "stage": "POST: inicjalizacja zegara RTC (data/czas)",
-      "fault": "RTC / bateria",
-      "check": "Bateria CMOS, kwarc 32,768 kHz",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize the RTC (date/time)",
+        "pl": "POST: inicjalizacja zegara RTC (data/czas)"
+      },
+      "fault": {
+        "en": "RTC / battery",
+        "pl": "RTC / bateria"
+      },
+      "check": {
+        "en": "CMOS battery, 32.768 kHz crystal",
+        "pl": "Bateria CMOS, kwarc 32,768 kHz"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "3B",
-      "stage": "POST: test całej pamięci",
-      "fault": "Pamięć RAM",
-      "check": "Moduły RAM po kolei, memtest",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: test all memory",
+        "pl": "POST: test całej pamięci"
+      },
+      "fault": {
+        "en": "RAM",
+        "pl": "Pamięć RAM"
+      },
+      "check": {
+        "en": "RAM modules one by one, memtest",
+        "pl": "Moduły RAM po kolei, memtest"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "3C",
-      "stage": "POST: inicjalizacja rejestrów chipsetu (środek POST)",
-      "fault": "Chipset",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: chipset register initialization (mid-POST)",
+        "pl": "POST: inicjalizacja rejestrów chipsetu (środek POST)"
+      },
+      "fault": {
+        "en": "Chipset",
+        "pl": "Chipset"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "40",
-      "stage": "POST: wykrywanie portów (szeregowe, równoległe, koprocesor)",
-      "fault": "Super I/O",
-      "check": "Super I/O",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: detect ports (serial, parallel, coprocessor)",
+        "pl": "POST: wykrywanie portów (szeregowe, równoległe, koprocesor)"
+      },
+      "fault": {
+        "en": "Super I/O",
+        "pl": "Super I/O"
+      },
+      "check": {
+        "en": "Super I/O",
+        "pl": "Super I/O"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "41",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "50",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      "confidence": "undocumented",
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      }
     },
     {
       "code": "52",
-      "stage": "POST: zapis rozmiaru pamięci do CMOS, przydział EBDA",
-      "fault": "Pamięć RAM / CMOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: store memory size in CMOS, allocate the EBDA",
+        "pl": "POST: zapis rozmiaru pamięci do CMOS, przydział EBDA"
+      },
+      "fault": {
+        "en": "RAM / CMOS",
+        "pl": "Pamięć RAM / CMOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "60",
-      "stage": "POST: NumLock i szybkość powtarzania klawiatury",
-      "fault": "Klawiatura",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: NumLock and keyboard typematic rate",
+        "pl": "POST: NumLock i szybkość powtarzania klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard",
+        "pl": "Klawiatura"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "61",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "62",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "63",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "64",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "65",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "66",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "67",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "68",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "69",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "6A",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "6B",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "6C",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "6D",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "6E",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "6F",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "70",
-      "stage": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty",
-      "fault": "Zależy od producenta – sprawdź dokumentację płyty",
-      "check": "Dokumentacja/serwis producenta płyty",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Board / chipset vendor code (OEM range 61–70 in AMIBIOS8) – meaning depends on the board",
+        "pl": "Kod producenta płyty / chipsetu (zakres OEM 61–70 w AMIBIOS8) – znaczenie zależy od płyty"
+      },
+      "fault": {
+        "en": "Vendor-specific – check the board documentation",
+        "pl": "Zależy od producenta – sprawdź dokumentację płyty"
+      },
+      "check": {
+        "en": "Board vendor documentation/service",
+        "pl": "Dokumentacja/serwis producenta płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "75",
-      "stage": "POST: inicjalizacja INT 13h, przygotowanie wykrywania urządzeń startowych",
-      "fault": "Kontroler dysków / dysk",
-      "check": "Odłącz dyski, sprawdź taśmy i zasilanie dysków",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize INT 13h, prepare boot device detection",
+        "pl": "POST: inicjalizacja INT 13h, przygotowanie wykrywania urządzeń startowych"
+      },
+      "fault": {
+        "en": "Disk controller / disk",
+        "pl": "Kontroler dysków / dysk"
+      },
+      "check": {
+        "en": "Disconnect disks, check cables and disk power",
+        "pl": "Odłącz dyski, sprawdź taśmy i zasilanie dysków"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "78",
-      "stage": "POST: inicjalizacja urządzeń startowych (IPL) i ich ROM-ów",
-      "fault": "Dysk / kontroler / karta z ROM",
-      "check": "Odłącz dyski i karty rozszerzeń po kolei",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize boot (IPL) devices and their ROMs",
+        "pl": "POST: inicjalizacja urządzeń startowych (IPL) i ich ROM-ów"
+      },
+      "fault": {
+        "en": "Disk / controller / card with a ROM",
+        "pl": "Dysk / kontroler / karta z ROM"
+      },
+      "check": {
+        "en": "Disconnect disks and expansion cards one by one",
+        "pl": "Odłącz dyski i karty rozszerzeń po kolei"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "7A",
-      "stage": "POST: inicjalizacja pozostałych ROM-ów kart",
-      "fault": "Karta rozszerzeń",
-      "check": "Wyjmij karty rozszerzeń po kolei",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize the remaining option ROMs",
+        "pl": "POST: inicjalizacja pozostałych ROM-ów kart"
+      },
+      "fault": {
+        "en": "Expansion card",
+        "pl": "Karta rozszerzeń"
+      },
+      "check": {
+        "en": "Remove expansion cards one by one",
+        "pl": "Wyjmij karty rozszerzeń po kolei"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "nie znaleziono w AMIBIOS8 Check Point List v2.0",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "7C",
-      "stage": "POST: zapis ESCD do NVRAM",
-      "fault": "Kość BIOS / NVRAM",
-      "check": "Clear CMOS, przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: write ESCD to NVRAM",
+        "pl": "POST: zapis ESCD do NVRAM"
+      },
+      "fault": {
+        "en": "BIOS chip / NVRAM",
+        "pl": "Kość BIOS / NVRAM"
+      },
+      "check": {
+        "en": "Clear CMOS, reprogram the BIOS",
+        "pl": "Clear CMOS, przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "80",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "84",
-      "stage": "POST: zapisanie błędów wykrytych podczas POST",
-      "fault": "Zależy od błędu – zobacz komunikat na ekranie",
-      "check": "Komunikat na monitorze",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: log errors found during POST",
+        "pl": "POST: zapisanie błędów wykrytych podczas POST"
+      },
+      "fault": {
+        "en": "Depends on the error – see the message on screen",
+        "pl": "Zależy od błędu – zobacz komunikat na ekranie"
+      },
+      "check": {
+        "en": "The message on the monitor",
+        "pl": "Komunikat na monitorze"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "85",
-      "stage": "CZEKA NA UŻYTKOWNIKA: wyświetlenie błędów i oczekiwanie na reakcję (F1 / DEL)",
-      "fault": "Zwykle błąd CMOS (bateria, suma kontrolna) lub zmiana sprzętu",
-      "check": "Przeczytaj komunikat; bateria CMOS; F1 lub wejście do Setup i zapis",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "display errors and wait for the user (F1 / DEL)",
+        "pl": "wyświetlenie błędów i oczekiwanie na reakcję (F1 / DEL)"
+      },
+      "fault": {
+        "en": "Usually a CMOS error (battery, checksum) or a hardware change",
+        "pl": "Zwykle błąd CMOS (bateria, suma kontrolna) lub zmiana sprzętu"
+      },
+      "check": {
+        "en": "Read the message; CMOS battery; F1 or enter Setup and save",
+        "pl": "Przeczytaj komunikat; bateria CMOS; F1 lub wejście do Setup i zapis"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs",
+      "kind": "wait"
     },
     {
       "code": "87",
-      "stage": "CZEKA NA UŻYTKOWNIKA: BIOS Setup otwarty (lub pytanie o hasło startowe)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS Setup open (or boot password prompt)",
+        "pl": "BIOS Setup otwarty (lub pytanie o hasło startowe)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI",
-      "fault": "Zwykle nie usterka – ktoś jest w Setup. Jeśli nikt nie naciskał DEL: zacięty klawisz, błąd CMOS",
-      "check": "Wyjdź z Setup (F10 i zapis); sprawdź klawiaturę"
+      "confidence": "ami_docs",
+      "fault": {
+        "en": "Usually not a fault – someone is in Setup. If nobody pressed DEL: a stuck key, CMOS error",
+        "pl": "Zwykle nie usterka – ktoś jest w Setup. Jeśli nikt nie naciskał DEL: zacięty klawisz, błąd CMOS"
+      },
+      "check": {
+        "en": "Leave Setup (F10 and save); check the keyboard",
+        "pl": "Wyjdź z Setup (F10 i zapis); sprawdź klawiaturę"
+      },
+      "kind": "wait"
     },
     {
       "code": "8C",
-      "stage": "POST: późna inicjalizacja rejestrów chipsetu",
-      "fault": "Chipset",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: late chipset register initialization",
+        "pl": "POST: późna inicjalizacja rejestrów chipsetu"
+      },
+      "fault": {
+        "en": "Chipset",
+        "pl": "Chipset"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "8D",
-      "stage": "POST: budowa tablic ACPI",
-      "fault": "Uszkodzony obraz BIOS / ustawienia ACPI",
-      "check": "Clear CMOS, przeprogramowanie BIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: build ACPI tables",
+        "pl": "POST: budowa tablic ACPI"
+      },
+      "fault": {
+        "en": "Corrupted BIOS image / ACPI settings",
+        "pl": "Uszkodzony obraz BIOS / ustawienia ACPI"
+      },
+      "check": {
+        "en": "Clear CMOS, reprogram the BIOS",
+        "pl": "Clear CMOS, przeprogramowanie BIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "8E",
-      "stage": "POST: ustawienie parametrów urządzeń, NMI",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: program peripheral parameters, NMI",
+        "pl": "POST: ustawienie parametrów urządzeń, NMI"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "90",
-      "stage": "POST: inicjalizacja SMI",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: initialize SMI",
+        "pl": "POST: inicjalizacja SMI"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "A1",
-      "stage": "POST: porządki przed startem systemu",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: clean-up before OS boot",
+        "pl": "POST: porządki przed startem systemu"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "A2",
-      "stage": "POST: przygotowanie obrazu runtime, MTRR, tablice MP/SMBIOS",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: prepare runtime image, MTRR, MP/SMBIOS tables",
+        "pl": "POST: przygotowanie obrazu runtime, MTRR, tablice MP/SMBIOS"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "A4",
-      "stage": "POST: moduł językowy runtime, menu wyboru urządzenia startowego",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: runtime language module, boot device popup menu",
+        "pl": "POST: moduł językowy runtime, menu wyboru urządzenia startowego"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "A7",
-      "stage": "POST: ekran konfiguracji systemu, przygotowanie CPU do startu",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: system configuration screen, prepare the CPUs for boot",
+        "pl": "POST: ekran konfiguracji systemu, przygotowanie CPU do startu"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "A9",
-      "stage": "CZEKA NA UŻYTKOWNIKA: oczekiwanie na klawisz przy ekranie konfiguracji",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "waiting for a key at the configuration screen",
+        "pl": "oczekiwanie na klawisz przy ekranie konfiguracji"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs",
+      "kind": "wait"
     },
     {
       "code": "AA",
-      "stage": "POST: odinstalowanie wektorów INT 1Ch i INT 09h",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: uninstall the INT 1Ch and INT 09h vectors",
+        "pl": "POST: odinstalowanie wektorów INT 1Ch i INT 09h"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "AB",
-      "stage": "POST: przygotowanie BBS do startu przez INT 19h",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: prepare BBS for INT 19h boot",
+        "pl": "POST: przygotowanie BBS do startu przez INT 19h"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "AC",
-      "stage": "POST: koniec inicjalizacji chipsetu",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: end of chipset initialization",
+        "pl": "POST: koniec inicjalizacji chipsetu"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "B1",
-      "stage": "POST: zapis kontekstu dla ACPI, przygotowanie CPU do startu systemu",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "POST: save ACPI context, prepare the CPU for OS boot",
+        "pl": "POST: zapis kontekstu dla ACPI, przygotowanie CPU do startu systemu"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "C2",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C3",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C4",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C5",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "CD",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "FF",
-      "stage": "W dokumentacji AMI: aktualizacja flash zakończona (tryb odzyskiwania). W zwykłym POST pojawia się przejściowo – na ASRock 775V88 widziany w środku POST obok 00",
-      "fault": "Sam w sobie nie oznacza usterki, jeśli płyta idzie dalej",
-      "check": "Ocena po następnym kodzie",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "In AMI documentation: flash update finished (recovery mode). In a normal POST it appears briefly – on ASRock 775V88 seen mid-POST next to 00",
+        "pl": "W dokumentacji AMI: aktualizacja flash zakończona (tryb odzyskiwania). W zwykłym POST pojawia się przejściowo – na ASRock 775V88 widziany w środku POST obok 00"
+      },
+      "fault": {
+        "en": "Not a fault by itself if the board continues",
+        "pl": "Sam w sobie nie oznacza usterki, jeśli płyta idzie dalej"
+      },
+      "check": {
+        "en": "Judge by the next code",
+        "pl": "Ocena po następnym kodzie"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI + obserwacja"
+      "confidence": "ami_docs_observed"
     },
     {
       "code": "E0",
-      "stage": "Odzyskiwanie BIOS: inicjalizacja stacji dyskietek, DMA, przerwań, włączenie cache L1",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: initialize floppy controller, DMA, interrupts, enable L1 cache",
+        "pl": "Odzyskiwanie BIOS: inicjalizacja stacji dyskietek, DMA, przerwań, włączenie cache L1"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E1",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E2",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E3",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E4",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E5",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E6",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E7",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E8",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "E9",
-      "stage": "Odzyskiwanie BIOS: próba odczytu z dyskietki",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: trying to read from floppy",
+        "pl": "Odzyskiwanie BIOS: próba odczytu z dyskietki"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "EA",
-      "stage": "Odzyskiwanie BIOS: próba odczytu z CD-ROM ATAPI / nośnika ARMD",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: trying to read from ATAPI CD-ROM / ARMD media",
+        "pl": "Odzyskiwanie BIOS: próba odczytu z CD-ROM ATAPI / nośnika ARMD"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "EB",
-      "stage": "Odzyskiwanie BIOS: wyłączenie ATAPI, powrót do E9",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: disable ATAPI, back to E9",
+        "pl": "Odzyskiwanie BIOS: wyłączenie ATAPI, powrót do E9"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "EC",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "ED",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "EE",
-      "stage": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)",
-      "fault": "Pamięć RAM, kontroler pamięci (mostek północny)",
-      "check": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: memory detection/configuration error range (board vendor code)",
+        "pl": "Odzyskiwanie BIOS: zakres błędów wykrywania/konfiguracji pamięci (kod producenta płyty)"
+      },
+      "fault": {
+        "en": "RAM, memory controller (northbridge)",
+        "pl": "Pamięć RAM, kontroler pamięci (mostek północny)"
+      },
+      "check": {
+        "en": "RAM modules (other ones/one at a time, clean the contacts), memory power",
+        "pl": "Moduły RAM (inne/pojedynczo, czyszczenie styków), zasilanie pamięci"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "EF",
-      "stage": "Odzyskiwanie BIOS: błąd odczytu nośnika, powrót do EB",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: media read error, back to EB",
+        "pl": "Odzyskiwanie BIOS: błąd odczytu nośnika, powrót do EB"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "F0",
-      "stage": "Odzyskiwanie BIOS: szukanie pliku odzyskiwania w katalogu głównym",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: searching the root directory for the recovery file",
+        "pl": "Odzyskiwanie BIOS: szukanie pliku odzyskiwania w katalogu głównym"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "F1",
-      "stage": "Odzyskiwanie BIOS: nie znaleziono pliku odzyskiwania",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: recovery file not found",
+        "pl": "Odzyskiwanie BIOS: nie znaleziono pliku odzyskiwania"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "F2",
-      "stage": "Odzyskiwanie BIOS: odczyt FAT, lokalizacja pliku",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: reading FAT, locating the file",
+        "pl": "Odzyskiwanie BIOS: odczyt FAT, lokalizacja pliku"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "F3",
-      "stage": "Odzyskiwanie BIOS: odczyt pliku odzyskiwania",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: reading the recovery file",
+        "pl": "Odzyskiwanie BIOS: odczyt pliku odzyskiwania"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "F4",
-      "stage": "Odzyskiwanie BIOS: rozmiar pliku nie pasuje do kości flash",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: file size does not match the flash chip",
+        "pl": "Odzyskiwanie BIOS: rozmiar pliku nie pasuje do kości flash"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "F5",
-      "stage": "Odzyskiwanie BIOS: wyłączenie cache L1",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: disable L1 cache",
+        "pl": "Odzyskiwanie BIOS: wyłączenie cache L1"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "FA",
-      "stage": "Odzyskiwanie BIOS: sprawdzenie pliku względem kości flash",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: check the file against the flash chip",
+        "pl": "Odzyskiwanie BIOS: sprawdzenie pliku względem kości flash"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "FB",
-      "stage": "Odzyskiwanie BIOS: zezwolenie na zapis, wykrycie kości flash",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: enable writes, detect the flash chip",
+        "pl": "Odzyskiwanie BIOS: zezwolenie na zapis, wykrycie kości flash"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "FC",
-      "stage": "Odzyskiwanie BIOS: kasowanie kości flash",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: erasing the flash chip",
+        "pl": "Odzyskiwanie BIOS: kasowanie kości flash"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "FD",
-      "stage": "Odzyskiwanie BIOS: programowanie kości flash",
-      "fault": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)",
-      "check": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "BIOS recovery: programming the flash chip",
+        "pl": "Odzyskiwanie BIOS: programowanie kości flash"
+      },
+      "fault": {
+        "en": "Board in BIOS recovery mode (bad main BIOS checksum)",
+        "pl": "Płyta w trybie odzyskiwania BIOS (zła suma kontrolna głównego BIOS)"
+      },
+      "check": {
+        "en": "Reprogram the BIOS chip, or a floppy/CD with the recovery file",
+        "pl": "Przeprogramowanie kości BIOS albo dyskietka/CD z plikiem odzyskiwania"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI)",
-      "confidence": "dokumentacja_AMI"
+      "confidence": "ami_docs"
     },
     {
       "code": "DE",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 tuż przed D4 (blok startowy)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list – seen on ASRock 775V88 just before D4 (boot block)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 tuż przed D4 (blok startowy)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "86",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 przy wyjściu z Setup (F10)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list – seen on ASRock 775V88 when leaving Setup (F10)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 przy wyjściu z Setup (F10)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "82",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 przy wyjściu z Setup (F10)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list – seen on ASRock 775V88 when leaving Setup (F10)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 przy wyjściu z Setup (F10)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "02",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 przy wyjściu z Setup (F10)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list – seen on ASRock 775V88 when leaving Setup (F10)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 – widziany na ASRock 775V88 przy wyjściu z Setup (F10)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C6",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po C2–C5)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88, after C2–C5)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po C2–C5)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C7",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po C2–C5)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88, after C2–C5)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po C2–C5)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C0",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po 08)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88, after 08)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po 08)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     },
     {
       "code": "C1",
-      "stage": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po 08)",
-      "fault": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu",
-      "check": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)",
-      "bios_version": "AMIBIOS8 (np. v02.54)",
+      "stage": {
+        "en": "Code not on the generic AMIBIOS8 list (seen on ASRock 775V88, after 08)",
+        "pl": "Kod spoza ogólnej listy AMIBIOS8 (widziany na ASRock 775V88, po 08)"
+      },
+      "fault": {
+        "en": "Not described in AMIBIOS8 documentation – most likely a board or chipset vendor code",
+        "pl": "Brak opisu w dokumentacji AMIBIOS8 – najpewniej kod producenta płyty lub chipsetu"
+      },
+      "check": {
+        "en": "If the board stops on this code: board documentation; compare with a working board's run (golden run)",
+        "pl": "Jeśli płyta stoi na tym kodzie: dokumentacja płyty; porównaj z przebiegiem sprawnej płyty (wzorzec)"
+      },
+      "bios_version": {
+        "en": "AMIBIOS8 (e.g. v02.54)",
+        "pl": "AMIBIOS8 (np. v02.54)"
+      },
       "source": "AMIBIOS8 Check Point and Beep Code List v2.0 (AMI) – kod nieopisany",
-      "confidence": "brak_w_dokumentacji"
+      "confidence": "undocumented"
     }
   ]
 }

@@ -111,7 +111,8 @@ class CodeEntry:
     board: str = ""
     author: str = ""
     source: str = ""
-    confidence: str = "do_weryfikacji"
+    confidence: str = "unverified"
+    kind: str = ""             # "wait" = BIOS czeka na użytkownika (F1, Setup) – nie awaria
 
 
 @dataclass

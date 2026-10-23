@@ -6,6 +6,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from niuchacz.i18n import t
+
 
 class PrintError(OSError):
     pass
@@ -25,4 +27,4 @@ def print_file(path: Path) -> None:
         else:
             subprocess.run(["lpr", str(path)], check=True)
     except (OSError, subprocess.CalledProcessError) as exc:
-        raise PrintError(f"Nie udało się wydrukować: {exc}") from exc
+        raise PrintError(t("print.failed", error=exc)) from exc

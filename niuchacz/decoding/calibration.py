@@ -13,6 +13,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from itertools import permutations
 
+from niuchacz.i18n import t
 from niuchacz.decoding.seven_segment import PATTERN_TO_CHAR, SEGMENTS, _CHAR_TO_PATTERN
 
 SEG7 = SEGMENTS[:7]
@@ -45,10 +46,10 @@ def solve(samples: list[Sample], digits: int = 4) -> list[Solution]:
         return []
     for s in samples:
         if len(s.text) != digits or len(s.raw) != digits:
-            raise ValueError(f"Każdy odczyt musi mieć {digits} cyfry")
+            raise ValueError(t("calib.err_digits", n=digits))
     wanted = [[_patterns_for(c) for c in s.text] for s in samples]
     if any(not w for row in wanted for w in row):
-        raise ValueError("Napis może zawierać tylko 0-9, A-F, '-' i spację")
+        raise ValueError(t("calib.err_chars"))
 
     solutions: list[Solution] = []
     perms = list(permutations(range(7)))
@@ -78,15 +79,13 @@ def solve(samples: list[Sample], digits: int = 4) -> list[Solution]:
 
 def summarize(solutions: list[Solution]) -> str:
     if not solutions:
-        return "Brak pasującego przyporządkowania – sprawdź napis i przewody."
+        return t("calib.none")
     if len(solutions) == 1:
         s = solutions[0]
         pairs = ", ".join(f"{i + 1}={seg}" for i, seg in enumerate(s.channel_to_segment[:7]))
-        return (f"Jednoznacznie: kanały {pairs}; cyfry od lewej = linie "
-                f"{', '.join('DIG%d' % (d + 1) for d in s.display_order)}; "
-                f"segment świeci stanem {'niskim' if s.active_low else 'wysokim'}.")
-    return (f"Pasuje {len(solutions)} wariantów – dodaj kolejny odczyt z innymi cyframi "
-            f"(najlepiej różne cyfry na każdej pozycji, bez 8).")
+        return t("calib.unique", pairs=pairs, lines=", ".join("DIG%d" % (d + 1) for d in s.display_order),
+                 level=t("calib.level_low" if s.active_low else "calib.level_high"))
+    return t("calib.many", n=len(solutions))
 
 
 def auto_rank(frames: list[tuple[int, ...]], samples: list[Sample] | None = None,

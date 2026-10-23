@@ -7,6 +7,7 @@ import threading
 from typing import Optional
 
 from niuchacz.domain.models import DeviceError
+from niuchacz.i18n import t
 from niuchacz.protocol.parser import ProtocolError, parse_line
 from niuchacz.transport.base import Transport, TransportError
 
@@ -48,6 +49,6 @@ class ReaderThread(threading.Thread):
             reason = str(exc)
         except Exception as exc:  # nieoczekiwany błąd – raportujemy, nie zabijamy GUI
             log.exception("Wątek czytający przerwany")
-            reason = f"Nieoczekiwany błąd: {exc}"
+            reason = t("reader.unexpected", error=exc)
         finally:
             self.out.put(TransportClosed(reason if not self._stop_evt.is_set() else ""))

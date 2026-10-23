@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 from typing import Optional
 
+from niuchacz.i18n import t
 from niuchacz.domain.models import (
     CodeEvent, CommandReply, DeviceError, DeviceHello, FrameEvent, Heartbeat,
     LedState, ReplayEvent, SessionStart,
@@ -25,9 +26,9 @@ def parse_line(line: str) -> Optional[object]:
     try:
         msg = json.loads(line)
     except json.JSONDecodeError as exc:
-        raise ProtocolError(f"Niepoprawny JSON: {line[:60]}") from exc
+        raise ProtocolError(t("protocol.bad_json", line=line[:60])) from exc
     if not isinstance(msg, dict):
-        raise ProtocolError("Komunikat nie jest obiektem JSON")
+        raise ProtocolError(t("protocol.not_object"))
     return parse_message(msg)
 
 
@@ -43,12 +44,12 @@ def parse_message(msg: dict) -> Optional[object]:
     if kind == "frame":
         digits = msg.get("d")
         if not isinstance(digits, list) or not all(isinstance(x, int) for x in digits):
-            raise ProtocolError("Ramka bez listy cyfr 'd'")
+            raise ProtocolError(t("protocol.no_digits"))
         return FrameEvent(digits_raw=tuple(x & 0xFF for x in digits), ts_ms=ts)
     if kind == "code":
         c = msg.get("c")
         if not isinstance(c, int):
-            raise ProtocolError("Kod bez pola 'c'")
+            raise ProtocolError(t("protocol.no_code"))
         return CodeEvent(code=c & 0xFF, ts_ms=ts)
     if kind == "led":
         return LedState(
@@ -64,6 +65,6 @@ def parse_message(msg: dict) -> Optional[object]:
     if kind == "replay":
         inner = msg.get("ev")
         if not isinstance(inner, dict):
-            raise ProtocolError("Replay bez pola 'ev'")
+            raise ProtocolError(t("protocol.no_replay"))
         return ReplayEvent(session_id=int(msg.get("id", 0)), event=parse_message(inner))
-    raise ProtocolError(f"Nieznany typ komunikatu: {kind!r}")
+    raise ProtocolError(t("protocol.unknown", kind=repr(kind)))

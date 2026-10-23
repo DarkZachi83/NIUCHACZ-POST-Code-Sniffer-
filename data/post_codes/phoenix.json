@@ -1,5 +1,8 @@
 {
   "vendor": "phoenix",
-  "_opis": "Baza Phoenix – do uzupełnienia pomiarami i przez społeczność.",
+  "_opis": {
+    "en": "Phoenix database – to be filled from measurements and by the community.",
+    "pl": "Baza Phoenix – do uzupełnienia pomiarami i przez społeczność."
+  },
   "entries": []
 }

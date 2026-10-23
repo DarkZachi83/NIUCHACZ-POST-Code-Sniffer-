@@ -17,6 +17,7 @@ DEFAULT_SETTINGS = {
     "debounce_ms": 16,
     "report_auto_open": True,
     "technician": "",
+    "language": "",          # "" = język systemu (pl -> polski, reszta -> angielski)
 }
 
 

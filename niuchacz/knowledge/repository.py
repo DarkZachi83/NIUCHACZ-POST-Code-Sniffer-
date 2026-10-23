@@ -3,6 +3,10 @@
 Lokalnie SQLite. Źródłem prawdy są pliki JSON w data/post_codes/
 (to je wymienia społeczność przez GitHub). Przy starcie baza jest
 odświeżana z plików JSON, więc nowe pliki wystarczy wrzucić do katalogu.
+
+Pola opisowe (stage, fault, check) mogą być napisem albo słownikiem języków
+{"en": ..., "pl": ...}. W SQLite słownik leży jako tekst JSON, a język wybiera
+dopiero i18n.localized() przy wyświetleniu.
 """
 from __future__ import annotations
 
@@ -28,10 +32,26 @@ CREATE INDEX IF NOT EXISTS ix_code_vendor ON post_codes(code, vendor);
 """
 
 
+def _as_text(value) -> str:
+    """Słownik języków -> tekst JSON (do SQLite); reszta -> str."""
+    if isinstance(value, dict):
+        return json.dumps(value, ensure_ascii=False)
+    return str(value)
+
+
 class CodeRepository:
     def __init__(self, db_path: Path | str = ":memory:"):
         self._db = sqlite3.connect(str(db_path), check_same_thread=False)
         self._db.executescript(_SCHEMA)
+        self._migrate()
+
+    def _migrate(self) -> None:
+        """Dopisuje kolumny dodane w nowszych wersjach (np. kind) do starej bazy."""
+        have = {row[1] for row in self._db.execute("PRAGMA table_info(post_codes)")}
+        with self._db:
+            for col in _COLUMNS:
+                if col not in have:
+                    self._db.execute(f'ALTER TABLE post_codes ADD COLUMN "{col}" TEXT NOT NULL DEFAULT \'\'')
 
     def close(self) -> None:
         self._db.close()
@@ -53,7 +73,7 @@ class CodeRepository:
             self._db.execute("DELETE FROM post_codes WHERE origin_file = ?", (str(path.name),))
             for raw in entries:
                 raw = {"vendor": vendor, "stage": "", **raw}
-                entry = CodeEntry(**{k: str(raw[k]) for k in _COLUMNS if k in raw})
+                entry = CodeEntry(**{k: _as_text(raw[k]) for k in _COLUMNS if k in raw})
                 entry.code = entry.code.strip().upper()
                 self._insert(entry, origin=path.name)
         return len(entries)

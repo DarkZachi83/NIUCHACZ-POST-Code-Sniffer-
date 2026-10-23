@@ -63,13 +63,19 @@ def compare(actual: list[str], golden: list[str]) -> Divergence:
     return Divergence(index=-1, expected=None, actual=None, matched=len(a))
 
 
-def describe(div: Divergence, golden: GoldenRun) -> str:
+def describe(div: Divergence, golden: GoldenRun) -> tuple[str, dict]:
+    """Opis porównania jako (klucz tłumaczenia, pola) – tekst powstaje przy wyświetleniu.
+
+    Klucze golden.stopped i golden.diverged oznaczają problem (panel pokazuje je na pomarańczowo)."""
+    base = {"board": golden.board}
     if div.identical:
-        return f"Przebieg zgodny ze wzorcem ({div.matched} kodów)."
+        return "golden.identical", {**base, "n": div.matched}
     if div.actual is None:
-        return (f"Start zatrzymał się po {div.matched} zgodnych kodach. "
-                f"Wzorzec przechodzi dalej do {div.expected} – usterka między tymi etapami.")
+        return "golden.stopped", {**base, "n": div.matched, "expected": div.expected}
     if div.expected is None:
-        return f"Przebieg dłuższy niż wzorzec, nadmiarowy kod: {div.actual}."
-    return (f"Rozbieżność na pozycji {div.index + 1}: oczekiwano {div.expected}, "
-            f"jest {div.actual} (zgodnych {div.matched}).")
+        return "golden.longer", {**base, "actual": div.actual}
+    return "golden.diverged", {**base, "pos": div.index + 1, "expected": div.expected,
+                               "actual": div.actual, "n": div.matched}
+
+
+PROBLEM_KEYS = ("golden.stopped", "golden.diverged")

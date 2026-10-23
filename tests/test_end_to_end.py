@@ -13,6 +13,15 @@ from niuchacz.domain.enums import ConnectionState, TransportKind
 from niuchacz.knowledge.diagnosis_service import DiagnosisService
 from niuchacz.knowledge.repository import CodeRepository
 from tests.fake_esp32 import MockTransport
+from niuchacz.i18n import set_language, t
+
+
+def setUpModule():
+    set_language("pl")      # te testy sprawdzają polskie teksty raportu
+
+
+def tearDownModule():
+    set_language("en")
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -86,7 +95,9 @@ class EndToEndTest(unittest.TestCase):
             ctrl2.connect(TransportKind.TCP)
             run_for(ctrl2, 1.8)
             ctrl2.disconnect()
-            self.assertTrue(any("zatrzymał się po 3" in m and "C3" in m for m in msgs), msgs)
+            # GOLDEN niesie (klucz, pola) – tekst powstaje w widoku, w bieżącym języku
+            texts = [t(key, **fields) for key, fields in msgs]
+            self.assertTrue(any("zatrzymał się po 3" in m and "C3" in m for m in texts), texts)
 
             report = Path(tmp) / "raport.txt"
             ctrl2.export_report(report)

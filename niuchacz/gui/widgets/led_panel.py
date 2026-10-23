@@ -5,11 +5,13 @@ import tkinter as tk
 
 from niuchacz.app import event_bus as ev
 from niuchacz.gui import theme
+from niuchacz.i18n import t
 
-_LEDS = (("clk", "CLK", "zegar"),
-         ("irdy", "IRDY", "transfer PCI"),
-         ("frame", "FRAME", "cykl PCI"),
-         ("rst", "RESET", "płyta w resecie"))
+# klucze podpisów, nie gotowe teksty – napis powstaje przy budowie widżetu
+_LEDS = (("clk", "CLK", "led.clk"),
+         ("irdy", "IRDY", "led.irdy"),
+         ("frame", "FRAME", "led.frame"),
+         ("rst", "RESET", "led.rst"))
 
 
 class LedPanel(tk.Frame):
@@ -28,7 +30,7 @@ class LedPanel(tk.Frame):
             dot = c.create_oval(2, 2, 14, 14, fill=theme.LED_OFF, outline="")
             c.pack(side="left", padx=(0, 4))
             tk.Label(top, text=name, bg=theme.DISPLAY_BG, fg="#e8e8e8", font=theme.FONT_BOLD).pack(side="left")
-            tk.Label(cell, text=hint, bg=theme.DISPLAY_BG, fg=theme.MUTED, font=theme.FONT_SMALL).pack()
+            tk.Label(cell, text=t(hint), bg=theme.DISPLAY_BG, fg=theme.MUTED, font=theme.FONT_SMALL).pack()
             self._dots[key] = (c, dot)
         bus.subscribe(ev.LEDS, self._on_leds)
 

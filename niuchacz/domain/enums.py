@@ -13,10 +13,11 @@ class BiosVendor(str, Enum):
 
 
 class ConnectionState(str, Enum):
-    DISCONNECTED = "rozłączony"
-    CONNECTING = "łączenie"
-    CONNECTED = "połączony"
-    ERROR = "błąd"
+    # wartości to identyfikatory; tekst dla użytkownika: t(f"conn.{state.value}")
+    DISCONNECTED = "disconnected"
+    CONNECTING = "connecting"
+    CONNECTED = "connected"
+    ERROR = "error"
 
 
 class TransportKind(str, Enum):

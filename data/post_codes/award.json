@@ -1,62 +1,128 @@
 {
   "vendor": "award",
-  "_opis": "Wpisy startowe. Pewność 'do_weryfikacji' = opis ogólny, potwierdź na własnych płytach i zmień na 'potwierdzone'.",
+  "_opis": {
+    "en": "Starter entries. Confidence 'unverified' = general description – confirm on your own boards and change it to 'confirmed'.",
+    "pl": "Wpisy startowe. Pewność 'unverified' = opis ogólny – potwierdź na własnych płytach i zmień na 'confirmed'."
+  },
   "entries": [
     {
       "code": "CF",
-      "stage": "Test odczytu/zapisu CMOS (wczesny etap BIOS)",
-      "fault": "Uszkodzony układ RTC/CMOS lub mostek południowy; brak startu dalej",
-      "check": "Bateria CMOS, zworka Clear CMOS, układ RTC (np. Dallas), zasilanie mostka",
+      "stage": {
+        "en": "CMOS read/write test (early BIOS stage)",
+        "pl": "Test odczytu/zapisu CMOS (wczesny etap BIOS)"
+      },
+      "fault": {
+        "en": "Damaged RTC/CMOS chip or southbridge; the boot goes no further",
+        "pl": "Uszkodzony układ RTC/CMOS lub mostek południowy; brak startu dalej"
+      },
+      "check": {
+        "en": "CMOS battery, Clear CMOS jumper, RTC chip (e.g. Dallas), bridge power",
+        "pl": "Bateria CMOS, zworka Clear CMOS, układ RTC (np. Dallas), zasilanie mostka"
+      },
       "source": "opis ogólny Award",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "C0",
-      "stage": "Wczesna inicjalizacja chipsetu, wyłączenie cache",
-      "fault": "Chipset, procesor lub jego ustawienia (zworki, napięcie, mnożnik)",
-      "check": "Ustawienia zworek CPU, napięcie rdzenia, osadzenie procesora, kondensatory przy VRM",
+      "stage": {
+        "en": "Early chipset initialization, cache disabled",
+        "pl": "Wczesna inicjalizacja chipsetu, wyłączenie cache"
+      },
+      "fault": {
+        "en": "Chipset, CPU or its settings (jumpers, voltage, multiplier)",
+        "pl": "Chipset, procesor lub jego ustawienia (zworki, napięcie, mnożnik)"
+      },
+      "check": {
+        "en": "CPU jumper settings, core voltage, CPU seating, capacitors near the VRM",
+        "pl": "Ustawienia zworek CPU, napięcie rdzenia, osadzenie procesora, kondensatory przy VRM"
+      },
       "source": "opis ogólny Award",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "C1",
-      "stage": "Wykrywanie i określanie rozmiaru pamięci RAM",
-      "fault": "Brak, zły typ lub uszkodzona pamięć RAM, brudne sloty",
-      "check": "Wyczyść styki modułów, jeden moduł w pierwszym slocie, sprawdź typ (FPM/EDO/SDRAM) i napięcie",
+      "stage": {
+        "en": "RAM detection and sizing",
+        "pl": "Wykrywanie i określanie rozmiaru pamięci RAM"
+      },
+      "fault": {
+        "en": "Missing, wrong type or faulty RAM, dirty slots",
+        "pl": "Brak, zły typ lub uszkodzona pamięć RAM, brudne sloty"
+      },
+      "check": {
+        "en": "Clean the module contacts, one module in the first slot, check the type (FPM/EDO/SDRAM) and voltage",
+        "pl": "Wyczyść styki modułów, jeden moduł w pierwszym slocie, sprawdź typ (FPM/EDO/SDRAM) i napięcie"
+      },
       "source": "opis ogólny Award",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "C3",
-      "stage": "Rozpakowanie skompresowanego kodu BIOS do RAM",
-      "fault": "Uszkodzona zawartość BIOS albo pamięć RAM",
-      "check": "Inny moduł RAM; suma kontrolna / przeprogramowanie kości BIOS",
+      "stage": {
+        "en": "Decompress the BIOS code into RAM",
+        "pl": "Rozpakowanie skompresowanego kodu BIOS do RAM"
+      },
+      "fault": {
+        "en": "Corrupted BIOS contents or RAM",
+        "pl": "Uszkodzona zawartość BIOS albo pamięć RAM"
+      },
+      "check": {
+        "en": "Another RAM module; checksum / reprogram the BIOS chip",
+        "pl": "Inny moduł RAM; suma kontrolna / przeprogramowanie kości BIOS"
+      },
       "source": "opis ogólny Award",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "C5",
-      "stage": "Kopiowanie BIOS do pamięci shadow",
-      "fault": "Pamięć RAM lub logika shadow chipsetu",
-      "check": "Inny moduł RAM, ustawienia cache, chipset",
+      "stage": {
+        "en": "Copy the BIOS to shadow memory",
+        "pl": "Kopiowanie BIOS do pamięci shadow"
+      },
+      "fault": {
+        "en": "RAM or the chipset shadow logic",
+        "pl": "Pamięć RAM lub logika shadow chipsetu"
+      },
+      "check": {
+        "en": "Another RAM module, cache settings, chipset",
+        "pl": "Inny moduł RAM, ustawienia cache, chipset"
+      },
       "source": "opis ogólny Award",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "C7",
-      "stage": "Etap związany z pamięcią, cache lub shadow RAM",
-      "fault": "Pamięć RAM, cache L2 (moduł COAST/kości SRAM)",
-      "check": "Wyłącz/wyjmij cache L2, wymień RAM, zworki rozmiaru cache",
+      "stage": {
+        "en": "Stage related to memory, cache or shadow RAM",
+        "pl": "Etap związany z pamięcią, cache lub shadow RAM"
+      },
+      "fault": {
+        "en": "RAM, L2 cache (COAST module/SRAM chips)",
+        "pl": "Pamięć RAM, cache L2 (moduł COAST/kości SRAM)"
+      },
+      "check": {
+        "en": "Disable/remove the L2 cache, replace RAM, cache size jumpers",
+        "pl": "Wyłącz/wyjmij cache L2, wymień RAM, zworki rozmiaru cache"
+      },
       "source": "lepszyserwis.pl – artykuł o karcie POST PCI/ISA",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     },
     {
       "code": "FF",
-      "stage": "Koniec POST – przekazanie sterowania do bootloadera (lub brak jakiegokolwiek kodu)",
-      "fault": "Jeśli FF świeci od włączenia: BIOS nie startuje (CPU, zasilanie, kość BIOS, reset)",
-      "check": "Diody RESET i CLK na karcie, napięcia zasilacza, osadzenie CPU i kości BIOS",
+      "stage": {
+        "en": "End of POST – control passed to the boot loader (or no code at all)",
+        "pl": "Koniec POST – przekazanie sterowania do bootloadera (lub brak jakiegokolwiek kodu)"
+      },
+      "fault": {
+        "en": "If FF shows from power-on: the BIOS does not start (CPU, power, BIOS chip, reset)",
+        "pl": "Jeśli FF świeci od włączenia: BIOS nie startuje (CPU, zasilanie, kość BIOS, reset)"
+      },
+      "check": {
+        "en": "RESET and CLK LEDs on the card, PSU voltages, CPU and BIOS chip seating",
+        "pl": "Diody RESET i CLK na karcie, napięcia zasilacza, osadzenie CPU i kości BIOS"
+      },
       "source": "opis ogólny Award",
-      "confidence": "do_weryfikacji"
+      "confidence": "unverified"
     }
   ]
 }

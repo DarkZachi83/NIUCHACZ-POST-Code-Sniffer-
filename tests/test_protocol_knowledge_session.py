@@ -8,6 +8,15 @@ from niuchacz.knowledge.repository import CodeRepository
 from niuchacz.protocol.parser import ProtocolError, parse_line
 from niuchacz.session import golden
 from niuchacz.session.recorder import SessionRecorder
+from niuchacz.i18n import set_language
+
+
+def setUpModule():
+    set_language("pl")      # te testy sprawdzają polskie teksty raportu
+
+
+def tearDownModule():
+    set_language("en")
 
 ROOT = Path(__file__).resolve().parents[1]
 

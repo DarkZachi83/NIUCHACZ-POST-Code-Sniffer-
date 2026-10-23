@@ -6,20 +6,26 @@ from tkinter import ttk
 
 from niuchacz.app import event_bus as ev
 from niuchacz.gui import theme
+from niuchacz.i18n import t
+from niuchacz.session.golden import PROBLEM_KEYS
 
 
 class DiagnosisPanel(ttk.LabelFrame):
     def __init__(self, master, bus: ev.EventBus):
-        super().__init__(master, text="Diagnoza", padding=8)
+        super().__init__(master, text=t("panel.diagnosis"), padding=8)
         self.text = tk.Text(self, height=9, wrap="word", font=theme.FONT_UI, relief="flat",
                             padx=6, pady=6, state="disabled")
         self.text.pack(fill="both", expand=True)
-        self.golden = ttk.Label(self, text="Wzorzec: nie wczytano", foreground=theme.MUTED,
+        self.golden = ttk.Label(self, text=t("panel.golden", text=t("panel.golden_none")), foreground=theme.MUTED,
                                 wraplength=520, justify="left")
         self.golden.pack(fill="x", pady=(6, 0))
         bus.subscribe(ev.DIAGNOSIS, self._on_diagnosis)
-        bus.subscribe(ev.GOLDEN, lambda text: self.golden.config(text=f"Wzorzec: {text}",
-                                                                 foreground=theme.HANG if "zatrzymał" in text or "Rozbieżność" in text else theme.OK))
+        bus.subscribe(ev.GOLDEN, self._on_golden)
+
+    def _on_golden(self, payload) -> None:
+        key, fields = payload
+        self.golden.config(text=t("panel.golden", text=t(key, **fields)),
+                           foreground=theme.HANG if key in PROBLEM_KEYS else theme.OK)
 
     def _on_diagnosis(self, payload) -> None:
         _diag, text = payload

@@ -6,6 +6,7 @@ import tkinter as tk
 from niuchacz.app import event_bus as ev
 from niuchacz.decoding.seven_segment import SEGMENTS, SevenSegmentDecoder
 from niuchacz.gui import theme
+from niuchacz.i18n import t
 
 DW, DH, T, GAP = 58, 104, 11, 22   # szerokość/wysokość cyfry, grubość segmentu, odstęp
 
@@ -43,7 +44,7 @@ class CodeDisplay(tk.Frame):
         self.canvas = tk.Canvas(self, width=width, height=DH + 40, bg=theme.DISPLAY_BG,
                                 highlightthickness=0)
         self.canvas.pack(padx=8, pady=(8, 0))
-        self.caption = tk.Label(self, text="czekam na kod…", bg=theme.DISPLAY_BG,
+        self.caption = tk.Label(self, text=t("display.waiting"), bg=theme.DISPLAY_BG,
                                 fg=theme.MUTED, font=theme.FONT_UI)
         self.caption.pack(pady=(0, 8))
         self._items: list[dict[str, int]] = []
@@ -74,7 +75,7 @@ class CodeDisplay(tk.Frame):
     def _on_code(self, change) -> None:
         self.show(change.display)
         self._set_alert(False)
-        self.caption.config(text=f"kod POST: {change.code}" if change.code else "wyświetlacz: brak kodu hex",
+        self.caption.config(text=t("display.code", code=change.code) if change.code else t("display.no_hex"),
                             fg=theme.MUTED)
 
     def _on_hang(self, hang) -> None:
@@ -82,13 +83,13 @@ class CodeDisplay(tk.Frame):
         code = hang.code or "?"
         if kind == "wait":
             self._set_alert(False)
-            self.caption.config(text=f"czeka na użytkownika – kod {code}", fg=theme.OK)
+            self.caption.config(text=t("display.wait", code=code), fg=theme.OK)
         elif kind == "done":
             self._set_alert(False)
-            self.caption.config(text=f"POST zakończony – kod {code}", fg=theme.OK)
+            self.caption.config(text=t("display.done", code=code), fg=theme.OK)
         else:
             self._set_alert(True)
-            self.caption.config(text=f"POSTÓJ na {code} – brak zmian {hang.seconds:.0f} s", fg=theme.HANG)
+            self.caption.config(text=t("display.stop", code=code, seconds=f"{hang.seconds:.0f}"), fg=theme.HANG)
 
     def _set_alert(self, on: bool) -> None:
         self.config(highlightbackground=theme.HANG if on else theme.DISPLAY_BG)

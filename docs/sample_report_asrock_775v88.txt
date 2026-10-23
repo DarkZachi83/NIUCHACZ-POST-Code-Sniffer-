@@ -1,0 +1,116 @@
+========================================================================
+ NIUCHACZ – RAPORT DIAGNOSTYKI POST
+========================================================================
+ Nr naprawy : -
+ Płyta      : -
+ Właściciel : -
+ Serwisant  : -
+ Data       : 2026-10-23 15:08
+ BIOS       : AMI
+ Sesja      : 93 (na żywo)
+------------------------------------------------------------------------
+ WYNIK: POST zakończony – kod 00 (przekazanie sterowania do systemu)
+------------------------------------------------------------------------
+ PRZEBIEG POST (53 kodów)
+   #  Kod   Czas      Etap
+   1  DE    +0.00 s   Kod spoza ogólnej listy AMIBIOS8 – widziany na
+                      ASRock 775V88 tuż przed D4 (blok startowy)
+   2  D4    +0.03 s   Blok startowy: test pierwszych 512 KB pamięci,
+                      cache pierwszych 8 MB, ustawienie stosu
+   3  D5    +0.04 s   Blok startowy: kopiowanie bloku startowego do RAM
+                      i dalsze wykonywanie z RAM, suma kontrolna
+                      głównego BIOS
+   4  D7    +0.42 s   Blok startowy: odtworzenie CPUID, przeniesienie
+                      interfejsu runtime do pamięci
+   5  D8    +0.42 s   Blok startowy: dekompresja modułu runtime, zapis
+                      informacji CPUID
+   6  D9    +0.45 s   Blok startowy: kopiowanie głównego BIOS do pamięci
+                      (cień F000h)
+   7  DA    +0.46 s   Blok startowy: przekazanie sterowania do POST
+   8  03    +0.46 s   POST: wyłączenie NMI, inicjalizacja obszaru danych
+                      BIOS
+   9  04    +0.46 s   POST: sprawdzenie bajtu diagnostycznego i sumy
+                      CMOS, baterii
+  10  05    +0.46 s   POST: inicjalizacja przerwań i tablicy wektorów
+  11  06    +0.46 s   POST: test i ustawienie kanału 0 timera jako
+                      zegara systemowego, IRQ0
+  12  07    +0.46 s   POST: poprawka wskaźnika wywołań interfejsu POST
+                      procesora
+  13  08    +0.46 s   POST: inicjalizacja CPU, test BAT kontrolera
+                      klawiatury
+  14  C0    +0.46 s   (brak w bazie)
+  15  C1    +0.46 s   (brak w bazie)
+  16  C2    +0.46 s   Kod spoza ogólnej listy AMIBIOS8 (widziany na
+                      ASRock 775V88)
+  17  0C    +0.58 s   POST: wykrycie klawiatury na porcie kontrolera
+                      klawiatury
+  18  13    +0.91 s   POST: wczesna inicjalizacja rejestrów chipsetu
+  19  20    +1.01 s   POST: przeniesienie wektora SMI dla procesorów
+  20  24    +1.14 s   POST: dekompresja i inicjalizacja modułów
+                      zależnych od płyty
+  21  2A    +1.14 s   POST: inicjalizacja urządzeń przez DIM
+                      (magistrale)
+  22  2C    +6.00 s   POST: inicjalizacja urządzeń, wykrywanie karty
+                      graficznej i jej ROM
+  23  31    +6.10 s   POST: przydział pamięci i dekompresja modułu ADM
+  24  33    +6.14 s   POST: inicjalizacja cichego startu, okno
+                      komunikatów
+  25  37    +6.14 s   POST: komunikat startowy, informacja o CPU i
+                      klawiszu Setup
+  26  38    +6.30 s   POST: inicjalizacja urządzeń przez DIM (m.in. USB)
+  27  00    +6.74 s   Koniec POST – przekazanie sterowania do programu
+                      startowego systemu (INT 19h)
+  28  39    +6.74 s   POST: inicjalizacja kontrolerów DMA
+  29  3A    +6.74 s   POST: inicjalizacja zegara RTC (data/czas)
+  30  3B    +6.74 s   POST: test całej pamięci
+  31  3C    +6.74 s   POST: inicjalizacja rejestrów chipsetu (środek
+                      POST)
+  32  40    +6.74 s   POST: wykrywanie portów (szeregowe, równoległe,
+                      koprocesor)
+  33  FF    +6.74 s   W dokumentacji AMI: aktualizacja flash zakończona
+                      (tryb odzyskiwania). W zwykłym POST pojawia się
+                      przejściowo – na ASRock 775V88 widziany w środku
+                      POST obok 00
+  34  52    +6.74 s   POST: zapis rozmiaru pamięci do CMOS, przydział
+                      EBDA
+  35  60    +6.74 s   POST: NumLock i szybkość powtarzania klawiatury
+  36  75    +6.76 s   POST: inicjalizacja INT 13h, przygotowanie
+                      wykrywania urządzeń startowych
+  37  78    +6.76 s   POST: inicjalizacja urządzeń startowych (IPL) i
+                      ich ROM-ów
+  38  7C    +10.36 s  POST: zapis ESCD do NVRAM
+  39  84    +10.36 s  POST: zapisanie błędów wykrytych podczas POST
+  40  85    +10.36 s  CZEKA NA UŻYTKOWNIKA: wyświetlenie błędów i
+                      oczekiwanie na reakcję (F1 / DEL)
+  41  87    +10.37 s  CZEKA NA UŻYTKOWNIKA: BIOS Setup otwarty (lub
+                      pytanie o hasło startowe)
+  42  8D    +10.37 s  POST: budowa tablic ACPI
+  43  8C    +10.37 s  POST: późna inicjalizacja rejestrów chipsetu
+  44  8E    +10.37 s  POST: ustawienie parametrów urządzeń, NMI
+  45  90    +10.38 s  POST: inicjalizacja SMI
+  46  A1    +10.38 s  POST: porządki przed startem systemu
+  47  A2    +10.38 s  POST: przygotowanie obrazu runtime, MTRR, tablice
+                      MP/SMBIOS
+  48  A4    +10.38 s  POST: moduł językowy runtime, menu wyboru
+                      urządzenia startowego
+  49  AA    +10.38 s  POST: odinstalowanie wektorów INT 1Ch i INT 09h
+  50  AB    +10.38 s  POST: przygotowanie BBS do startu przez INT 19h
+  51  AC    +10.38 s  POST: koniec inicjalizacji chipsetu
+  52  B1    +10.38 s  POST: zapis kontekstu dla ACPI, przygotowanie CPU
+                      do startu systemu
+  53  00    +10.84 s  Koniec POST – przekazanie sterowania do programu
+                      startowego systemu (INT 19h)
+------------------------------------------------------------------------
+ DIAGNOZA OSTATNIEGO KODU
+ [1] Kod 00 – Koniec POST – przekazanie sterowania do programu
+   startowego systemu (INT 19h)
+     Prawdopodobna usterka: Jeśli brak dalszego startu: dysk, system,
+       urządzenie startowe
+     Co sprawdzić: Dysk, kolejność startu, nośnik
+     (BIOS AMIBIOS8 (np. v02.54), pewność: dokumentacja_AMI)
+------------------------------------------------------------------------
+ UWAGI SERWISANTA
+
+------------------------------------------------------------------------
+ Wygenerowano: NIUCHACZ 0.1.0 · 2026-10-23 15:08:47
+========================================================================

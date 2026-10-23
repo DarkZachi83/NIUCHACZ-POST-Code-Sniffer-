@@ -1,0 +1,62 @@
+{
+  "vendor": "award",
+  "_opis": "Wpisy startowe. Pewność 'do_weryfikacji' = opis ogólny, potwierdź na własnych płytach i zmień na 'potwierdzone'.",
+  "entries": [
+    {
+      "code": "CF",
+      "stage": "Test odczytu/zapisu CMOS (wczesny etap BIOS)",
+      "fault": "Uszkodzony układ RTC/CMOS lub mostek południowy; brak startu dalej",
+      "check": "Bateria CMOS, zworka Clear CMOS, układ RTC (np. Dallas), zasilanie mostka",
+      "source": "opis ogólny Award",
+      "confidence": "do_weryfikacji"
+    },
+    {
+      "code": "C0",
+      "stage": "Wczesna inicjalizacja chipsetu, wyłączenie cache",
+      "fault": "Chipset, procesor lub jego ustawienia (zworki, napięcie, mnożnik)",
+      "check": "Ustawienia zworek CPU, napięcie rdzenia, osadzenie procesora, kondensatory przy VRM",
+      "source": "opis ogólny Award",
+      "confidence": "do_weryfikacji"
+    },
+    {
+      "code": "C1",
+      "stage": "Wykrywanie i określanie rozmiaru pamięci RAM",
+      "fault": "Brak, zły typ lub uszkodzona pamięć RAM, brudne sloty",
+      "check": "Wyczyść styki modułów, jeden moduł w pierwszym slocie, sprawdź typ (FPM/EDO/SDRAM) i napięcie",
+      "source": "opis ogólny Award",
+      "confidence": "do_weryfikacji"
+    },
+    {
+      "code": "C3",
+      "stage": "Rozpakowanie skompresowanego kodu BIOS do RAM",
+      "fault": "Uszkodzona zawartość BIOS albo pamięć RAM",
+      "check": "Inny moduł RAM; suma kontrolna / przeprogramowanie kości BIOS",
+      "source": "opis ogólny Award",
+      "confidence": "do_weryfikacji"
+    },
+    {
+      "code": "C5",
+      "stage": "Kopiowanie BIOS do pamięci shadow",
+      "fault": "Pamięć RAM lub logika shadow chipsetu",
+      "check": "Inny moduł RAM, ustawienia cache, chipset",
+      "source": "opis ogólny Award",
+      "confidence": "do_weryfikacji"
+    },
+    {
+      "code": "C7",
+      "stage": "Etap związany z pamięcią, cache lub shadow RAM",
+      "fault": "Pamięć RAM, cache L2 (moduł COAST/kości SRAM)",
+      "check": "Wyłącz/wyjmij cache L2, wymień RAM, zworki rozmiaru cache",
+      "source": "lepszyserwis.pl – artykuł o karcie POST PCI/ISA",
+      "confidence": "do_weryfikacji"
+    },
+    {
+      "code": "FF",
+      "stage": "Koniec POST – przekazanie sterowania do bootloadera (lub brak jakiegokolwiek kodu)",
+      "fault": "Jeśli FF świeci od włączenia: BIOS nie startuje (CPU, zasilanie, kość BIOS, reset)",
+      "check": "Diody RESET i CLK na karcie, napięcia zasilacza, osadzenie CPU i kości BIOS",
+      "source": "opis ogólny Award",
+      "confidence": "do_weryfikacji"
+    }
+  ]
+}

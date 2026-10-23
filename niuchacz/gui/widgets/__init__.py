@@ -1,0 +1,1 @@
+"""Widżety głównego okna."""

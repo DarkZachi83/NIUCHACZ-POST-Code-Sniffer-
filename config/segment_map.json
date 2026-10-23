@@ -1,0 +1,14 @@
+{
+  "_opis": "Ustalone pomiarem 18.10.2026 (napis dE24): kanały 1–7 = segmenty a–g po kolei (EXT A1–A7). Pewne: a,b,c,f,g; d/e (kanał 4/5) przyjęte wg kolejności – potwierdzić przy cyfrze 3, 5, 9 lub A. Wspólna anoda: segment świeci przy stanie niskim.",
+  "channel_to_segment": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "dp"
+  ],
+  "active_low": true
+}

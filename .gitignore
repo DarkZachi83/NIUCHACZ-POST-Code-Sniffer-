@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# dane lokalne aplikacji / local app data
+data/niuchacz.db
+data/golden_runs/
+reports/
+*.log
+
+# paczki robocze / work archives
+*.zip
+
+
+# system
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+{
+  "_opis": "Pomiar 18.10.2026 (napis dE24): linie cyfr idą od prawej – DIG1 = skrajna prawa cyfra. Kod POST = LEWA para (przy 8584 AMIBIOS pokazał na monitorze 0085). Prawa para = poprzedni kod: służy do odtworzenia kodu, który mignął za szybko (prev_code_digits). Gdyby się okazało odwrotnie: code_digits [2,3], prev_code_digits [].",
+  "name": "PC Analyzer PCI/ISA 4-cyfrowa (SyncMOS + GAL16V8D + 74LCX374)",
+  "digits": 4,
+  "display_order": [
+    3,
+    2,
+    1,
+    0
+  ],
+  "code_digits": [
+    0,
+    1
+  ],
+  "prev_code_digits": [
+    2,
+    3
+  ]
+}

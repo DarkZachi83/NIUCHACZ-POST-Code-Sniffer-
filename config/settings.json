@@ -1,0 +1,17 @@
+{
+  "transport": "tcp",
+  "tcp": {
+    "host": "192.168.4.1",
+    "port": 7080
+  },
+  "serial": {
+    "port": "COM3",
+    "baud": 115200
+  },
+  "bios_vendor": "ami",
+  "board": "",
+  "hang_seconds": 15,
+  "debounce_ms": 16,
+  "report_auto_open": true,
+  "technician": ""
+}

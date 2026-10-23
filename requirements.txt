@@ -1,0 +1,1 @@
+pyserial>=3.5     # tylko dla połączenia USB; Wi-Fi i symulator działają bez niego

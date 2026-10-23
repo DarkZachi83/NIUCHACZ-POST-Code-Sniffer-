@@ -1341,6 +1341,29 @@
       "kind": "wait"
     },
     {
+      "code": "85",
+      "kind": "wait",
+      "board": "ASRock 775V88",
+      "stage": {
+        "en": "display errors and wait for the user (F1 / DEL) – seen with NO graphics card installed",
+        "pl": "wyświetlenie błędów i oczekiwanie na reakcję (F1 / DEL) – widziane przy wyjętej karcie graficznej"
+      },
+      "fault": {
+        "en": "No graphics card: POST runs on to 84 → 85 and waits; the middle of POST is ~5 s shorter (00/39–60 at +1.5 s instead of ~+6.7 s – no video ROM to run)",
+        "pl": "Brak karty graficznej: POST dochodzi do 84 → 85 i czeka; środek POST krótszy o ok. 5 s (00/39–60 na +1,5 s zamiast ok. +6,7 s – nie ma ROM-u grafiki do uruchomienia)"
+      },
+      "check": {
+        "en": "Graphics card seated? Slot, card power; try another card. Compare with a golden run of the working board",
+        "pl": "Czy karta graficzna jest włożona? Slot, zasilanie karty, inna karta. Porównaj ze wzorcem sprawnej płyty"
+      },
+      "bios_version": {
+        "en": "AMIBIOS v02.54",
+        "pl": "AMIBIOS v02.54"
+      },
+      "source": "NIUCHACZ: ASRock 775V88 – graphics card removed (23.10.2026), card shows 857C",
+      "confidence": "observed"
+    },
+    {
       "code": "87",
       "stage": {
         "en": "BIOS Setup open (or boot password prompt)",

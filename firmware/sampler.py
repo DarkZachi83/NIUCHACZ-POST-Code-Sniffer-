@@ -230,7 +230,7 @@ def build_remap(order=None):
     return t
 
 
-SINGLE = 0x40000000   # znacznik w indeksie próbki: kod widziany tylko w jednym odczycie
+SINGLE = 0x20000000   # (mała liczba MicroPythona: max 0x3FFFFFFF – viper!) znacznik w indeksie próbki: kod widziany tylko w jednym odczycie
 
 
 def is_mix(x, a, b):
@@ -321,7 +321,7 @@ try:
                 # kod widziany raz: przyjmij, jeśli nie jest mieszanką bitów poprzedniego i następnego
                 if (cand & ((prev | b) ^ 0xFF)) != 0 or ((cand ^ 0xFF) & prev & b) != 0:   # bez ~ (viper)
                     v[cnt] = cand
-                    ix[cnt] = (i - 1) | 0x40000000
+                    ix[cnt] = (i - 1) | 0x20000000
                     cnt += 1
                     prev = cand
                     lastchg = i

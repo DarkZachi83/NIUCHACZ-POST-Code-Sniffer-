@@ -24,7 +24,7 @@ GC_IDLE_MS = 300             # tyle ms bez zmiany: gc teraz, żeby nie ruszyło 
 FLASH_IDLE_MS = 10000        # zapis sesji na flash dopiero po 10 s bez zmiany (POST skończony / płyta stoi);
                              # zapis potrafi trwać ponad sekundę (pomiar 26.10.2026: przerwa 1356 ms)
 LED_KEEPALIVE_MS = 2000
-IDX_MASK = 0x3FFFFFFF
+IDX_MASK = 0x1FFFFFFF
 CODES_PER_GAP = 3            # tyle kodów obrabiamy w jednej przerwie między oknami        # indeks próbki bez znacznika sampler.SINGLE
 
 

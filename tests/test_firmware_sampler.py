@@ -123,3 +123,14 @@ class LatchSingleReadTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ViperConstantsTest(unittest.TestCase):
+    def test_viper_constants_are_small_ints(self):
+        """Viper: stała > 0x3FFFFFFF to obiekt, nie int -> ViperTypeError dopiero na ESP32."""
+        import re
+        src = (FW / "sampler.py").read_text(encoding="utf-8")
+        blocks = re.findall(r"@micropython\.viper\n(.*?)(?=\n\S|\Z)", src, re.S)
+        self.assertTrue(blocks)
+        big = [c for b in blocks for c in re.findall(r"0x[0-9A-Fa-f]+|\b\d+\b", b) if int(c, 0) > 0x3FFFFFFF]
+        self.assertEqual([], big)

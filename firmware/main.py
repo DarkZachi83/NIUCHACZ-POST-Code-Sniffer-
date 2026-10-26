@@ -16,10 +16,13 @@ from net_server import NetServer
 from session_store import SessionStore
 from usb_link import UsbLink
 
-USB_BUDGET_US = 2500         # USB w trakcie serii: najwyżej ok. 1 linia na przerwę
-IDLE_USB_BUDGET_US = 50000   # gdy płyta stoi: dośle resztę kolejki
+# Nic nie może blokować ESP32 na dłużej niż kilka ms: płyta potrafi stać na kodzie kilka sekund
+# (D1 1,1 s, 2A 4,9 s, 78 3,7 s na ASRock 775V88), a zaraz potem wypuścić serię 30 kodów w 20 ms.
+USB_BUDGET_US = 5000         # USB: najwyżej ok. 1–2 linie na przerwę między oknami
 USB_Q_MAX = 400              # bez PC na USB kolejka nie może rosnąć bez końca
-IDLE_MS = 1000               # tyle ms bez nowego kodu = płyta stoi (zapis flash, gc)
+GC_IDLE_MS = 1000            # tyle ms bez zmiany: krótkie gc (kilka ms), żeby nie ruszyło samo w serii
+FLASH_IDLE_MS = 10000        # zapis sesji na flash dopiero po 10 s bez zmiany (POST skończony / płyta stoi);
+                             # zapis potrafi trwać ponad sekundę (pomiar 26.10.2026: przerwa 1356 ms)
 LED_KEEPALIVE_MS = 2000
 
 
@@ -60,7 +63,8 @@ class Niuchacz:
         self.gap_sum_us = 0
         self.stat_since_us = time.ticks_us()
         self.last_code_ms = time.ticks_ms()
-        self.idle_done = False       # flush + gc już zrobione w tym postoju
+        self.idle_done = False       # zapis flash już zrobiony w tym postoju
+        self.gc_done = False
         self.usb_q = []              # linie dla USB – wysyłane porcjami między oknami
         self.led_sent = None
         self.led_sent_ms = 0
@@ -191,6 +195,7 @@ class Niuchacz:
             self.flap_quiet_since = now
             self.last_code_ms = now
             self.idle_done = False
+            self.gc_done = False
         elif self.flap is not None and time.ticks_diff(now, self.flap_quiet_since) > 300:
             # miganie ustało – wyślij kod, na którym się zatrzymało, jeśli różni się od ostatniego
             if self.code_hist and self.flap_last >= 0 and self.flap_last != self.code_hist[-1]:
@@ -262,16 +267,14 @@ class Niuchacz:
                 self.gap_sum_us = 0
                 self.stat_since_us = time.ticks_us()
                 last_hb = now
-            if time.ticks_diff(now, self.last_code_ms) >= IDLE_MS:
-                # płyta stoi na jednym kodzie: teraz wolno blokować na dłużej (flash, gc)
-                if not self.idle_done:
-                    self.store.flush()
-                    gc.collect()
-                    self.idle_done = True
-                self.usb_pump(IDLE_USB_BUDGET_US)
-            else:
-                self.idle_done = False
-                self.usb_pump()
+            idle = time.ticks_diff(now, self.last_code_ms)
+            if idle >= GC_IDLE_MS and not self.gc_done:
+                gc.collect()
+                self.gc_done = True
+            if idle >= FLASH_IDLE_MS and not self.idle_done:
+                self.store.flush()
+                self.idle_done = True
+            self.usb_pump()
             self.usb.poll()
             await asyncio.sleep_ms(20 if self.demo_mode else 0)   # oddaj czas obsłudze sieci
 

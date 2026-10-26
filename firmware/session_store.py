@@ -7,7 +7,7 @@ import os
 
 import config
 
-BUF_MAX = 250      # linii w RAM, zanim zapis na flash zostanie wymuszony
+BUF_MAX = 300      # linii w RAM, zanim zapis na flash zostanie wymuszony
 
 
 def _exists(path):
@@ -24,7 +24,7 @@ class SessionStore:
     Każda operacja na flashu (zapis, utworzenie pliku, kasowanie starych sesji) potrafi
     zablokować ESP32 na dziesiątki–setki ms (kasowanie bloku). W tym czasie nikt nie
     czyta zatrzasku, więc pętla główna woła flush() tylko wtedy, gdy płyta stoi na
-    jednym kodzie (pomiar 26.10.2026: przerwa 132 ms w środku serii, zgubione 80, 90, 2E).
+    jednym kodzie przez 10 s (pomiar 26.10.2026: przerwa 132 ms w środku serii, zgubione 80, 90, 2E).
     """
 
     def __init__(self, directory=config.SESSION_DIR, max_sessions=config.MAX_SESSIONS):

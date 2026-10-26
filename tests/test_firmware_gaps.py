@@ -110,9 +110,10 @@ class FirmwareGapTest(unittest.TestCase):
             fw.emit('{"t":"code","c":%d,"ts":0}' % v)
         self.assertEqual([], self.usb_out)                 # emit nie blokuje na USB
         fw.usb_pump()
-        self.assertEqual(1, len(self.usb_out))             # w trakcie serii: ok. 1 linia na przerwę
-        fw.usb_pump(self.main.IDLE_USB_BUDGET_US)
-        self.assertEqual(10, len(self.usb_out))            # gdy płyta stoi: reszta
+        self.assertEqual(2, len(self.usb_out))             # najwyżej ok. 5 ms na przerwę
+        for _ in range(4):
+            fw.usb_pump()
+        self.assertEqual(10, len(self.usb_out))
 
 
 if __name__ == "__main__":

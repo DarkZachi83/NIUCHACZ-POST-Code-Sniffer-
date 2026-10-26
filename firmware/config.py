@@ -42,6 +42,9 @@ DEBOUNCE_MS = 16           # kod musi być stabilny tyle ms (pełny cykl multipl
 LED_REPORT_MS = 250        # jak często wysyłać stan diod
 HEARTBEAT_MS = 1000
 
-# --- sesje ---
+# --- sesje w pamięci ESP32 ---
+# False (zalecane): przebiegi nagrywa aplikacja (REC). True: ESP32 zapisuje też sesje na flash,
+# ale każdy zapis zatrzymuje odczyt karty na dziesiątki ms–sekundy i kody giną.
+STORE_SESSIONS = False
 SESSION_DIR = "/sessions"
 MAX_SESSIONS = 50

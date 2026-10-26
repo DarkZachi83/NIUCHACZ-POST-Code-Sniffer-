@@ -122,3 +122,32 @@ class SessionStore:
         ids = [i for i in self.list_ids() if _exists(self._path(i))]
         while len(ids) > self.max:
             os.remove(self._path(ids.pop(0)))
+
+
+class NullStore:
+    """Bez zapisu sesji na ESP32 (domyślnie). Numeracja sesji działa dalej."""
+
+    def __init__(self):
+        self.current_id = 0
+
+    def start(self):
+        self.current_id += 1
+        return self.current_id
+
+    def append(self, line):
+        pass
+
+    def flush(self):
+        pass
+
+    def close(self):
+        pass
+
+    def list_ids(self):
+        return []
+
+    def read_lines(self, sid):
+        return iter(())
+
+    def clear(self):
+        pass

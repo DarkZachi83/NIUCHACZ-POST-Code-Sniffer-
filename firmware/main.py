@@ -13,7 +13,7 @@ import protocol
 import sampler
 import demo
 from net_server import NetServer
-from session_store import SessionStore
+from session_store import NullStore, SessionStore
 from usb_link import UsbLink
 
 # Nic nie może blokować ESP32 na dłużej niż kilka ms: płyta potrafi stać na kodzie kilka sekund
@@ -31,7 +31,11 @@ CODES_PER_GAP = 3            # tyle kodów obrabiamy w jednej przerwie między o
 class Niuchacz:
     def __init__(self):
         sampler.setup_pins()
-        self.store = SessionStore()
+        # Zapis sesji w pamięci ESP32 jest domyślnie WYŁĄCZONY: każdy zapis na flash blokował
+        # odczyt (pomiar 26.10.2026: 132 ms, 1356 ms, 3437 ms, 4569 ms), a bufor w RAM wydłuża
+        # odśmiecanie pamięci MicroPythona. Przebiegi nagrywa aplikacja (REC).
+        # Włączenie w config.py: STORE_SESSIONS = True (kosztem przerw w odczycie).
+        self.store = SessionStore() if getattr(config, "STORE_SESSIONS", False) else NullStore()
         self.net = NetServer(self.handle_command)
         self.usb = UsbLink(self.handle_command, config.USB_ENABLED)
         self.debounce_ms = config.DEBOUNCE_MS

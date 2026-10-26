@@ -59,8 +59,8 @@ class FirmwareGapTest(unittest.TestCase):
              setup_pins=lambda: None, build_remap=lambda: bytes(range(256)), latch_window=latch_window)
         stub("demo")
         stub("net_server", NetServer=lambda cb: types.SimpleNamespace(broadcast=lambda t: None))
-        stub("session_store", SessionStore=lambda: types.SimpleNamespace(
-            append=lambda t: None, flush=lambda: None, start=lambda: 1))
+        store = lambda: types.SimpleNamespace(append=lambda t: None, flush=lambda: None, start=lambda: 1)
+        stub("session_store", SessionStore=store, NullStore=store)
 
         def send(text):
             clk.us += 3000                         # UART 115200: ok. 3 ms na linię

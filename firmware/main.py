@@ -28,6 +28,25 @@ IDX_MASK = 0x3FFFFFFF
 CODES_PER_GAP = 3            # tyle kodów obrabiamy w jednej przerwie między oknami        # indeks próbki bez znacznika sampler.SINGLE
 
 
+def _check_files():
+    """Pliki firmware wgrywa się ręcznie (Thonny) – łatwo zostawić stary. Powiedz wprost który."""
+    import session_store
+    need = ((sampler, ("SINGLE", "is_mix", "latch_window")),
+            (protocol, ("code", "heartbeat")),
+            (session_store, ("NullStore", "SessionStore")))
+    stale = [m.__name__ + ".py" for m, names in need if not all(hasattr(m, x) for x in names)]
+    try:
+        protocol.code(0, 0, 0, 0)
+        protocol.heartbeat(0, 0, 0)
+    except TypeError:
+        stale.append("protocol.py")
+    if stale:
+        raise ImportError("NIUCHACZ: stare pliki na ESP32 – wgraj z repozytorium: " + ", ".join(sorted(set(stale))))
+
+
+_check_files()
+
+
 class Niuchacz:
     def __init__(self):
         sampler.setup_pins()

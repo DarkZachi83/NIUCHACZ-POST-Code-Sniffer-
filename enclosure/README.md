@@ -2,7 +2,7 @@
 
 [English](#english) · [Polski](#polski)
 
-![Preview: base, base from the front, USB test piece](niuchacz_box_preview.png)
+![Preview: base, base from the front, USB test piece](niuchacz_box_v3_podglad.png)
 
 | File | |
 |---|---|
@@ -10,6 +10,7 @@
 | `niuchacz_box_base.stl` | base / dno |
 | `niuchacz_box_lid.stl` | lid (already flipped for printing) / wieczko (już obrócone do druku) |
 | `niuchacz_box_test.stl` | small test piece with the USB-C tunnel / mały wydruk testowy z tunelem USB-C |
+| `niuchacz_box_v1.scad`, `*_podglad.png` | earlier version and previews (history) / wcześniejsza wersja i podglądy (historia) |
 
 Outer size / wymiary zewnętrzne: **137.8 × 121.8 × 38 mm** (version v3, 17.10.2026).
 

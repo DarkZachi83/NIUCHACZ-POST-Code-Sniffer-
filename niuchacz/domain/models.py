@@ -148,6 +148,9 @@ class Divergence:
     expected: Optional[str]
     actual: Optional[str]
     matched: int
+    skipped: tuple = ()        # kody wzorca, których w przebiegu zabrakło, a dalej wszystko się zgadza
+    extra: tuple = ()          # kody przebiegu spoza wzorca, a dalej wszystko się zgadza
+    only_uncertain: bool = True   # wszystkie pominięte/nadmiarowe były niepewne (~, krótkie)
 
     @property
     def identical(self) -> bool:

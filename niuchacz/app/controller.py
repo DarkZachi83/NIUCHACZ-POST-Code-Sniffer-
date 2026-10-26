@@ -444,7 +444,9 @@ class AppController:
     def _compare_golden(self) -> None:
         if not self.golden_run or not self.recorder.current.items:
             return
-        div = golden.compare(self.recorder.current.codes, self.golden_run.codes)
+        items = self.recorder.current.items
+        div = golden.compare([it.code for it in items], self.golden_run.codes, self.golden_run.optional,
+                             [bool(getattr(it, "single", False)) for it in items])
         key, fields = golden.describe(div, self.golden_run)
         self.recorder.current.set_golden(key, **fields)
         self.bus.publish(ev.GOLDEN, (key, fields))

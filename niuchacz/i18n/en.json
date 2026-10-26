@@ -88,6 +88,8 @@
   "golden.fault_ram": "no RAM",
   "golden.fault_video": "no graphics card",
   "golden.identical": "Run matches the golden run ({n} codes). (golden: {board})",
+  "golden.identical_missing": "Run matches the reference ({n} codes) except for missing codes: {skipped}, extra: {extra}. The rest of the sequence is the same, so most likely a reading loss, not a fault. (reference: {board})",
+  "golden.identical_uncertain": "Run matches the reference ({n} codes); very short codes not caught this time: {skipped}, extra: {extra} – normal for the reader. (reference: {board})",
   "golden.induced": "Induced fault",
   "golden.longer": "Run is longer than the golden run, extra code: {actual}. (golden: {board})",
   "golden.notes": "Notes",

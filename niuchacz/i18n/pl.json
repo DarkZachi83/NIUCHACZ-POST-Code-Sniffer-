@@ -88,6 +88,8 @@
   "golden.fault_ram": "brak RAM",
   "golden.fault_video": "brak karty graficznej",
   "golden.identical": "Przebieg zgodny ze wzorcem ({n} kodów). (wzorzec: {board})",
+  "golden.identical_missing": "Przebieg zgodny ze wzorcem ({n} kodów) poza brakującymi kodami: {skipped}, nadmiarowe: {extra}. Dalsza sekwencja jest taka sama, więc to najpewniej strata odczytu, a nie usterka. (wzorzec: {board})",
+  "golden.identical_uncertain": "Przebieg zgodny ze wzorcem ({n} kodów); tym razem nie złapały się bardzo krótkie kody: {skipped}, nadmiarowe: {extra} – to normalne dla odczytu. (wzorzec: {board})",
   "golden.induced": "Wywołana usterka",
   "golden.longer": "Przebieg dłuższy niż wzorzec, nadmiarowy kod: {actual}. (wzorzec: {board})",
   "golden.notes": "Uwagi",

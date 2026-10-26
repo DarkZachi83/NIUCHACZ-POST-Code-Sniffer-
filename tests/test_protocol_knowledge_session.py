@@ -86,6 +86,32 @@ class GoldenTest(unittest.TestCase):
         self.assertEqual((diff.expected, diff.actual), ("C1", "C5"))
         self.assertTrue(golden.compare(["CF", "CF", "C0", "C1", "C3", "FF"], g).identical)
 
+    def test_short_code_missing_is_not_a_divergence(self):
+        """26.10.2026, ASRock 775V88: wzorzec ma C1~, kolejny przebieg C1 nie złapał."""
+        g = ["08", "C0", "C1", "C2", "C3", "C4", "C5", "C6"]
+        a = ["08", "C0", "C2", "C3", "C5", "C6"]
+        d = golden.compare(a, g, golden_optional=[2, 5])
+        self.assertTrue(d.identical)
+        self.assertEqual(("C1", "C4"), d.skipped)
+        self.assertTrue(d.only_uncertain)
+        self.assertEqual("golden.identical_uncertain", golden.describe(d, golden.GoldenRun("B", "ami", g))[0])
+        # stary wzorzec bez oznaczeń: też zgodny, ale z listą braków
+        d = golden.compare(a, g)
+        self.assertTrue(d.identical)
+        self.assertFalse(d.only_uncertain)
+        # nadmiarowy kod w przebiegu (np. 0E złapany pierwszy raz)
+        d = golden.compare(["0C", "0E", "13", "20"], ["0C", "13", "20"])
+        self.assertTrue(d.identical)
+        self.assertEqual(("0E",), d.extra)
+
+    def test_real_divergence_still_detected(self):
+        g = ["D3", "DE", "D4", "D5", "D7", "D8"]
+        d = golden.compare(["D3", "DE", "D4", "88", "89", "8A", "8B", "8C"], g)
+        self.assertFalse(d.identical)
+        self.assertEqual(("D5", "88"), (d.expected, d.actual))
+        d = golden.compare(["D3", "DE"], g)     # płyta stanęła na DE (np. brak RAM)
+        self.assertEqual((None, "D4", 2), (d.actual, d.expected, d.matched))
+
     def test_save_load(self):
         rec = SessionRecorder()
         for i, c in enumerate(["CF", "C0", "C1"]):

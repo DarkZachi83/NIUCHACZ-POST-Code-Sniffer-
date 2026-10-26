@@ -38,6 +38,9 @@ from niuchacz.transport.base import Transport, TransportError
 log = logging.getLogger(__name__)
 
 
+MIN_DONE_CODES = 10    # tyle kodów musi mieć start, żeby 00/FF uznać za koniec POST
+
+
 class AppController:
     def __init__(self, bus: ev.EventBus, config: ConfigStore, diagnosis: DiagnosisService,
                  transport_factory, segment_map: SegmentMap, profile: CardProfile):
@@ -286,7 +289,9 @@ class AppController:
         if idle is None or code is None or not session.items:
             return
         value = code.value
-        if value in ("00", "FF") and len(session.items) > 1 \
+        # 00/FF to koniec POST tylko po prawdziwym przebiegu: zaraz po włączeniu zasilania
+        # zatrzask pokazuje przypadkowe bajty i 00 (pomiar 26.10: 04 00 10 12 1A, potem 00)
+        if value in ("00", "FF") and len(session.items) >= MIN_DONE_CODES \
                 and idle >= float(self.settings.get("rec_done_seconds", 3)):
             self._finish_recording("rec.end_done", code=value)
         elif idle >= float(self.settings.get("rec_wait_seconds", 5)) and any(

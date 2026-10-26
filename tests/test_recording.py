@@ -64,7 +64,7 @@ class RecordingTest(unittest.TestCase):
         self.c.arm_recording()
         self.assertEqual(rec_mod.ARMED, self.c.rec.state)
         self.reset(); self.codes("D0", "D4", "D5", "19")
-        self.reset(); self.codes("D0", "D4", "2A", "B0", "00")
+        self.reset(); self.codes("D0", "D4", "2A", "B0", "2C", "31", "37", "38", "75", "78", "00")
         self.wait(1)
         self.assertEqual(rec_mod.RECORDING, self.c.rec.state)       # 1 s ciszy to jeszcze nie koniec
         self.wait(3)
@@ -72,13 +72,13 @@ class RecordingTest(unittest.TestCase):
         self.assertEqual(rec_mod.DONE, self.c.rec.state)
         self.assertEqual("rec.end_done", rec.end_key)
         self.assertEqual(2, len(rec.starts))
-        self.assertEqual(9, rec.code_count)
+        self.assertEqual(15, rec.code_count)
         txt, csv = rec.saved
         self.assertTrue(txt.name.startswith("NIUCHACZ_REC_"))
         report = txt.read_text(encoding="utf-8")
         self.assertIn("START 1 (4 codes) – reset after code 19", report)
-        self.assertIn("START 2 (5 codes)", report)
-        self.assertEqual(10, len(csv.read_text(encoding="utf-8-sig").splitlines()))
+        self.assertIn("START 2 (11 codes)", report)
+        self.assertEqual(16, len(csv.read_text(encoding="utf-8-sig").splitlines()))
 
     def test_restart_loop_stops_after_max_starts(self):
         self.c.arm_recording()
@@ -118,8 +118,19 @@ class RecordingTest(unittest.TestCase):
 
     def test_armed_before_power_on_without_reset_line(self):
         self.c.arm_recording()
-        self.codes("D0", "D4", "2A", "00"); self.wait(4)
+        self.codes("D0", "D4", "2A", "2C", "31", "37", "38", "75", "78", "B1", "00"); self.wait(4)
         self.assertEqual("rec.end_done", self.c.rec.last.end_key)
+
+    def test_power_on_garbage_is_not_end_of_post(self):
+        """26.10.2026, włączenie zasilania: 04 00 10 12 1A, po 0,9 s 00 – to nie koniec POST."""
+        self.c.arm_recording()
+        self.reset(); self.codes("04", "00", "10", "12", "1A", "00")
+        self.wait(4)
+        self.assertEqual(rec_mod.RECORDING, self.c.rec.state)
+        self.codes("CD"); self.reset()
+        self.codes("D0", "D1", "D3", "DE", "D4", "D5", "DA", "03", "2A", "78", "B1", "00"); self.wait(4)
+        self.assertEqual("rec.end_done", self.c.rec.last.end_key)
+        self.assertEqual(2, len(self.c.rec.last.starts))
 
     def test_asrock_775v88_boot_is_two_starts(self):
         """Prawdziwy przebieg (26.10.2026): jeden zaplanowany reset po CD; DE po 90 to NIE reset."""
@@ -142,7 +153,7 @@ class RecordingTest(unittest.TestCase):
     def test_report_in_polish(self):
         self.c.arm_recording()
         self.reset(); self.codes("D0", "19")
-        self.reset(); self.codes("D0", "2A", "00"); self.wait(4)
+        self.reset(); self.codes("D0", "2A", "2C", "31", "37", "38", "75", "78", "B1", "00"); self.wait(4)
         rec = self.c.rec.last
         pl = self.c.report_text(rec, self.c.default_report_meta(), lang="pl")
         en = self.c.report_text(rec, self.c.default_report_meta(), lang="en")

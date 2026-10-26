@@ -63,6 +63,8 @@ PC Analyzer card ── 74LCX374 Q0–Q7 + GND ── ribbon / DB25 ──► NI
 
 ### Hardware (prototype)
 
+Which POST cards work and what you get from each: [docs/CARDS.md](docs/CARDS.md).
+
 | Part | Notes |
 |---|---|
 | POST card "PC Analyzer" PCI/ISA, 4 digits | SyncMOS SM2965, GAL16V8D, **74LCX374** |
@@ -188,6 +190,8 @@ bajtu to nowy kod POST. ESP32 sprawdza linie ok. 1,4 mln razy na sekundę i łap
 wyświetlacz karty nigdy nie pokazuje.
 
 ### Sprzęt (prototyp)
+
+Które karty POST działają i co z której można wyciągnąć: [docs/CARDS.md](docs/CARDS.md#polski).
 
 | Element | Uwagi |
 |---|---|

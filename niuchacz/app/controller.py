@@ -374,8 +374,15 @@ class AppController:
             return False
         vendor = getattr(self, "settings", {}).get("bios_vendor", "award")
         if vendor == "ami":
-            boot = lambda c: c[0] == "D"                      # blok startowy AMIBIOS8
-            post = lambda c: int(c, 16) < 0xD0                # właściwy POST
+            # Tylko D0 = wektor resetu. Inne kody D* bywają w środku startu: ASRock 775V88
+            # robi D3 -> kody kodu pamięci 10..90 -> DE, D4, D5… bez żadnego resetu.
+            # D0 zginie tylko przy wolnym odczycie (stary tryb wyświetlacza) – wtedy inny kod D*
+            # uznajemy za nowy start tylko po oczekiwaniu/postoju płyty (85, 87, brak zmian).
+            session = self.recorder.current
+            stopped = bool(session.result_key) or (hasattr(self, "diagnosis") and any(
+                e.kind == "wait" for e in self.diagnosis.repository.find(codes[-1], "ami")))
+            boot = lambda c: c == "D0" or (c[0] == "D" and stopped)
+            post = lambda c: int(c, 16) < 0xD0
         elif vendor == "award":
             boot = lambda c: c[0] == "C"
             post = lambda c: c[0] != "C"

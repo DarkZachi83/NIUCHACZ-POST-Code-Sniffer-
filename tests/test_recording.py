@@ -121,6 +121,17 @@ class RecordingTest(unittest.TestCase):
         self.codes("D0", "D4", "2A", "00"); self.wait(4)
         self.assertEqual("rec.end_done", self.c.rec.last.end_key)
 
+    def test_asrock_775v88_boot_is_two_starts(self):
+        """Prawdziwy przebieg (26.10.2026): jeden zaplanowany reset po CD; DE po 90 to NIE reset."""
+        self.c.arm_recording()
+        self.codes("D0", "D1", "CD")
+        self.codes("D0", "D1", "D3", "10", "20", "21", "22", "23", "24", "30", "40", "41", "50", "90",
+                   "DE", "D4", "D5", "D7", "D8", "D9", "DA", "03", "04", "2A", "85", "87", "B1", "00")
+        self.wait(4)
+        rec = self.c.rec.last
+        self.assertEqual("rec.end_done", rec.end_key)
+        self.assertEqual(["CD", "00"], [s.last_code for s in rec.starts])
+
     def test_save_last_run(self):
         self.reset(); self.codes("D0", "D4", "2A")
         rec = self.c.save_last_run()

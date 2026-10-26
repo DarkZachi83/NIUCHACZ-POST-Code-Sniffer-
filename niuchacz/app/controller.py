@@ -113,15 +113,16 @@ class AppController:
         return getattr(self._transport, "name", "") if self._transport else ""
 
     def disconnect(self) -> None:
+        # kolejność: najpierw zatrzymać i poczekać na wątek czytający (read_line ma timeout 0,3 s),
+        # dopiero potem zamknąć port – zamknięcie portu w trakcie odczytu wywracało pyserial
         if self._reader:
             self._reader.stop()
+            self._reader.join(timeout=1.5)
         if self._transport:
             try:
                 self._transport.close()
             except TransportError:
                 pass
-        if self._reader:
-            self._reader.join(timeout=1.5)
         self._reader, self._transport = None, None
         self.bus.publish(ev.CONNECTION, (ConnectionState.DISCONNECTED, ""))
 

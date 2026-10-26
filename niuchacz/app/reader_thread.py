@@ -48,7 +48,8 @@ class ReaderThread(threading.Thread):
         except TransportError as exc:
             reason = str(exc)
         except Exception as exc:  # nieoczekiwany błąd – raportujemy, nie zabijamy GUI
-            log.exception("Wątek czytający przerwany")
-            reason = t("reader.unexpected", error=exc)
+            if not self._stop_evt.is_set():      # przy zamykaniu połączenia to nie jest błąd
+                log.exception("Wątek czytający przerwany")
+                reason = t("reader.unexpected", error=exc)
         finally:
             self.out.put(TransportClosed(reason if not self._stop_evt.is_set() else ""))

@@ -66,11 +66,16 @@ class SerialTransport(Transport):
     def read_line(self, timeout: float = 0.5) -> Optional[str]:
         if not self._ser:
             raise TransportError(t("serial.closed"))
-        self._ser.timeout = timeout
+        ser = self._ser
         try:
-            raw = self._ser.readline()
+            ser.timeout = timeout
+            raw = ser.readline()
         except serial.SerialException as exc:
             raise TransportError(t("serial.error", error=exc)) from exc
+        except (TypeError, AttributeError, OSError, ValueError) as exc:
+            # port zamknięty w trakcie odczytu (np. odłączony kabel) – pyserial zgłasza wtedy
+            # różne wyjątki zamiast SerialException
+            raise TransportError(t("serial.closed")) from exc
         if not raw:
             return None
         return raw.decode("utf-8", errors="replace").rstrip("\r\n")

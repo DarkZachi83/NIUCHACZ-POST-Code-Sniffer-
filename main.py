@@ -50,6 +50,7 @@ def build_controller(lang: str | None = None) -> tuple[AppController, EventBus]:
         segment_map=config.load_segment_map(),
         profile=config.load_card_profile(),
     )
+    controller.reports_dir = PATHS["reports"]
     return controller, bus
 
 

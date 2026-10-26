@@ -156,6 +156,12 @@ class CodeAssembler:
         self._hang_reported = False
         return [CodeChange(code=code, display=display, ts_ms=ts_ms)]
 
+    def idle_seconds(self) -> Optional[float]:
+        """Ile sekund od ostatniej zmiany kodu (None – jeszcze nie było kodu)."""
+        if self._last_change_at is None:
+            return None
+        return self._clock() - self._last_change_at
+
     def check_hang(self, hang_seconds: float) -> Optional[HangDetected]:
         """Wywoływane okresowo. Raportuje zawieszenie raz na każdy kod."""
         if self._last_change_at is None or self._hang_reported:

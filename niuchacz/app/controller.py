@@ -29,8 +29,10 @@ from niuchacz.i18n import t
 from niuchacz.knowledge.diagnosis_service import DiagnosisService
 from niuchacz.protocol import commands
 from niuchacz.session import exporter, golden
+from niuchacz.session import recording as rec_mod
+from niuchacz.session.recording import Recording, RecordingManager
 from niuchacz.session.recorder import LIVE, Session, SessionRecorder
-from niuchacz.session.report import ReportMeta, build_report
+from niuchacz.session.report import ReportMeta, build_recording_report, build_report
 from niuchacz.transport.base import Transport, TransportError
 
 log = logging.getLogger(__name__)
@@ -58,6 +60,8 @@ class AppController:
         self.raw_history: deque = deque(maxlen=3000)   # ramki do kalibracji automatycznej
         self.calibrating = False                # otwarty kreator kalibracji – bez wyskakujących raportów
         self.last_change: Optional[CodeChange] = None   # do odtworzenia wyświetlacza po przebudowie okna
+        self.rec = RecordingManager(int(self.settings.get("rec_max_starts", 4)))
+        self.reports_dir = Path("reports")      # main.py podmienia na właściwy katalog
 
     # ---------- ustawienia ----------
 
@@ -151,6 +155,8 @@ class AppController:
         hang = self.assembler.check_hang(float(self.settings.get("hang_seconds", 15)))
         if hang:
             self._on_stall(hang)
+        if self.rec.state == rec_mod.RECORDING:
+            self._check_recording_end()
 
     def _on_stall(self, hang) -> None:
         """Brak zmian kodu przez hang_seconds. To NIE musi być awaria: BIOS może czekać na
@@ -235,6 +241,94 @@ class AppController:
         self.assembler.reset()
         session = self.recorder.start(session_id, source)
         self.bus.publish(ev.SESSION, session)
+        if source == LIVE:
+            self._on_board_start(session)
+
+    # ---------- nagrywanie (REC) ----------
+
+    def arm_recording(self) -> None:
+        """REC: czekamy na reset / włączenie płyty, dopiero wtedy nagrywamy."""
+        self.rec.max_starts = max(1, int(self.settings.get("rec_max_starts", 4)))
+        if self.rec.arm():
+            self.bus.publish(ev.REC, (rec_mod.ARMED, None))
+            self.bus.publish(ev.STATUS, t("rec.status_armed"))
+
+    def stop_recording(self) -> None:
+        """STOP: anuluje oczekiwanie albo kończy trwające nagranie."""
+        if self.rec.cancel():
+            self.bus.publish(ev.REC, (rec_mod.IDLE, None))
+            self.bus.publish(ev.STATUS, t("rec.status_cancelled"))
+        elif self.rec.state == rec_mod.RECORDING:
+            self._finish_recording("rec.end_manual", code=self.recorder.current.last_code or "?")
+
+    def _on_board_start(self, session: Session) -> None:
+        if not hasattr(self, "rec"):      # kontroler złożony częściowo (testy)
+            return
+        what = self.rec.on_new_start(session)
+        if what == "started":
+            self.bus.publish(ev.REC, (rec_mod.RECORDING, self.rec.current))
+            self.bus.publish(ev.STATUS, t("rec.status_recording"))
+        elif what == "next":
+            self.bus.publish(ev.REC, (rec_mod.RECORDING, self.rec.current))
+            self.bus.publish(ev.STATUS, t("rec.status_next_start", n=len(self.rec.current.starts)))
+        elif what == "loop":
+            starts = self.rec.current.starts
+            self._finish_recording("rec.end_loop", n=len(starts),
+                                   codes=", ".join(s.last_code or "?" for s in starts))
+
+    def _check_recording_end(self) -> None:
+        """Koniec nagrania: POST zakończony, BIOS czeka na użytkownika albo postój."""
+        idle = self.assembler.idle_seconds()
+        code = self.assembler.current_code
+        session = self.recorder.current
+        if idle is None or code is None or not session.items:
+            return
+        value = code.value
+        if value in ("00", "FF") and len(session.items) > 1 \
+                and idle >= float(self.settings.get("rec_done_seconds", 3)):
+            self._finish_recording("rec.end_done", code=value)
+        elif idle >= float(self.settings.get("rec_wait_seconds", 5)) and any(
+                e.kind == "wait" for e in self.diagnosis.repository.find(value, self.vendor)):
+            entry = next(e for e in self.diagnosis.repository.find(value, self.vendor) if e.kind == "wait")
+            self._finish_recording("rec.end_wait", code=value, stage=entry.stage)
+        elif idle >= float(self.settings.get("hang_seconds", 15)):
+            self._finish_recording("rec.end_stop", code=value, seconds=f"{idle:.0f}")
+
+    def _finish_recording(self, key: str, **fields) -> None:
+        rec = self.rec.finish(key, **fields)
+        if rec is None:
+            return
+        self._save_recording(rec)
+        self.bus.publish(ev.REC, (rec_mod.DONE, rec))
+
+    def _save_recording(self, rec: Recording) -> None:
+        """Automatyczny zapis TXT (raport) i CSV (czasy) do katalogu raportów."""
+        self.reports_dir.mkdir(parents=True, exist_ok=True)
+        meta = self.default_report_meta()
+        # numer REC liczy się od 1 po każdym uruchomieniu – w nazwie pliku sekundy, żeby nic nie nadpisać
+        stem = "_".join(p for p in (meta.repair_no, meta.board) if p)
+        stem = "".join(c if c.isalnum() or c in "-_" else "_" for c in stem)[:50]
+        txt = self.reports_dir / "_".join(p for p in ("NIUCHACZ_REC", stem, f"{rec.started_at:%Y%m%d_%H%M%S}") if p)
+        txt = txt.with_suffix(".txt")
+        try:
+            printing.save_text(txt, self.report_text(rec, meta))
+            csv_path = txt.with_suffix(".csv")
+            exporter.export_recording_csv(rec, csv_path)
+            rec.saved = [txt, csv_path]
+            self.bus.publish(ev.STATUS, t("rec.status_saved", result=rec.result, name=txt.name))
+        except OSError as exc:
+            self.bus.publish(ev.STATUS, t("rec.status_save_failed", error=exc))
+
+    def save_last_run(self) -> Optional[Recording]:
+        """„Zapisz ostatni przebieg” – dla przebiegu, który nie był nagrywany przyciskiem REC."""
+        session = next((s for s in reversed(self.recorder.sessions) if s.items), None)
+        if session is None:
+            self.bus.publish(ev.STATUS, t("status.no_codes_yet"))
+            return None
+        rec = self.rec.snapshot(session)
+        self._save_recording(rec)
+        self.bus.publish(ev.REC, ("saved", rec))
+        return rec
 
     def _on_code(self, change: CodeChange) -> None:
         self.last_change = change
@@ -249,6 +343,9 @@ class AppController:
             # płyta startuje od nowa (np. AMI: kod bloku startowego D0–DF po kodach POST)
             self._new_session()
         session = self.recorder.current
+        if self.rec.state == rec_mod.ARMED and not session.items and session.source == LIVE:
+            # REC wciśnięty przed włączeniem płyty, bez linii RESET: pierwszy kod to start
+            self._on_board_start(session)
         if session.result_key and not session.ended:
             # po postoju / oczekiwaniu przyszedł nowy kod – płyta pracuje dalej
             session.set_result()
@@ -355,14 +452,18 @@ class AppController:
         entries = self.diagnosis.repository.find(code, self.vendor)
         return DiagnosisService.stage(entries[0], lang) if entries else ""
 
-    def report_text(self, session: Session, meta: ReportMeta, lang: Optional[str] = None) -> str:
+    def report_text(self, session, meta: ReportMeta, lang: Optional[str] = None) -> str:
+        """Raport sesji albo nagrania (Recording) – w podanym albo bieżącym języku."""
         diag_text = ""
         if session.last_code:
             post = PostCode.parse(session.last_code)
             if post:
                 diag_text = DiagnosisService.format(self.diagnosis.diagnose(post, self.vendor, meta.board), lang)
         vendor_label = BiosVendor(self.vendor).label if self.vendor in [v.value for v in BiosVendor] else self.vendor
-        return build_report(session, vendor_label, meta, lambda c: self._stage_for(c, lang), diag_text, lang=lang)
+        stage = lambda c: self._stage_for(c, lang)  # noqa: E731
+        if isinstance(session, Recording):
+            return build_recording_report(session, vendor_label, meta, stage, diag_text, lang=lang)
+        return build_report(session, vendor_label, meta, stage, diag_text, lang=lang)
 
     def refresh_language(self) -> None:
         """Po zmianie języka: ponownie publikuje teksty, które widoki pokazują na stałe."""

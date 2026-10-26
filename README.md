@@ -102,6 +102,21 @@ are bilingual in `data/post_codes/*.json`. Adding a language = one more JSON fil
 
 Tests: `python -m unittest discover -s tests -t .`
 
+### Recording runs (REC)
+
+The live view always runs. Nothing is saved and no report window pops up by itself.
+
+1. Press **REC** (or F9). The button blinks red: *reset the motherboard or switch it on*.
+2. Recording starts with the boot (RESET release, or the boot-block code if the RESET line is not connected).
+3. A reset during recording does not end it. It opens the next *start* in the same recording,
+   because many boards reset once on purpose. After 4 starts (Tools → Settings) the recording stops
+   with **RESTART LOOP** and the last code before each reset.
+4. The recording ends by itself when POST finishes (`00`/`FF` + 3 s of quiet), when the BIOS waits for the user
+   (`85`/`87`, 5 s), when the board stalls (15 s), or on **STOP**.
+5. TXT report + CSV are saved to `reports/`. A bar asks: *Record the next run?*
+
+**Save last run** saves a run you did not arm REC for.
+
 ### Lessons learned (read before you build)
 
 - **Check the cable pin by pin** before debugging anything else. We lost days to a cable and an overheated
@@ -205,6 +220,21 @@ opisy kodów POST – dwujęzycznie w `data/post_codes/*.json`. Nowy język = je
 3. Zrestartuj ESP32 – `main.py` uruchomi się sam.
 
 Testy: `python -m unittest discover -s tests -t .`
+
+### Nagrywanie przebiegów (REC)
+
+Podgląd na żywo działa zawsze. Nic nie zapisuje się samo i żadne okno raportu nie wyskakuje.
+
+1. Wciśnij **REC** (albo F9). Przycisk miga na czerwono: *zresetuj płytę główną albo włącz zasilanie*.
+2. Nagrywanie rusza razem ze startem płyty (puszczenie RESET albo kod bloku startowego, gdy linia RESET nie jest podłączona).
+3. Reset w trakcie nagrania go nie kończy – otwiera kolejny *start* w tym samym nagraniu,
+   bo wiele płyt resetuje się raz celowo. Po 4 startach (Narzędzia → Ustawienia) nagranie kończy się
+   komunikatem **PĘTLA RESTARTÓW** z ostatnim kodem przed każdym resetem.
+4. Nagranie kończy się samo, gdy POST dobiegnie końca (`00`/`FF` + 3 s ciszy), gdy BIOS czeka na użytkownika
+   (`85`/`87`, 5 s), przy postoju płyty (15 s) albo po **STOP**.
+5. Raport TXT + CSV zapisują się w `reports/`. Pasek pyta: *Nagrać kolejny przebieg?*
+
+**Zapisz ostatni przebieg** zapisuje przebieg, przy którym REC nie był wciśnięty.
 
 ### Wnioski z budowy (przeczytaj, zanim zaczniesz)
 

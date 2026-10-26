@@ -24,11 +24,13 @@ class SettingsDialog(tk.Toplevel):
             "board": tk.StringVar(value=s.get("board", "")),
             "hang": tk.StringVar(value=str(s.get("hang_seconds", 15))),
             "debounce": tk.StringVar(value=str(s.get("debounce_ms", 16))),
+            "max_starts": tk.StringVar(value=str(s.get("rec_max_starts", 4))),
         }
         frm = ttk.Frame(self, padding=12)
         frm.pack(fill="both")
         rows = ((t("settings.host"), "host"), (t("settings.port"), "port"), (t("settings.com"), "com"),
-                (t("settings.board"), "board"), (t("settings.hang"), "hang"), (t("settings.debounce"), "debounce"))
+                (t("settings.board"), "board"), (t("settings.hang"), "hang"), (t("settings.debounce"), "debounce"),
+                (t("settings.max_starts"), "max_starts"))
         for r, (label, key) in enumerate(rows):
             ttk.Label(frm, text=label).grid(row=r, column=0, sticky="w", pady=3)
             if key == "com":
@@ -36,8 +38,8 @@ class SettingsDialog(tk.Toplevel):
             else:
                 w = ttk.Entry(frm, textvariable=self.vars[key], width=30)
             w.grid(row=r, column=1, sticky="ew", padx=(8, 0), pady=3)
-        self.auto_report = tk.BooleanVar(value=bool(s.get("report_auto_open", True)))
-        ttk.Checkbutton(frm, text=t("settings.auto_report"),
+        self.auto_report = tk.BooleanVar(value=bool(s.get("report_popup", False)))
+        ttk.Checkbutton(frm, text=t("settings.report_popup"),
                         variable=self.auto_report).grid(row=len(rows), column=0, columnspan=2, sticky="w", pady=(8, 0))
         btns = ttk.Frame(frm)
         btns.grid(row=len(rows) + 1, column=0, columnspan=2, sticky="e", pady=(10, 0))
@@ -54,7 +56,8 @@ class SettingsDialog(tk.Toplevel):
                 "board": v["board"],
                 "hang_seconds": float(v["hang"]),
                 "debounce_ms": int(v["debounce"]),
-                "report_auto_open": bool(self.auto_report.get()),
+                "report_popup": bool(self.auto_report.get()),
+                "rec_max_starts": max(1, int(v["max_starts"])),
             }
         except ValueError:
             messagebox.showerror(t("settings.title"), t("settings.err_numbers"), parent=self)

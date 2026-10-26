@@ -23,6 +23,7 @@ from niuchacz.gui.widgets.code_display import CodeDisplay
 from niuchacz.gui.widgets.diagnosis_panel import DiagnosisPanel
 from niuchacz.gui.widgets.history_view import HistoryView
 from niuchacz.gui.widgets.led_panel import LedPanel
+from niuchacz.gui.widgets.rec_panel import RecPanel
 from niuchacz.gui.widgets.toolbar import Toolbar
 from niuchacz.i18n import LANGUAGES, current_language, set_language, t
 from niuchacz.protocol import commands
@@ -39,6 +40,7 @@ class MainWindow:
         root.minsize(980, 640)
         root.protocol("WM_DELETE_WINDOW", self.close)
         root.bind_all("<Control-r>", lambda _e: self._report_now())
+        root.bind_all("<F9>", lambda _e: self.rec_panel.toggle())
         self.report_window: ReportWindow | None = None
         self._manual_report = False
         self.lang_var = tk.StringVar(value=current_language())
@@ -57,6 +59,8 @@ class MainWindow:
         self._build_menu()
         self.toolbar = Toolbar(root, scope, controller, on_report=self._report_now)
         self.toolbar.pack(fill="x")
+        self.rec_panel = RecPanel(root, scope, controller, on_show_report=self._show_report)
+        self.rec_panel.pack(fill="x")
         ttk.Separator(root).pack(fill="x")
 
         body = ttk.Frame(root, padding=8)
@@ -82,6 +86,7 @@ class MainWindow:
         scope.subscribe(ev.STATUS, lambda text: self.status.config(text=text))
         scope.subscribe(ev.REPLY, self._on_reply)
         scope.subscribe(ev.SESSION_END, self._on_session_end)
+        scope.subscribe(ev.REC, self._on_rec)
 
     def _rebuild(self) -> None:
         if self.scope is not None:
@@ -106,6 +111,9 @@ class MainWindow:
         bar = tk.Menu(self.root)
         m_file = tk.Menu(bar, tearoff=False)
         m_file.add_command(label=t("menu.finish_report"), accelerator="Ctrl+R", command=self._report_now)
+        m_file.add_command(label=t("menu.rec"), accelerator="F9", command=lambda: self.rec_panel.toggle())
+        m_file.add_command(label=t("rec.save_last"), command=self.controller.save_last_run)
+        m_file.add_separator()
         m_file.add_command(label=t("menu.export_csv"), command=self._export_csv)
         m_file.add_separator()
         m_file.add_command(label=t("menu.exit"), command=self.close)
@@ -147,19 +155,26 @@ class MainWindow:
         self.controller.finish_session_now()
 
     def _on_session_end(self, session) -> None:
+        """Koniec sesji na żywo. Okno raportu tylko na żądanie (przycisk Raport / Ctrl+R) –
+        automatyczne przebiegi nic nie otwierają; do zapisu służy REC."""
         manual, self._manual_report = self._manual_report, False
-        if not manual and getattr(self.controller, "calibrating", False):
-            return   # w trakcie kalibracji raporty nie wyskakują
-        if not manual and not self.controller.settings.get("report_auto_open", True):
-            self.status.config(text=t("status.session_ended", id=session.session_id, result=session.result))
+        if not manual:
+            if session.result:
+                self.status.config(text=t("status.session_ended", id=session.session_id, result=session.result))
             return
+        self._show_report(session)
+
+    def _on_rec(self, payload) -> None:
+        state, rec = payload
+        if state == "done" and rec is not None and self.controller.settings.get("report_popup", False):
+            self._show_report(rec)
+
+    def _show_report(self, session) -> None:
         win = self.report_window
         if win is not None and win.winfo_exists():
-            if win.session is session:
-                win.lift()
-            else:
-                win.offer_newer(session)
-                win.lift()
+            if win.session is not session:
+                win._load_session(session)    # okno otwiera się tylko na żądanie – pokaż to, o co proszono
+            win.lift()
             return
         self.report_window = ReportWindow(self.root, self.controller, self.paths["reports"], session)
 

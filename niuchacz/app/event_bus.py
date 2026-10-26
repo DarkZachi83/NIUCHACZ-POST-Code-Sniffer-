@@ -20,6 +20,7 @@ HANG = "hang"                      # HangDetected
 GOLDEN = "golden"                  # tekst porównania ze wzorcem
 STATUS = "status"                  # str – pasek stanu
 REPLY = "reply"                    # CommandReply
+REC = "rec"                        # (stan nagrywania, Recording | None) – przycisk REC
 
 
 class EventBus:

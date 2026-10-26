@@ -20,6 +20,8 @@ class ClockTest(unittest.TestCase):
         c = ctl.AppController.__new__(ctl.AppController)
         c.recorder = SessionRecorder()
         c.bus = FakeBus()
+        from niuchacz.session.recording import RecordingManager
+        c.rec = RecordingManager()
         finished = []
         c._finish_session = lambda: finished.append(c.recorder.current.session_id)
         c.assembler = type("A", (), {"reset": lambda self: None})()

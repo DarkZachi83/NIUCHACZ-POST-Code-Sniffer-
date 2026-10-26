@@ -234,15 +234,20 @@ def latch_byte(a):
     return ((a >> 16) & 0x0F) | ((a >> 17) & 0x70) | ((a >> 19) & 0x80)
 
 
-def _latch_python(n, quiet, maxn, last, vals, idx, maxcnt):
+def _latch_python(n, quiet, maxn, last, vals, idx, maxcnt, act=None):
     mem = machine.mem32
     prev = last
     cand = -1
     cnt = 0
     lastchg = -quiet
+    s1 = 0
+    s0 = 0
     i = 0
     while i < maxn and (i < n or i - lastchg < quiet):
         b = latch_byte(mem[GPIO_IN_REG])
+        lv = ((mem[GPIO_IN1_REG] >> 2) & 0x07) | ((mem[GPIO_IN1_REG] >> 4) & 0x08)
+        s1 |= lv
+        s0 |= lv ^ 0x0F
         if b != prev:
             if b == cand:
                 vals[cnt] = b
@@ -258,15 +263,22 @@ def _latch_python(n, quiet, maxn, last, vals, idx, maxcnt):
         else:
             cand = -1
         i += 1
+    if act is not None:
+        act[0] = s1
+        act[1] = s0
     return cnt
 
 
 try:
     @micropython.viper
-    def _latch_viper(n: int, quiet: int, maxn: int, last: int, vals, idx, maxcnt: int) -> int:
+    def _latch_viper(n: int, quiet: int, maxn: int, last: int, vals, idx, maxcnt: int, act) -> int:
         in0 = ptr32(0x3FF4403C)   # noqa: F821
+        in1 = ptr32(0x3FF44040)   # noqa: F821  diody: GPIO34/35/36/39
         v = ptr8(vals)            # noqa: F821
         ix = ptr32(idx)           # noqa: F821
+        ac = ptr8(act)            # noqa: F821
+        s1 = 0
+        s0 = 0
         prev = last
         cand = -1
         cnt = 0
@@ -276,6 +288,10 @@ try:
             if i >= n and i - lastchg >= quiet:
                 break
             a = int(in0[0])
+            c = int(in1[0])
+            lv = ((c >> 2) & 0x07) | ((c >> 4) & 0x08)
+            s1 = s1 | lv
+            s0 = s0 | (lv ^ 0x0F)
             b = ((a >> 16) & 0x0F) | ((a >> 17) & 0x70) | ((a >> 19) & 0x80)
             if b != prev:
                 if b == cand:
@@ -292,6 +308,8 @@ try:
             else:
                 cand = -1
             i += 1
+        ac[0] = s1
+        ac[1] = s0
         return cnt
 
     latch_window = _latch_viper

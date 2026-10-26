@@ -25,12 +25,12 @@ INPUT_MODE = "latch"
 # --- polaryzacje (ustal skryptem tools/mux_probe.py) ---
 SEG_ACTIVE_LOW = True    # informacyjnie (pomiar: wspólna anoda); dekodowanie robi aplikacja PC
 DIG_ACTIVE_LOW = False   # pomiar 11.10.2026: cyfry B1-B4 aktywne stanem wysokim (ok. 1/4 z 5 V)
-RST_ACTIVE_HIGH = True   # stan linii diody RESET, gdy płyta jest w resecie
+RST_ACTIVE_HIGH = False  # pomiar 26.10.2026 (JR16, strona układu): w resecie linia = 0
 
 # --- diody karty (kanały 13-16: CLK, IRDY, FRAME, RESET) ---
 # False, dopóki przewody od diod nie są podłączone: niepodłączone wejścia
 # łapią szum, a fałszywy RESET tworzyłby fałszywe sesje.
-LEDS_CONNECTED = False
+LEDS_CONNECTED = True   # 26.10.2026: JR17 CLK→14, JR15 IRDY→15, JR14 FRAME→16, JR16 RESET→17
 
 # --- tryb demo (test Wi-Fi i aplikacji bez karty) ---
 # True = ESP32 wysyła symulowane kody zamiast odczytu karty (demo.py)

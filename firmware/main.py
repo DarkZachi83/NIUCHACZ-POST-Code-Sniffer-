@@ -126,7 +126,16 @@ class Niuchacz:
         """Tryb zatrzasku: każda zmiana bajtu Q0–Q7 = nowy kod POST."""
         t0 = time.ticks_us()
         cnt = sampler.latch_window(sampler.LATCH_SAMPLES, sampler.LATCH_QUIET, sampler.LATCH_MAX,
-                                   self.latch_last, self.latch_vals, self.latch_idx, sampler.LATCH_BUF)
+                                   self.latch_last, self.latch_vals, self.latch_idx, sampler.LATCH_BUF,
+                                   self.act)
+        leds = None
+        if config.LEDS_CONNECTED:
+            # diody karty: IRDY/FRAME = aktywność (zmiany w oknie), RESET = poziom przez całe okno
+            leds = sampler.leds_from_activity(self.act[0], self.act[1], config.RST_ACTIVE_HIGH)
+            if leds["rst"] and not self.prev_rst:
+                self.code_hist = []          # nowy start płyty – miganie z poprzedniego się nie liczy
+                self.flap = None
+            self._handle_reset(leds["rst"], now)
         if cnt:
             # czas próbki z tej samej serii: ostatnia zmiana -> ok. ostatni indeks; przybliżamy
             # stałą szybkością pętli zmierzoną na tym oknie
@@ -145,7 +154,7 @@ class Niuchacz:
             if self.code_hist and self.flap_last >= 0 and self.flap_last != self.code_hist[-1]:
                 self._send_code(self.flap_last, now)
             self.flap = None
-        return None
+        return leds
 
     def _latch_code(self, c, ts):
         if self.flap is not None:

@@ -12,13 +12,14 @@ remap = build_remap()
 vals = bytearray(LATCH_BUF)
 import array
 idx = array.array("I", bytes(4 * LATCH_BUF))
+act = bytearray(2)
 last = -1
 print("kod   Q7..Q0     zmian w 0,5 s   ostatnie kody")
 while True:
     seen = []
     t0 = time.ticks_ms()
     while time.ticks_diff(time.ticks_ms(), t0) < 500:
-        n = latch_window(LATCH_SAMPLES, LATCH_QUIET, LATCH_MAX, last, vals, idx, LATCH_BUF)
+        n = latch_window(LATCH_SAMPLES, LATCH_QUIET, LATCH_MAX, last, vals, idx, LATCH_BUF, act)
         for k in range(n):
             seen.append(remap[vals[k]])
         if n:

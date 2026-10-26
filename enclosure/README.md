@@ -12,7 +12,8 @@
 | `niuchacz_box_test.stl` | small test piece with the USB-C tunnel / mały wydruk testowy z tunelem USB-C |
 | `niuchacz_box_v1.scad`, `*_podglad.png` | earlier version and previews (history) / wcześniejsza wersja i podglądy (historia) |
 
-Outer size / wymiary zewnętrzne: **137.8 × 121.8 × 38 mm** (version v3, 17.10.2026).
+Outer size / wymiary zewnętrzne: **137.8 × 121.8 × 38 mm** (version v3, 17.10.2026 – printed and in use with the prototype /
+wydrukowana i używana z prototypem). Power: USB-C of the ESP32 only / zasilanie: tylko USB-C samego ESP32.
 
 ---
 

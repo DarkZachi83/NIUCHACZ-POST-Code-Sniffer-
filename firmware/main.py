@@ -20,7 +20,7 @@ from usb_link import UsbLink
 # (D1 1,1 s, 2A 4,9 s, 78 3,7 s na ASRock 775V88), a zaraz potem wypuścić serię 30 kodów w 20 ms.
 USB_BUDGET_US = 5000         # USB: najwyżej ok. 1–2 linie na przerwę między oknami
 USB_Q_MAX = 400              # bez PC na USB kolejka nie może rosnąć bez końca
-GC_IDLE_MS = 1000            # tyle ms bez zmiany: krótkie gc (kilka ms), żeby nie ruszyło samo w serii
+GC_IDLE_MS = 300             # tyle ms bez zmiany: gc teraz, żeby nie ruszyło samo w środku serii
 FLASH_IDLE_MS = 10000        # zapis sesji na flash dopiero po 10 s bez zmiany (POST skończony / płyta stoi);
                              # zapis potrafi trwać ponad sekundę (pomiar 26.10.2026: przerwa 1356 ms)
 LED_KEEPALIVE_MS = 2000

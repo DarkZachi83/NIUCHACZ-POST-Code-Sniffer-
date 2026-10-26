@@ -63,9 +63,13 @@ class SessionStore:
     def append(self, line):
         if self.current_id == 0:
             return
-        self._buf.append((self.current_id, line))
-        if len(self._buf) >= BUF_MAX:
-            self.flush()           # awaryjnie: RAM ESP32 jest mały
+        buf = self._buf
+        buf.append((self.current_id, line))
+        if len(buf) > BUF_MAX:
+            # Brak postoju na tyle długo, by zapisać (szybkie kolejne starty): gubimy najstarsze
+            # linie z pamięci ESP, ale NIE blokujemy odczytu. Wymuszony zapis 300 linii trwał
+            # 3,4 s (pomiar 26.10.2026) i zjadł D1 przy kolejnym starcie. Na żywo PC ma wszystko.
+            del buf[0]
 
     def flush(self):
         if not self._buf:
@@ -77,13 +81,13 @@ class SessionStore:
             self._file.write("\n")
         self._buf = []
         self._file.flush()
+        self._prune()              # raz na zapis, nie przy każdym nowym pliku
 
     def _open(self, sid):
         if self._file is not None:
             self._file.close()
         self._file = open(self._path(sid), "a")
         self._file_id = sid
-        self._prune()
 
     def close(self):
         self.flush()

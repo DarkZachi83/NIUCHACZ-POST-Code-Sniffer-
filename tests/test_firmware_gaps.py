@@ -159,3 +159,15 @@ class SessionStoreTest(unittest.TestCase):
         self.assertEqual([2, 3], st.list_ids())
         st.clear()
         self.assertEqual([], st.list_ids())
+
+    def test_full_buffer_drops_oldest_instead_of_writing(self):
+        import os
+        st = self.mod.SessionStore()
+        st.start()
+        for i in range(self.mod.BUF_MAX + 5):
+            st.append(str(i))
+        self.assertEqual([], os.listdir(self.tmp.name + "/s"))   # żadnego zapisu w trakcie
+        st.flush()
+        lines = list(st.read_lines(1))
+        self.assertEqual(self.mod.BUF_MAX, len(lines))
+        self.assertEqual("5", lines[0])

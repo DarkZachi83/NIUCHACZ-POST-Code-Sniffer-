@@ -161,5 +161,19 @@ class RecordingTest(unittest.TestCase):
         self.assertIn("OSTATNI KOD KAŻDEGO STARTU", pl)
         self.assertIn("reset after code 19", en)
 
+    def test_owner_and_technician_in_auto_saved_report(self):
+        set_language("pl")
+        try:
+            self.c.update_settings({"owner": "Serwis Retro", "technician": "Rafał"})
+            self.c.arm_recording()
+            self.reset(); self.codes("D0", "D4", "2A")
+            self.c.stop_recording()
+            text = self.c.rec.last.saved[0].read_text(encoding="utf-8")
+            self.assertIn("Właściciel: Serwis Retro", text)
+            self.assertIn("Serwisant : Rafał", text)
+        finally:
+            set_language("en")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -129,7 +129,7 @@ class CodeAssembler:
         out.append(CodeChange(code=code, display=display, ts_ms=frame.ts_ms))
         return out
 
-    def feed_code(self, value: int, ts_ms: int, gap_us: int = 0) -> list[CodeChange]:
+    def feed_code(self, value: int, ts_ms: int, gap_us: int = 0, single: bool = False) -> list[CodeChange]:
         """Tryb zatrzasku 74LCX374: kod przychodzi wprost jako bajt, bez wyświetlacza.
 
         Każda zmiana bajtu to prawdziwy zapis BIOS-u do portu 80h, więc nic nie trzeba
@@ -154,7 +154,7 @@ class CodeAssembler:
         self._recent = (self._recent + [code.value])[-4:]
         self._last_change_at = self._clock()
         self._hang_reported = False
-        return [CodeChange(code=code, display=display, ts_ms=ts_ms, gap_us=gap_us)]
+        return [CodeChange(code=code, display=display, ts_ms=ts_ms, gap_us=gap_us, single=single)]
 
     def idle_seconds(self) -> Optional[float]:
         """Ile sekund od ostatniej zmiany kodu (None – jeszcze nie było kodu)."""

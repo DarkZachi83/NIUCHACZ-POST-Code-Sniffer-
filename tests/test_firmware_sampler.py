@@ -86,5 +86,40 @@ class SamplerTest(unittest.TestCase):
         self.assertEqual(self.sampler.leds_from_activity(act[0], act[1], False)["rst"], 0)
 
 
+def latch_state(byte):
+    """Stan pinów, z którego sampler.latch_byte() odczyta `byte`."""
+    return ((byte & 0x0F) << 16) | ((byte & 0x70) << 17) | ((byte & 0x80) << 19)
+
+
+class LatchSingleReadTest(unittest.TestCase):
+    """Krótkie kody (ok. 1 µs = jeden odczyt): przyjmować, ale nie stany przejściowe."""
+
+    @classmethod
+    def setUpClass(cls):
+        SamplerTest.setUpClass.__func__(cls)
+
+    def run_seq(self, seq, last):
+        self.fake.mem32 = FakeMem([latch_state(b) for b in seq])
+        vals, idx = bytearray(16), [0] * 16
+        n = self.sampler._latch_python(len(seq), 1, len(seq), last, vals, idx, 16)
+        single = self.sampler.SINGLE
+        return [(f"{vals[k]:02X}", bool(idx[k] & single)) for k in range(n)]
+
+    def test_short_code_between_neighbours_is_kept(self):
+        # C3 stoi, C4 tylko jeden odczyt, potem C5
+        out = self.run_seq([0xC3, 0xC3, 0xC4, 0xC5, 0xC5, 0xC5], last=0xC2)
+        self.assertEqual([("C3", False), ("C4", True), ("C5", False)], out)
+
+    def test_transition_glitch_is_dropped(self):
+        # C3 -> C5: w trakcie przełączania odczyt C1 (bity wspólne) – to mieszanka, nie kod
+        self.assertTrue(self.sampler.is_mix(0xC1, 0xC3, 0xC5))
+        out = self.run_seq([0xC3, 0xC3, 0xC1, 0xC5, 0xC5], last=0xC2)
+        self.assertEqual([("C3", False), ("C5", False)], out)
+
+    def test_single_spike_back_to_same_code_is_dropped(self):
+        out = self.run_seq([0x2A, 0x2A, 0x6A, 0x2A, 0x2A], last=0x2A)
+        self.assertEqual([], out)
+
+
 if __name__ == "__main__":
     unittest.main()

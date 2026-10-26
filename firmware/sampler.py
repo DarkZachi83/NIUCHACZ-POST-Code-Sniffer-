@@ -230,6 +230,18 @@ def build_remap(order=None):
     return t
 
 
+SINGLE = 0x40000000   # znacznik w indeksie próbki: kod widziany tylko w jednym odczycie
+
+
+def is_mix(x, a, b):
+    """Czy x to tylko mieszanka bitów a i b (stan przejściowy przy przełączaniu zatrzasku)?
+
+    Mieszanka: każdy bit ustawiony w x jest ustawiony w a albo w b, i każdy bit ustawiony
+    w obu – jest też w x. Prawdziwy krótki kod (C4 między C3 a C5) zwykle tego nie spełnia.
+    """
+    return (x & ~(a | b) & 0xFF) == 0 and (~x & a & b & 0xFF) == 0
+
+
 def latch_byte(a):
     return ((a >> 16) & 0x0F) | ((a >> 17) & 0x70) | ((a >> 19) & 0x80)
 
@@ -248,6 +260,18 @@ def _latch_python(n, quiet, maxn, last, vals, idx, maxcnt, act=None):
         lv = ((mem[GPIO_IN1_REG] >> 2) & 0x07) | ((mem[GPIO_IN1_REG] >> 4) & 0x08)
         s1 |= lv
         s0 |= lv ^ 0x0F
+        if cand >= 0 and prev >= 0 and b != cand and b != prev and not is_mix(cand, prev, b):
+            # kod widziany tylko raz (BIOS zapisał następny po ok. 1 µs) i nie wygląda na stan
+            # przejściowy między sąsiadami -> prawdziwy, krótki kod (np. C4 w C2 C3 C4 C5).
+            # Nie dla A X A (b == prev): pojedyncza szpilka na linii dałaby fałszywy kod.
+            vals[cnt] = cand
+            idx[cnt] = (i - 1) | SINGLE
+            cnt += 1
+            prev = cand
+            lastchg = i
+            cand = -1
+            if cnt >= maxcnt:
+                break
         if b != prev:
             if b == cand:
                 vals[cnt] = b
@@ -293,6 +317,17 @@ try:
             s1 = s1 | lv
             s0 = s0 | (lv ^ 0x0F)
             b = ((a >> 16) & 0x0F) | ((a >> 17) & 0x70) | ((a >> 19) & 0x80)
+            if cand >= 0 and prev >= 0 and b != cand and b != prev:
+                # kod widziany raz: przyjmij, jeśli nie jest mieszanką bitów poprzedniego i następnego
+                if (cand & ((prev | b) ^ 0xFF)) != 0 or ((cand ^ 0xFF) & prev & b) != 0:   # bez ~ (viper)
+                    v[cnt] = cand
+                    ix[cnt] = (i - 1) | 0x40000000
+                    cnt += 1
+                    prev = cand
+                    lastchg = i
+                    cand = -1
+                    if cnt >= maxcnt:
+                        break
             if b != prev:
                 if b == cand:
                     v[cnt] = b

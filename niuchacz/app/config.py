@@ -19,7 +19,8 @@ DEFAULT_SETTINGS = {
     "rec_max_starts": 4,     # tyle startów w jednym nagraniu, potem „pętla restartów”
     "rec_wait_seconds": 5,   # BIOS czeka na użytkownika (F1, Setup) tyle sekund -> koniec nagrania
     "rec_done_seconds": 3,   # 00/FF i tyle sekund ciszy -> POST zakończony
-    "technician": "",
+    "technician": "",        # dane wpisywane do każdego raportu (Narzędzia -> Ustawienia)
+    "owner": "",
     "language": "",          # "" = język systemu (pl -> polski, reszta -> angielski)
 }
 

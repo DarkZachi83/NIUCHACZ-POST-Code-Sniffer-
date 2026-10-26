@@ -25,13 +25,23 @@ class SettingsDialog(tk.Toplevel):
             "hang": tk.StringVar(value=str(s.get("hang_seconds", 15))),
             "debounce": tk.StringVar(value=str(s.get("debounce_ms", 16))),
             "max_starts": tk.StringVar(value=str(s.get("rec_max_starts", 4))),
+            "owner": tk.StringVar(value=s.get("owner", "")),
+            "technician": tk.StringVar(value=s.get("technician", "")),
         }
         frm = ttk.Frame(self, padding=12)
         frm.pack(fill="both")
         rows = ((t("settings.host"), "host"), (t("settings.port"), "port"), (t("settings.com"), "com"),
-                (t("settings.board"), "board"), (t("settings.hang"), "hang"), (t("settings.debounce"), "debounce"),
-                (t("settings.max_starts"), "max_starts"))
+                (t("settings.hang"), "hang"), (t("settings.debounce"), "debounce"),
+                (t("settings.max_starts"), "max_starts"),
+                (None, t("settings.report_section")),
+                (t("settings.owner"), "owner"), (t("settings.technician"), "technician"),
+                (t("settings.board"), "board"))
         for r, (label, key) in enumerate(rows):
+            if label is None:       # nagłówek sekcji
+                ttk.Separator(frm).grid(row=r, column=0, columnspan=2, sticky="ew", pady=(10, 0))
+                ttk.Label(frm, text=key, font=("TkDefaultFont", 9, "bold")).grid(
+                    row=r, column=0, columnspan=2, sticky="w", pady=(14, 2))
+                continue
             ttk.Label(frm, text=label).grid(row=r, column=0, sticky="w", pady=3)
             if key == "com":
                 w = ttk.Combobox(frm, textvariable=self.vars[key], values=available_ports(), width=28)
@@ -54,6 +64,8 @@ class SettingsDialog(tk.Toplevel):
                 "tcp": {"host": v["host"], "port": int(v["port"])},
                 "serial": {**self.controller.settings["serial"], "port": v["com"]},
                 "board": v["board"],
+                "owner": v["owner"],
+                "technician": v["technician"],
                 "hang_seconds": float(v["hang"]),
                 "debounce_ms": int(v["debounce"]),
                 "report_popup": bool(self.auto_report.get()),

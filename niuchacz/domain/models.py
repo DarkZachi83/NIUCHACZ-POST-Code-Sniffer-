@@ -19,6 +19,7 @@ class CodeEvent:
     code: int
     ts_ms: int
     gap_us: int = 0      # bajt zmienił się w ślepej przerwie ESP32 – przed nim mogły zginąć kody
+    single: bool = False  # widziany w jednym odczycie (kod trwał ok. 1 µs)
 
 
 @dataclass(frozen=True)
@@ -94,6 +95,7 @@ class CodeChange:
     recovered: bool = False    # kod odtworzony z historii karty (lewa para cyfr) – był za krótki
     is_new: bool = True        # False: zmieniła się tylko reszta wyświetlacza, kod POST ten sam
     gap_us: int = 0            # tryb zatrzasku: kod złapany po ślepej przerwie (patrz CodeEvent)
+    single: bool = False       # tryb zatrzasku: jeden odczyt (patrz CodeEvent)
 
 
 @dataclass(frozen=True)
@@ -136,6 +138,7 @@ class SequenceItem:
     ts_ms: int
     recovered: bool = False    # odtworzony z historii karty, nie widziany bezpośrednio
     gap_us: int = 0            # złapany po ślepej przerwie ESP32 – wcześniejsze kody mogły zginąć
+    single: bool = False       # widziany w jednym odczycie ESP32 (ok. 1 µs) – mniej pewny
 
 
 @dataclass

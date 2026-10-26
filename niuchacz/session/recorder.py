@@ -86,7 +86,7 @@ class SessionRecorder:
         if change.code is None or not change.is_new:
             return None
         item = SequenceItem(code=change.code.value, ts_ms=change.ts_ms, recovered=change.recovered,
-                            gap_us=change.gap_us)
+                            gap_us=change.gap_us, single=change.single)
         self.current.items.append(item)
         return item
 

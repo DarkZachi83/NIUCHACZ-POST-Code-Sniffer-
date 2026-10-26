@@ -55,7 +55,7 @@ class FirmwareGapTest(unittest.TestCase):
             clk.us += 50_000                       # okno trwa 50 ms
             return len(changes)
 
-        stub("sampler", LATCH_BUF=256, LATCH_SAMPLES=1, LATCH_QUIET=1, LATCH_MAX=1, IMPL="python",
+        stub("sampler", LATCH_BUF=256, LATCH_SAMPLES=1, LATCH_QUIET=1, LATCH_MAX=1, IMPL="python", SINGLE=0x40000000,
              setup_pins=lambda: None, build_remap=lambda: bytes(range(256)), latch_window=latch_window)
         stub("demo")
         stub("net_server", NetServer=lambda cb: types.SimpleNamespace(broadcast=lambda t: None))

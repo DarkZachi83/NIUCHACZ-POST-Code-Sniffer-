@@ -50,7 +50,7 @@ def parse_message(msg: dict) -> Optional[object]:
         c = msg.get("c")
         if not isinstance(c, int):
             raise ProtocolError(t("protocol.no_code"))
-        return CodeEvent(code=c & 0xFF, ts_ms=ts, gap_us=int(msg.get("g", 0) or 0))
+        return CodeEvent(code=c & 0xFF, ts_ms=ts, gap_us=int(msg.get("g", 0) or 0), single=bool(msg.get("s")))
     if kind == "led":
         return LedState(
             clk=bool(msg.get("clk", 0)), irdy=bool(msg.get("irdy", 0)),

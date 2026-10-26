@@ -20,6 +20,7 @@ class LatchModeTest(unittest.TestCase):
         self.assertEqual(parse_line('{"t":"code","c":177,"ts":42,"g":12000}'), CodeEvent(0xB1, 42, 12000))
         self.assertEqual(parse_line('{"t":"hb","ts":5,"gm":3100,"bl":40}'), Heartbeat(5, 3100, 40))
         self.assertEqual(parse_line('{"t":"hb","ts":5}'), Heartbeat(5))      # stary firmware
+        self.assertTrue(parse_line('{"t":"code","c":196,"ts":1,"s":1}').single)
 
     def test_gap_marked_in_report(self):
         from datetime import datetime
@@ -27,10 +28,12 @@ class LatchModeTest(unittest.TestCase):
         from niuchacz.session.recorder import Session
         from niuchacz.session.report import ReportMeta, build_report
         s = Session(session_id=1)
-        s.items = [SequenceItem("78", 0), SequenceItem("B1", 3900, gap_us=12000)]
+        s.items = [SequenceItem("78", 0), SequenceItem("B1", 3900, gap_us=12000), SequenceItem("C4", 4000, single=True)]
         s.gap_max_us = 12000
         text = build_report(s, "AMI", ReportMeta(), lambda c: "", "", datetime(2026, 1, 1), lang="en")
         self.assertIn("B1!", text)
+        self.assertIn("C4~", text)
+        self.assertIn("~ = very short code", text)
         self.assertIn("longest gap 12.0 ms, codes caught after a gap: 1", text)
         old = Session(session_id=2)
         old.items = [SequenceItem("78", 0)]

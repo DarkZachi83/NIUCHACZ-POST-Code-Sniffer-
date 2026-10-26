@@ -24,6 +24,7 @@ GC_IDLE_MS = 300             # tyle ms bez zmiany: gc teraz, żeby nie ruszyło 
 FLASH_IDLE_MS = 10000        # zapis sesji na flash dopiero po 10 s bez zmiany (POST skończony / płyta stoi);
                              # zapis potrafi trwać ponad sekundę (pomiar 26.10.2026: przerwa 1356 ms)
 LED_KEEPALIVE_MS = 2000
+IDX_MASK = 0x3FFFFFFF        # indeks próbki bez znacznika sampler.SINGLE
 
 
 class Niuchacz:
@@ -180,16 +181,19 @@ class Niuchacz:
         if cnt:
             # czas próbki z tej samej serii: ostatnia zmiana -> ok. ostatni indeks; przybliżamy
             # stałą szybkością pętli zmierzoną na tym oknie
-            n_done = max(self.latch_idx[cnt - 1] + sampler.LATCH_QUIET, sampler.LATCH_SAMPLES)
+            n_done = max((self.latch_idx[cnt - 1] & IDX_MASK) + sampler.LATCH_QUIET, sampler.LATCH_SAMPLES)
             us_per = time.ticks_diff(time.ticks_us(), t0) / n_done
         else:
             us_per = 0
         for k in range(cnt):
-            ts = now + int(self.latch_idx[k] * us_per / 1000)
+            ix = self.latch_idx[k]
+            single = 1 if ix & sampler.SINGLE else 0
+            ix &= IDX_MASK
+            ts = now + int(ix * us_per / 1000)
             # zmiana już na początku okna = bajt zmienił się w przerwie, gdy nikt nie patrzył:
             # przed tym kodem mogły zginąć kody pośrednie (aplikacja oznaczy go w raporcie)
-            gap = gap_us if k == 0 and self.latch_idx[0] <= 1 else 0
-            self._latch_code(self.remap[self.latch_vals[k]], ts, gap)
+            gap = gap_us if k == 0 and ix <= 1 else 0
+            self._latch_code(self.remap[self.latch_vals[k]], ts, gap, single)
         if cnt:
             self.latch_last = self.latch_vals[cnt - 1]
             self.flap_quiet_since = now
@@ -203,7 +207,7 @@ class Niuchacz:
             self.flap = None
         return leds
 
-    def _latch_code(self, c, ts, gap=0):
+    def _latch_code(self, c, ts, gap=0, single=0):
         if self.flap is not None:
             if c in self.flap:
                 self.flap_last = c
@@ -214,11 +218,11 @@ class Niuchacz:
             # A B A -> od teraz para {A, B} miga; ten jeden wysyłamy, kolejne tłumimy
             self.flap = (h[-1], c)
             self.flap_last = c
-        self._send_code(c, ts, gap)
+        self._send_code(c, ts, gap, single)
 
-    def _send_code(self, c, ts, gap=0):
+    def _send_code(self, c, ts, gap=0, single=0):
         self.code_hist = (self.code_hist + [c])[-3:]
-        self.emit(protocol.code(c, ts, gap))
+        self.emit(protocol.code(c, ts, gap, single))
 
     def demo_window(self, now):
         # tryb demo: symulowane kody zamiast odczytu karty

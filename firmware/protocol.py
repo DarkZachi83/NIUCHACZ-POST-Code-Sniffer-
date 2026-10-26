@@ -17,10 +17,12 @@ def frame(digits, ts):
     return line({"t": "frame", "d": [digits[0], digits[1], digits[2], digits[3]], "ts": ts})
 
 
-def code(value, ts, gap_us=0):
+def code(value, ts, gap_us=0, single=0):
     msg = {"t": "code", "c": value, "ts": ts}
     if gap_us:
         msg["g"] = gap_us      # kod zmienił się w ślepej przerwie tylu µs – przed nim mogły zginąć kody
+    if single:
+        msg["s"] = 1           # widziany w jednym odczycie (ok. 1 µs) – krótki kod, mniej pewny
     return line(msg)
 
 

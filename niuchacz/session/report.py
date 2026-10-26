@@ -60,7 +60,7 @@ def _item_lines(session: Session, stage_for: Callable[[str], str], lang: Optiona
         tm = f"+{(item.ts_ms - first) / 1000:.2f} s"
         mark = " <" if session.hung_on and i == len(session.items) else ""
         code = item.code + ("*" if getattr(item, "recovered", False) else "") \
-            + ("!" if getattr(item, "gap_us", 0) else "")
+            + ("!" if getattr(item, "gap_us", 0) else "") + ("~" if getattr(item, "single", False) else "")
         head = f" {i:3d}  {code:<4}  {tm:<9} "
         stage = (stage_for(item.code) or t("report.not_in_db", lang)) + mark
         # pełny opis, zawijany pod kolumną "Etap" (bez ucinania)
@@ -69,6 +69,8 @@ def _item_lines(session: Session, stage_for: Callable[[str], str], lang: Optiona
         lines += [" " * len(head) + p for p in parts[1:]]
     if any(getattr(it, "recovered", False) for it in session.items):
         lines.append("   " + t("report.recovered_note", lang))
+    if any(getattr(it, "single", False) for it in session.items):
+        lines += _wrap(t("report.single_note", lang), "   ")
     gaps = [it.gap_us for it in session.items if getattr(it, "gap_us", 0)]
     if gaps:
         lines += _wrap(t("report.gap_note", lang, ms=f"{max(gaps) / 1000:.1f}"), "   ")

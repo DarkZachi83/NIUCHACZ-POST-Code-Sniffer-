@@ -201,7 +201,7 @@ class AppController:
             for change in self.assembler.feed_all(event):
                 self._on_code(change)
         elif isinstance(event, CodeEvent):
-            for change in self.assembler.feed_code(event.code, event.ts_ms, event.gap_us):
+            for change in self.assembler.feed_code(event.code, event.ts_ms, event.gap_us, event.single):
                 self._on_code(change)
         elif isinstance(event, LedState):
             self.bus.publish(ev.LEDS, event)
@@ -408,7 +408,8 @@ class AppController:
             for change in self.assembler.feed_all(event.event):
                 self._on_code(change)
         elif isinstance(event.event, CodeEvent):
-            for change in self.assembler.feed_code(event.event.code, event.event.ts_ms, event.event.gap_us):
+            for change in self.assembler.feed_code(event.event.code, event.event.ts_ms, event.event.gap_us,
+                                                  event.event.single):
                 self._on_code(change)
 
     def reload_codes(self, directory: Path) -> int:
@@ -491,7 +492,9 @@ class AppController:
             self.bus.publish(ev.GOLDEN, (session.golden_key, session.golden_fields))
 
     def default_report_meta(self) -> ReportMeta:
+        """Pola wypełniane w każdym raporcie (również zapisywanym automatycznie przez REC)."""
         return ReportMeta(board=self.settings.get("board", ""),
+                          owner=self.settings.get("owner", ""),
                           technician=self.settings.get("technician", ""))
 
     def save_report(self, path: Path, text: str) -> None:

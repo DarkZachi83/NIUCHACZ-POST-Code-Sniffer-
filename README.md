@@ -114,6 +114,8 @@ Tests: `python -m unittest discover -s tests -t .`
 
 ### Recording runs (REC)
 
+Full user manual: [docs/MANUAL.md](docs/MANUAL.md).
+
 The live view always runs. Nothing is saved and no report window pops up by itself.
 
 1. Press **REC** (or F9). The button blinks red: *reset the motherboard or switch it on*.
@@ -242,6 +244,8 @@ opisy kodów POST – dwujęzycznie w `data/post_codes/*.json`. Nowy język = je
 Testy: `python -m unittest discover -s tests -t .`
 
 ### Nagrywanie przebiegów (REC)
+
+Pełna instrukcja obsługi: [docs/INSTRUKCJA.md](docs/INSTRUKCJA.md).
 
 Podgląd na żywo działa zawsze. Nic nie zapisuje się samo i żadne okno raportu nie wyskakuje.
 

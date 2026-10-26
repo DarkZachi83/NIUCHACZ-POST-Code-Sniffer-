@@ -64,6 +64,7 @@ PC Analyzer card ── 74LCX374 Q0–Q7 + GND ── ribbon / DB25 ──► NI
 ### Hardware (prototype)
 
 Which POST cards work and what you get from each: [docs/CARDS.md](docs/CARDS.md).
+3D-printed box (OpenSCAD + STL): [enclosure/](enclosure/README.md).
 
 | Part | Notes |
 |---|---|
@@ -194,6 +195,7 @@ wyświetlacz karty nigdy nie pokazuje.
 ### Sprzęt (prototyp)
 
 Które karty POST działają i co z której można wyciągnąć: [docs/CARDS.md](docs/CARDS.md#polski).
+Obudowa do druku 3D (OpenSCAD + STL): [enclosure/](enclosure/README.md#polski).
 
 | Element | Uwagi |
 |---|---|

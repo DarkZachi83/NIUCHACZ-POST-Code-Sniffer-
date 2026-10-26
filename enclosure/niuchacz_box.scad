@@ -1,5 +1,5 @@
 // NIUCHACZ – obudowa (OpenSCAD, parametryczna)
-// Druk: Anycubic Cobra 3 V2, PLA, warstwa 0.2 mm, 3 obrysy, 20% wypełnienia, bez podpór.
+// Druk: Anycubic Kobra 3 V2, PLA, warstwa 0.2 mm, 3 obrysy, 20% wypełnienia, bez podpór.
 // Dno drukuj dnem do stołu, wieczko napisem do stołu (część "lid" jest już obrócona).
 //
 // Układ (widok z góry, przód = strona USB-C):
@@ -18,7 +18,7 @@
 
 /* ===================== PARAMETRY ===================== */
 
-part = "both";          // "base", "lid", "both" (podgląd), "assembly" (złożone)
+part = "both";           // "base", "lid", "both" (podgląd), "assembly" (złożone)
 
 // --- ścianki ---
 wall   = 2.4;           // grubość ścianek (6 obrysów dyszy 0.4)

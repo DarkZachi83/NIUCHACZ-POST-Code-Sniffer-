@@ -60,6 +60,7 @@ class Niuchacz:
         self.gap_sum_us = 0
         self.stat_since_us = time.ticks_us()
         self.last_code_ms = time.ticks_ms()
+        self.idle_done = False       # flush + gc już zrobione w tym postoju
         self.usb_q = []              # linie dla USB – wysyłane porcjami między oknami
         self.led_sent = None
         self.led_sent_ms = 0
@@ -189,6 +190,7 @@ class Niuchacz:
             self.latch_last = self.latch_vals[cnt - 1]
             self.flap_quiet_since = now
             self.last_code_ms = now
+            self.idle_done = False
         elif self.flap is not None and time.ticks_diff(now, self.flap_quiet_since) > 300:
             # miganie ustało – wyślij kod, na którym się zatrzymało, jeśli różni się od ostatniego
             if self.code_hist and self.flap_last >= 0 and self.flap_last != self.code_hist[-1]:
@@ -261,12 +263,14 @@ class Niuchacz:
                 self.stat_since_us = time.ticks_us()
                 last_hb = now
             if time.ticks_diff(now, self.last_code_ms) >= IDLE_MS:
-                # płyta stoi na jednym kodzie: teraz wolno blokować na dłużej
-                self.store.flush()
-                if not self.usb_q:
+                # płyta stoi na jednym kodzie: teraz wolno blokować na dłużej (flash, gc)
+                if not self.idle_done:
+                    self.store.flush()
                     gc.collect()
+                    self.idle_done = True
                 self.usb_pump(IDLE_USB_BUDGET_US)
             else:
+                self.idle_done = False
                 self.usb_pump()
             self.usb.poll()
             await asyncio.sleep_ms(20 if self.demo_mode else 0)   # oddaj czas obsłudze sieci

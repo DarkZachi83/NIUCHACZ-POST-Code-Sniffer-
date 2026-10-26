@@ -117,3 +117,44 @@ class FirmwareGapTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SessionStoreTest(unittest.TestCase):
+    """Sesje na flashu: nic nie dotyka systemu plików przed flush()."""
+
+    def setUp(self):
+        import tempfile
+        self.tmp = tempfile.TemporaryDirectory()
+        self.saved = {k: sys.modules.get(k) for k in ("config", "session_store")}
+        stub("config", SESSION_DIR=self.tmp.name + "/s", MAX_SESSIONS=2)
+        sys.path.insert(0, str(FW))
+        sys.modules.pop("session_store", None)
+        self.mod = importlib.import_module("session_store")
+
+    def tearDown(self):
+        sys.path.remove(str(FW))
+        for k, v in self.saved.items():
+            if v is None:
+                sys.modules.pop(k, None)
+            else:
+                sys.modules[k] = v
+        self.tmp.cleanup()
+
+    def test_no_flash_until_flush(self):
+        import os
+        st = self.mod.SessionStore()
+        d = self.tmp.name + "/s"
+        self.assertEqual(1, st.start())
+        st.append("a")
+        self.assertEqual(2, st.start())
+        st.append("b")
+        st.append("c")
+        self.assertEqual([], os.listdir(d))              # nic jeszcze nie zapisane
+        self.assertEqual([1, 2], st.list_ids())
+        st.flush()
+        self.assertEqual(["a"], list(st.read_lines(1)))
+        self.assertEqual(["b", "c"], list(st.read_lines(2)))
+        st.start(); st.append("d"); st.flush()            # 3 sesje, limit 2 -> najstarsza znika
+        self.assertEqual([2, 3], st.list_ids())
+        st.clear()
+        self.assertEqual([], st.list_ids())

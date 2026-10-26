@@ -96,6 +96,14 @@ are bilingual in `data/post_codes/*.json`. Adding a language = one more JSON fil
 **Firmware** (MicroPython on ESP32, e.g. with Thonny)
 
 1. Copy `firmware/*.py` to the ESP32. **Change `AP_PASSWORD` in `config.py` first.**
+   From a terminal (Thonny disconnected), with [mpremote](https://docs.micropython.org/en/latest/reference/mpremote.html):
+   ```
+   cd firmware
+   mpremote connect /dev/ttyUSB0 cp boot.py main.py sampler.py protocol.py session_store.py demo.py net_server.py usb_link.py config.py : + reset
+   ```
+   Later updates: leave `config.py` out of the list so your settings stay on the ESP32.
+   If mpremote says `could not enter raw repl`: press EN, then hold BOOT for ~2 s within 3 s (the firmware stays in the REPL).
+   On start, `main.py` checks the other files and names any stale one.
 2. With the card in a running board, run `firmware/tools/latch_probe.py`: it prints the current code in hex.
    It must match the left pair of digits on the card. Do not test on code `00`; an unplugged cable also reads `00`.
 3. Reset the ESP32. `main.py` starts automatically.
@@ -215,6 +223,14 @@ opisy kodów POST – dwujęzycznie w `data/post_codes/*.json`. Nowy język = je
 **Firmware** (MicroPython na ESP32, np. przez Thonny)
 
 1. Skopiuj `firmware/*.py` na ESP32. **Najpierw zmień `AP_PASSWORD` w `config.py`.**
+   Z terminala (Thonny rozłączony), przez [mpremote](https://docs.micropython.org/en/latest/reference/mpremote.html):
+   ```
+   cd firmware
+   mpremote connect /dev/ttyUSB0 cp boot.py main.py sampler.py protocol.py session_store.py demo.py net_server.py usb_link.py config.py : + reset
+   ```
+   Przy aktualizacjach pomiń `config.py` – Twoje ustawienia zostaną na ESP32.
+   Gdy mpremote zgłosi `could not enter raw repl`: wciśnij EN, a w ciągu 3 s przytrzymaj BOOT ok. 2 s (firmware zostanie w konsoli).
+   Przy starcie `main.py` sprawdza pozostałe pliki i podaje nazwę nieaktualnego.
 2. Z kartą w działającej płycie uruchom `firmware/tools/latch_probe.py`: pokazuje bieżący kod w hex.
    Musi się zgadzać z lewą parą cyfr na karcie. Nie sprawdzaj na kodzie `00` – odpięty kabel też daje `00`.
 3. Zrestartuj ESP32 – `main.py` uruchomi się sam.

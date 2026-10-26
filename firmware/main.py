@@ -24,7 +24,8 @@ GC_IDLE_MS = 300             # tyle ms bez zmiany: gc teraz, żeby nie ruszyło 
 FLASH_IDLE_MS = 10000        # zapis sesji na flash dopiero po 10 s bez zmiany (POST skończony / płyta stoi);
                              # zapis potrafi trwać ponad sekundę (pomiar 26.10.2026: przerwa 1356 ms)
 LED_KEEPALIVE_MS = 2000
-IDX_MASK = 0x3FFFFFFF        # indeks próbki bez znacznika sampler.SINGLE
+IDX_MASK = 0x3FFFFFFF
+CODES_PER_GAP = 3            # tyle kodów obrabiamy w jednej przerwie między oknami        # indeks próbki bez znacznika sampler.SINGLE
 
 
 class Niuchacz:
@@ -67,6 +68,7 @@ class Niuchacz:
         self.idle_done = False       # zapis flash już zrobiony w tym postoju
         self.gc_done = False
         self.usb_q = []              # linie dla USB – wysyłane porcjami między oknami
+        self.code_q = []             # kody złapane w oknie, czekające na obróbkę (JSON, wysyłka)
         self.led_sent = None
         self.led_sent_ms = 0
 
@@ -193,7 +195,9 @@ class Niuchacz:
             # zmiana już na początku okna = bajt zmienił się w przerwie, gdy nikt nie patrzył:
             # przed tym kodem mogły zginąć kody pośrednie (aplikacja oznaczy go w raporcie)
             gap = gap_us if k == 0 and ix <= 1 else 0
-            self._latch_code(self.remap[self.latch_vals[k]], ts, gap, single)
+            # tylko do kolejki – obróbka (JSON, Wi-Fi) trwa ok. 3–5 ms na kod; po serii 10 kodów
+            # ESP32 byłby ślepy przez ok. 46 ms (pomiar 26.10.2026: D3!, 61!, 13!)
+            self.code_q.append((self.remap[self.latch_vals[k]], ts, gap, single))
         if cnt:
             self.latch_last = self.latch_vals[cnt - 1]
             self.flap_quiet_since = now
@@ -206,6 +210,15 @@ class Niuchacz:
                 self._send_code(self.flap_last, now)
             self.flap = None
         return leds
+
+    def drain_codes(self, max_n=CODES_PER_GAP):
+        """Obrabia najwyżej max_n kodów z kolejki (wołane w każdej przerwie między oknami)."""
+        q = self.code_q
+        n = 0
+        while q and n < max_n:
+            c, ts, gap, single = q.pop(0)
+            self._latch_code(c, ts, gap, single)
+            n += 1
 
     def _latch_code(self, c, ts, gap=0, single=0):
         if self.flap is not None:
@@ -239,7 +252,12 @@ class Niuchacz:
         return None
 
     def _handle_reset(self, rst, now):
+        if self.prev_rst == 0 and rst == 1 and self.code_q:
+            # płyta weszła w reset: kody poprzedniego startu muszą wyjść przed znacznikiem nowej sesji
+            # (w resecie płyta nic nie pisze, więc teraz można to zrobić na raz)
+            self.drain_codes(len(self.code_q))
         if self.prev_rst == 1 and rst == 0:
+            self.drain_codes(len(self.code_q))
             sid = self.store.start()
             self.sent = bytes(4)   # pierwszy kod nowej sesji zawsze zostanie wysłany
             self.emit(protocol.session(sid, now))
@@ -278,6 +296,7 @@ class Niuchacz:
             if idle >= FLASH_IDLE_MS and not self.idle_done:
                 self.store.flush()
                 self.idle_done = True
+            self.drain_codes()
             self.usb_pump()
             self.usb.poll()
             await asyncio.sleep_ms(20 if self.demo_mode else 0)   # oddaj czas obsłudze sieci

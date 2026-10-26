@@ -93,9 +93,12 @@ class FirmwareGapTest(unittest.TestCase):
         fw = self.fw
         self.windows = [[(500, 0x78)], [], [(1, 0xB1), (900, 0x00)]]
         fw.process_latch(self.clock.ticks_ms())            # pierwsze okno: brak przerwy do zmierzenia
+        fw.drain_codes()
         fw.process_latch(self.clock.ticks_ms())
         self.clock.us += 12_000                            # np. zapis flash / USB – ESP32 nie patrzy
         fw.process_latch(self.clock.ticks_ms())
+        self.assertEqual(2, len(fw.code_q))                # obróbka dopiero między oknami
+        fw.drain_codes(10)
         fw.usb_pump(10**9)
         c = self.codes()
         self.assertEqual([0x78, 0xB1, 0x00], [x["c"] for x in c])

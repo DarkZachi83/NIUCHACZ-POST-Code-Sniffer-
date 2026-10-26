@@ -198,7 +198,7 @@ class AppController:
             for change in self.assembler.feed_all(event):
                 self._on_code(change)
         elif isinstance(event, CodeEvent):
-            for change in self.assembler.feed_code(event.code, event.ts_ms):
+            for change in self.assembler.feed_code(event.code, event.ts_ms, event.gap_us):
                 self._on_code(change)
         elif isinstance(event, LedState):
             self.bus.publish(ev.LEDS, event)
@@ -208,7 +208,9 @@ class AppController:
             self.bus.publish(ev.DEVICE, event)
             self.bus.publish(ev.STATUS, t("status.device", firmware=event.firmware, channels=event.channels))
         elif isinstance(event, Heartbeat):
-            pass
+            cur = self.recorder.current
+            if cur is not None and event.gap_max_us > cur.gap_max_us:
+                cur.gap_max_us = event.gap_max_us
         elif isinstance(event, DeviceError):
             self.bus.publish(ev.STATUS, t("status.device_error", message=event.message))
         elif isinstance(event, CommandReply):
@@ -401,7 +403,7 @@ class AppController:
             for change in self.assembler.feed_all(event.event):
                 self._on_code(change)
         elif isinstance(event.event, CodeEvent):
-            for change in self.assembler.feed_code(event.event.code, event.event.ts_ms):
+            for change in self.assembler.feed_code(event.event.code, event.event.ts_ms, event.event.gap_us):
                 self._on_code(change)
 
     def reload_codes(self, directory: Path) -> int:

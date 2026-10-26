@@ -17,8 +17,11 @@ def frame(digits, ts):
     return line({"t": "frame", "d": [digits[0], digits[1], digits[2], digits[3]], "ts": ts})
 
 
-def code(value, ts):
-    return line({"t": "code", "c": value, "ts": ts})
+def code(value, ts, gap_us=0):
+    msg = {"t": "code", "c": value, "ts": ts}
+    if gap_us:
+        msg["g"] = gap_us      # kod zmienił się w ślepej przerwie tylu µs – przed nim mogły zginąć kody
+    return line(msg)
 
 
 def leds(state, ts):
@@ -31,8 +34,9 @@ def session(sid, ts):
     return line({"t": "session", "id": sid, "ts": ts})
 
 
-def heartbeat(ts):
-    return line({"t": "hb", "ts": ts})
+def heartbeat(ts, gap_max_us=0, blind_permille=0):
+    # gm = najdłuższa ślepa przerwa w ostatniej sekundzie [µs], bl = część czasu bez odczytu [‰]
+    return line({"t": "hb", "ts": ts, "gm": gap_max_us, "bl": blind_permille})
 
 
 def error(msg):

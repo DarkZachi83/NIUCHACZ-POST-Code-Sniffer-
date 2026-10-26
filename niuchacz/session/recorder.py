@@ -34,6 +34,7 @@ class Session:
     result_fields: dict = field(default_factory=dict)
     golden_key: str = ""
     golden_fields: dict = field(default_factory=dict)
+    gap_max_us: int = 0       # najdłuższa ślepa przerwa ESP32 w czasie tej sesji (z heartbeat)
 
     def set_result(self, key: str = "", **fields) -> None:
         self.result_key, self.result_fields = key, fields
@@ -84,7 +85,8 @@ class SessionRecorder:
     def record(self, change: CodeChange) -> Optional[SequenceItem]:
         if change.code is None or not change.is_new:
             return None
-        item = SequenceItem(code=change.code.value, ts_ms=change.ts_ms, recovered=change.recovered)
+        item = SequenceItem(code=change.code.value, ts_ms=change.ts_ms, recovered=change.recovered,
+                            gap_us=change.gap_us)
         self.current.items.append(item)
         return item
 

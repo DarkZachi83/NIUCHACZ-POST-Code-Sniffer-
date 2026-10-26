@@ -59,7 +59,8 @@ def _item_lines(session: Session, stage_for: Callable[[str], str], lang: Optiona
     for i, item in enumerate(session.items, 1):
         tm = f"+{(item.ts_ms - first) / 1000:.2f} s"
         mark = " <" if session.hung_on and i == len(session.items) else ""
-        code = item.code + ("*" if getattr(item, "recovered", False) else "")
+        code = item.code + ("*" if getattr(item, "recovered", False) else "") \
+            + ("!" if getattr(item, "gap_us", 0) else "")
         head = f" {i:3d}  {code:<4}  {tm:<9} "
         stage = (stage_for(item.code) or t("report.not_in_db", lang)) + mark
         # pełny opis, zawijany pod kolumną "Etap" (bez ucinania)
@@ -68,7 +69,19 @@ def _item_lines(session: Session, stage_for: Callable[[str], str], lang: Optiona
         lines += [" " * len(head) + p for p in parts[1:]]
     if any(getattr(it, "recovered", False) for it in session.items):
         lines.append("   " + t("report.recovered_note", lang))
+    gaps = [it.gap_us for it in session.items if getattr(it, "gap_us", 0)]
+    if gaps:
+        lines += _wrap(t("report.gap_note", lang, ms=f"{max(gaps) / 1000:.1f}"), "   ")
     return lines
+
+
+def read_quality(sessions, lang: Optional[str]) -> list[str]:
+    """Jakość odczytu ESP32: najdłuższa ślepa przerwa i ile kodów złapano po przerwie."""
+    gm = max((getattr(s, "gap_max_us", 0) for s in sessions), default=0)
+    n = sum(1 for s in sessions for it in s.items if getattr(it, "gap_us", 0))
+    if not gm and not n:
+        return []         # stary firmware – brak danych
+    return _wrap(t("report.read_quality", lang, ms=f"{gm / 1000:.1f}", n=n))
 
 
 def build_report(session: Session, vendor: str, meta: ReportMeta,
@@ -89,7 +102,8 @@ def build_report(session: Session, vendor: str, meta: ReportMeta,
 
     result = session.result_text(lang) or (t("report.last_code", lang, code=session.last_code)
                                            if session.last_code else t("report.no_codes", lang))
-    lines += _wrap(t("report.result", lang, result=result)) + [SEP]
+    lines += _wrap(t("report.result", lang, result=result))
+    lines += read_quality([session], lang) + [SEP]
 
     lines.append(" " + t("report.sequence", lang, n=len(session.items)))
     lines += _item_lines(session, stage_for, lang)
@@ -133,7 +147,8 @@ def build_recording_report(rec, vendor: str, meta: ReportMeta, stage_for: Callab
     lines += [_field(t(k, lang), v, width) for k, v in labels]
     lines.append(SEP)
     result = rec.result_text(lang) or t("report.no_codes", lang)
-    lines += _wrap(t("report.result", lang, result=result)) + [SEP]
+    lines += _wrap(t("report.result", lang, result=result))
+    lines += read_quality(rec.starts, lang) + [SEP]
 
     with_items = [s for s in rec.starts if s.items]
     first = with_items[0].items[0].ts_ms if with_items else 0

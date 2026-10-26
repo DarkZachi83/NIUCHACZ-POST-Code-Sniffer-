@@ -18,6 +18,7 @@ class CodeEvent:
     """Bajt kodu POST odczytany wprost z zatrzasku karty (tryb 74LCX374)."""
     code: int
     ts_ms: int
+    gap_us: int = 0      # bajt zmienił się w ślepej przerwie ESP32 – przed nim mogły zginąć kody
 
 
 @dataclass(frozen=True)
@@ -45,6 +46,8 @@ class SessionStart:
 @dataclass(frozen=True)
 class Heartbeat:
     ts_ms: int
+    gap_max_us: int = 0       # najdłuższa przerwa w odczycie w ostatniej sekundzie
+    blind_permille: int = 0   # część czasu bez odczytu [‰]
 
 
 @dataclass(frozen=True)
@@ -90,6 +93,7 @@ class CodeChange:
     ts_ms: int
     recovered: bool = False    # kod odtworzony z historii karty (lewa para cyfr) – był za krótki
     is_new: bool = True        # False: zmieniła się tylko reszta wyświetlacza, kod POST ten sam
+    gap_us: int = 0            # tryb zatrzasku: kod złapany po ślepej przerwie (patrz CodeEvent)
 
 
 @dataclass(frozen=True)
@@ -131,6 +135,7 @@ class SequenceItem:
     code: str
     ts_ms: int
     recovered: bool = False    # odtworzony z historii karty, nie widziany bezpośrednio
+    gap_us: int = 0            # złapany po ślepej przerwie ESP32 – wcześniejsze kody mogły zginąć
 
 
 @dataclass

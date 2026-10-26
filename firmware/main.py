@@ -5,6 +5,7 @@
 
 import array
 import asyncio
+import gc
 import time
 
 import config
@@ -14,6 +15,12 @@ import demo
 from net_server import NetServer
 from session_store import SessionStore
 from usb_link import UsbLink
+
+USB_BUDGET_US = 2500         # USB w trakcie serii: najwyżej ok. 1 linia na przerwę
+IDLE_USB_BUDGET_US = 50000   # gdy płyta stoi: dośle resztę kolejki
+USB_Q_MAX = 400              # bez PC na USB kolejka nie może rosnąć bez końca
+IDLE_MS = 1000               # tyle ms bez nowego kodu = płyta stoi (zapis flash, gc)
+LED_KEEPALIVE_MS = 2000
 
 
 class Niuchacz:
@@ -45,14 +52,38 @@ class Niuchacz:
         self.flap = None             # para kodów, które migają
         self.flap_last = -1          # ostatni kod w czasie migania (nie wysłany)
         self.flap_quiet_since = 0
+        # --- ślepe przerwy: czas między oknami próbkowania, gdy ESP32 nie patrzy na zatrzask ---
+        # Kod zapisany w przerwie nie ginie (zatrzask go trzyma). Giną kody pośrednie, gdy
+        # w jednej przerwie BIOS zapisze dwa albo więcej. Dlatego przerwy mają być krótkie.
+        self.win_end_us = None       # koniec poprzedniego okna
+        self.gap_max_us = 0          # najdłuższa przerwa od ostatniego heartbeat
+        self.gap_sum_us = 0
+        self.stat_since_us = time.ticks_us()
+        self.last_code_ms = time.ticks_ms()
+        self.usb_q = []              # linie dla USB – wysyłane porcjami między oknami
+        self.led_sent = None
+        self.led_sent_ms = 0
 
     # ---------- wyjście ----------
 
     def emit(self, text, store=True):
-        self.net.broadcast(text)
-        self.usb.send(text)
+        self.net.broadcast(text)     # Wi-Fi: tylko dopisanie do bufora, wysyła drain_task
+        if self.usb.enabled:
+            # USB (UART 115200) blokuje ok. 3 ms na linię – zawsze, nawet bez podłączonego PC.
+            # Dlatego nie piszemy tu, tylko kolejkujemy i wysyłamy porcjami (usb_pump).
+            if len(self.usb_q) < USB_Q_MAX:
+                self.usb_q.append(text)
         if store:
             self.store.append(text)
+
+    def usb_pump(self, budget_us=USB_BUDGET_US):
+        """Wysyła kolejkę USB, ale najwyżej budget_us na jedną przerwę między oknami."""
+        q = self.usb_q
+        if not q:
+            return
+        t0 = time.ticks_us()
+        while q and time.ticks_diff(time.ticks_us(), t0) < budget_us:
+            self.usb.send(q.pop(0))
 
     # ---------- komendy ----------
 
@@ -125,9 +156,14 @@ class Niuchacz:
     def process_latch(self, now):
         """Tryb zatrzasku: każda zmiana bajtu Q0–Q7 = nowy kod POST."""
         t0 = time.ticks_us()
+        gap_us = time.ticks_diff(t0, self.win_end_us) if self.win_end_us is not None else 0
         cnt = sampler.latch_window(sampler.LATCH_SAMPLES, sampler.LATCH_QUIET, sampler.LATCH_MAX,
                                    self.latch_last, self.latch_vals, self.latch_idx, sampler.LATCH_BUF,
                                    self.act)
+        self.win_end_us = time.ticks_us()
+        if gap_us > self.gap_max_us:
+            self.gap_max_us = gap_us
+        self.gap_sum_us += gap_us
         leds = None
         if config.LEDS_CONNECTED:
             # diody karty: IRDY/FRAME = aktywność (zmiany w oknie), RESET = poziom przez całe okno
@@ -145,10 +181,14 @@ class Niuchacz:
             us_per = 0
         for k in range(cnt):
             ts = now + int(self.latch_idx[k] * us_per / 1000)
-            self._latch_code(self.remap[self.latch_vals[k]], ts)
+            # zmiana już na początku okna = bajt zmienił się w przerwie, gdy nikt nie patrzył:
+            # przed tym kodem mogły zginąć kody pośrednie (aplikacja oznaczy go w raporcie)
+            gap = gap_us if k == 0 and self.latch_idx[0] <= 1 else 0
+            self._latch_code(self.remap[self.latch_vals[k]], ts, gap)
         if cnt:
             self.latch_last = self.latch_vals[cnt - 1]
             self.flap_quiet_since = now
+            self.last_code_ms = now
         elif self.flap is not None and time.ticks_diff(now, self.flap_quiet_since) > 300:
             # miganie ustało – wyślij kod, na którym się zatrzymało, jeśli różni się od ostatniego
             if self.code_hist and self.flap_last >= 0 and self.flap_last != self.code_hist[-1]:
@@ -156,7 +196,7 @@ class Niuchacz:
             self.flap = None
         return leds
 
-    def _latch_code(self, c, ts):
+    def _latch_code(self, c, ts, gap=0):
         if self.flap is not None:
             if c in self.flap:
                 self.flap_last = c
@@ -167,11 +207,11 @@ class Niuchacz:
             # A B A -> od teraz para {A, B} miga; ten jeden wysyłamy, kolejne tłumimy
             self.flap = (h[-1], c)
             self.flap_last = c
-        self._send_code(c, ts)
+        self._send_code(c, ts, gap)
 
-    def _send_code(self, c, ts):
+    def _send_code(self, c, ts, gap=0):
         self.code_hist = (self.code_hist + [c])[-3:]
-        self.emit(protocol.code(c, ts))
+        self.emit(protocol.code(c, ts, gap))
 
     def demo_window(self, now):
         # tryb demo: symulowane kody zamiast odczytu karty
@@ -197,7 +237,7 @@ class Niuchacz:
     # ---------- zadania asyncio ----------
 
     async def sampling_task(self):
-        last_led = last_hb = time.ticks_ms()
+        last_hb = time.ticks_ms()
         while True:
             now = time.ticks_ms()
             if self.demo_mode:
@@ -206,13 +246,28 @@ class Niuchacz:
                 leds = self.process_latch(now)
             else:
                 leds = self.process_window(now)
-            if leds is not None and time.ticks_diff(now, last_led) >= config.LED_REPORT_MS:
-                self.emit(protocol.leds(leds, now))
-                last_led = now
+            if leds is not None:
+                # diody: tylko przy zmianie (+ co LED_KEEPALIVE_MS), bez zapisu na flash
+                if leds != self.led_sent or time.ticks_diff(now, self.led_sent_ms) >= LED_KEEPALIVE_MS:
+                    self.emit(protocol.leds(leds, now), store=False)
+                    self.led_sent = leds
+                    self.led_sent_ms = now
             if time.ticks_diff(now, last_hb) >= config.HEARTBEAT_MS:
-                self.emit(protocol.heartbeat(now), store=False)
-                self.store.flush()
+                total = time.ticks_diff(time.ticks_us(), self.stat_since_us)
+                blind = (self.gap_sum_us * 1000 // total) if total > 0 else 0
+                self.emit(protocol.heartbeat(now, self.gap_max_us, blind), store=False)
+                self.gap_max_us = 0
+                self.gap_sum_us = 0
+                self.stat_since_us = time.ticks_us()
                 last_hb = now
+            if time.ticks_diff(now, self.last_code_ms) >= IDLE_MS:
+                # płyta stoi na jednym kodzie: teraz wolno blokować na dłużej
+                self.store.flush()
+                if not self.usb_q:
+                    gc.collect()
+                self.usb_pump(IDLE_USB_BUDGET_US)
+            else:
+                self.usb_pump()
             self.usb.poll()
             await asyncio.sleep_ms(20 if self.demo_mode else 0)   # oddaj czas obsłudze sieci
 

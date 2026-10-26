@@ -50,7 +50,7 @@ def parse_message(msg: dict) -> Optional[object]:
         c = msg.get("c")
         if not isinstance(c, int):
             raise ProtocolError(t("protocol.no_code"))
-        return CodeEvent(code=c & 0xFF, ts_ms=ts)
+        return CodeEvent(code=c & 0xFF, ts_ms=ts, gap_us=int(msg.get("g", 0) or 0))
     if kind == "led":
         return LedState(
             clk=bool(msg.get("clk", 0)), irdy=bool(msg.get("irdy", 0)),
@@ -59,7 +59,8 @@ def parse_message(msg: dict) -> Optional[object]:
     if kind == "session":
         return SessionStart(session_id=int(msg.get("id", 0)), ts_ms=ts)
     if kind == "hb":
-        return Heartbeat(ts_ms=ts)
+        return Heartbeat(ts_ms=ts, gap_max_us=int(msg.get("gm", 0) or 0),
+                         blind_permille=int(msg.get("bl", 0) or 0))
     if kind == "err":
         return DeviceError(message=str(msg.get("msg", "")))
     if kind == "replay":

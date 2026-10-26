@@ -195,7 +195,7 @@ def leds_from_activity(seen1, seen0, rst_active_high):
 # więc wystarczy czytać rejestr i notować każdą zmianę, która utrzymała się 2 odczyty z rzędu.
 # =====================================================================================
 
-LATCH_SAMPLES = 20000     # ok. 15 ms – minimalne okno
+LATCH_SAMPLES = 70000     # ok. 50 ms – minimalne okno (mniej okien = mniej przerw)
 # Okno nie kończy się w środku serii kodów: trwa dalej, dopóki od ostatniej zmiany nie minie
 # LATCH_QUIET próbek (ok. 30 ms ciszy), najwyżej LATCH_MAX (ok. 300 ms). Wysyłanie danych
 # (USB, Wi-Fi) odbywa się dopiero po serii – w tym czasie ESP32 nie patrzy na linie, więc

@@ -54,7 +54,9 @@ class SessionStore:
         self._file.write(line)
         self._file.write("\n")
         self._pending += 1
-        if self._pending >= 10:   # oszczędzamy flash: flush co kilka linii
+        if self._pending >= 200:
+            # awaryjnie; normalnie flush robi pętla główna, gdy płyta stoi (zapis na flash
+            # blokuje ESP32 na dziesiątki ms – w trakcie serii kodów gubilibyśmy kody)
             self.flush()
 
     def flush(self):

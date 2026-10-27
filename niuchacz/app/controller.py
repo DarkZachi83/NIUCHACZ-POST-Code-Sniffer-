@@ -20,12 +20,12 @@ from niuchacz.app.reader_thread import ReaderThread, TransportClosed
 from niuchacz.decoding.code_assembler import CardProfile, CodeAssembler
 from niuchacz.decoding.seven_segment import SegmentMap, SevenSegmentDecoder
 from niuchacz.app import printing
-from niuchacz.domain.enums import BiosVendor, ConnectionState, TransportKind
+from niuchacz.domain.enums import ConnectionState, TransportKind
 from niuchacz.domain.models import (
     CodeChange, CodeEvent, CommandReply, DeviceError, DeviceHello, FrameEvent, Heartbeat,
     LedState, PostCode, ReplayEvent, SessionStart,
 )
-from niuchacz.i18n import t
+from niuchacz.i18n import localized, t
 from niuchacz.knowledge.diagnosis_service import DiagnosisService
 from niuchacz.protocol import commands
 from niuchacz.session import exporter, golden
@@ -71,6 +71,15 @@ class AppController:
     @property
     def vendor(self) -> str:
         return self.settings.get("bios_vendor", "award")
+
+    def bios_profiles(self) -> list[dict]:
+        """Profile BIOS-ów (producent + generacja) z bazy kodów, do listy wyboru."""
+        return self.diagnosis.repository.profiles()
+
+    def vendor_label(self, vendor: Optional[str] = None, lang: Optional[str] = None) -> str:
+        vendor = vendor or self.vendor
+        label = self.diagnosis.repository.profile(vendor).get("label")
+        return localized(label, lang) if label else vendor
 
     def set_vendor(self, vendor: str) -> None:
         self.settings["bios_vendor"] = vendor
@@ -291,7 +300,7 @@ class AppController:
         value = code.value
         # 00/FF to koniec POST tylko po prawdziwym przebiegu: zaraz po włączeniu zasilania
         # zatrzask pokazuje przypadkowe bajty i 00 (pomiar 26.10: 04 00 10 12 1A, potem 00)
-        if value in ("00", "FF") and len(session.items) >= MIN_DONE_CODES \
+        if value in self._done_codes() and len(session.items) >= MIN_DONE_CODES \
                 and idle >= float(self.settings.get("rec_done_seconds", 3)):
             self._finish_recording("rec.end_done", code=value)
         elif idle >= float(self.settings.get("rec_wait_seconds", 5)) and any(
@@ -390,12 +399,24 @@ class AppController:
                 e.kind == "wait" for e in self.diagnosis.repository.find(codes[-1], "ami")))
             boot = lambda c: c == "D0" or (c[0] == "D" and stopped)
             post = lambda c: int(c, 16) < 0xD0
-        elif vendor == "award":
-            boot = lambda c: c[0] == "C"
-            post = lambda c: c[0] != "C"
         else:
-            return False
+            # pozostałe BIOS-y: kody początku startu (z bloku startowym) z pliku bazy, pole "boot".
+            # Nowy start = taki kod po kodach spoza tej grupy (np. Award 6.0: CF/C0… po 01…FF).
+            starts = set(self._profile().get("boot") or [])
+            if not starts:
+                return False
+            boot = lambda c: c in starts
+            post = lambda c: c not in starts
         return boot(code) and any(post(c) for c in codes)
+
+    def _profile(self) -> dict:
+        if not hasattr(self, "diagnosis"):
+            return {}
+        return self.diagnosis.repository.profile(getattr(self, "settings", {}).get("bios_vendor", "award"))
+
+    def _done_codes(self) -> tuple:
+        """Kody końca POST dla wybranego BIOS-u (AMI: 00, Award: FF, Phoenix: C0); zawsze też 00/FF."""
+        return tuple(set(self._profile().get("done") or []) | {"00", "FF"})
 
     def _publish_diagnosis(self, code) -> None:
         diag = self.diagnosis.diagnose(code, self.vendor, self.settings.get("board", ""))
@@ -476,7 +497,7 @@ class AppController:
             post = PostCode.parse(session.last_code)
             if post:
                 diag_text = DiagnosisService.format(self.diagnosis.diagnose(post, self.vendor, meta.board), lang)
-        vendor_label = BiosVendor(self.vendor).label if self.vendor in [v.value for v in BiosVendor] else self.vendor
+        vendor_label = self.vendor_label(lang=lang)
         stage = lambda c: self._stage_for(c, lang)  # noqa: E731
         if isinstance(session, Recording):
             return build_recording_report(session, vendor_label, meta, stage, diag_text, lang=lang)

@@ -1,9 +1,126 @@
 {
   "vendor": "ami",
+  "family": "AMI",
+  "order": 14,
+  "label": {
+    "en": "AMIBIOS8 (2002+)",
+    "pl": "AMIBIOS8 (od 2002)"
+  },
+  "recognise": {
+    "en": "Boot screen 'American Megatrends' with version v02.xx / v08.xx; Pentium 4 and later. POST starts with D0, D1…",
+    "pl": "Ekran startowy „American Megatrends” z wersją v02.xx / v08.xx; Pentium 4 i nowsze. POST zaczyna się od D0, D1…"
+  },
+  "boot": [
+    "D0"
+  ],
+  "done": [
+    "00"
+  ],
   "_opis": {
     "en": "AMIBIOS8 checkpoints (boot screen 'American Megatrends v02.xx') based on AMI's 'AMIBIOS8 Check Point and Beep Code List v2.0'. Confidence: ami_docs = description from the document, undocumented = code seen on a board but not described by AMI (usually a board/chipset vendor code). kind=wait marks codes where the BIOS waits for the user (F1, Setup).",
     "pl": "Punkty kontrolne AMIBIOS8 (ekran startowy 'American Megatrends v02.xx') według 'AMIBIOS8 Check Point and Beep Code List v2.0' (AMI). Pewność: ami_docs = opis z dokumentu, undocumented = kod widziany na płycie, nieopisany przez AMI (zwykle kod producenta płyty/chipsetu). kind=wait oznacza kody, w których BIOS czeka na użytkownika (F1, Setup)."
   },
+  "beeps": [
+    {
+      "pattern": "1 short",
+      "meaning": {
+        "en": "Memory refresh timer error",
+        "pl": "Błąd timera odświeżania pamięci"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "2 short",
+      "meaning": {
+        "en": "Parity error",
+        "pl": "Błąd parzystości pamięci"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "3 short",
+      "meaning": {
+        "en": "Main memory read/write test error",
+        "pl": "Błąd testu zapisu/odczytu pamięci głównej"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "4 short",
+      "meaning": {
+        "en": "System timer failure",
+        "pl": "Uszkodzony zegar systemowy"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "5 short",
+      "meaning": {
+        "en": "Processor error",
+        "pl": "Błąd procesora"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "6 short",
+      "meaning": {
+        "en": "Keyboard controller self-test error (A20)",
+        "pl": "Błąd autotestu kontrolera klawiatury (A20)"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "7 short",
+      "meaning": {
+        "en": "General exception error (processor)",
+        "pl": "Wyjątek procesora"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "8 short",
+      "meaning": {
+        "en": "Display memory error",
+        "pl": "Błąd pamięci karty graficznej"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "9 short",
+      "meaning": {
+        "en": "ROM BIOS checksum error",
+        "pl": "Błąd sumy kontrolnej BIOS ROM"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "10 short",
+      "meaning": {
+        "en": "CMOS shutdown register read/write error",
+        "pl": "Błąd rejestru shutdown w CMOS"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "11 short",
+      "meaning": {
+        "en": "Cache memory bad",
+        "pl": "Uszkodzona pamięć cache"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    }
+  ],
   "entries": [
     {
       "code": "D0",

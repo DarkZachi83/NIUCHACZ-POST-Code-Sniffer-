@@ -44,6 +44,7 @@ class CodeRepository:
         self._db = sqlite3.connect(str(db_path), check_same_thread=False)
         self._db.executescript(_SCHEMA)
         self._migrate()
+        self._profiles: dict[str, dict] = {}   # vendor -> metadane pliku (etykieta, kody startu/końca, beep)
 
     def _migrate(self) -> None:
         """Dopisuje kolumny dodane w nowszych wersjach (np. kind) do starej bazy."""
@@ -69,6 +70,8 @@ class CodeRepository:
         payload = json.loads(Path(path).read_text(encoding="utf-8"))
         vendor = payload.get("vendor", "")
         entries = payload.get("entries", [])
+        if vendor:
+            self._profiles[vendor] = {k: v for k, v in payload.items() if k != "entries"}
         with self._db:
             self._db.execute("DELETE FROM post_codes WHERE origin_file = ?", (str(path.name),))
             for raw in entries:
@@ -92,6 +95,15 @@ class CodeRepository:
     def add(self, entry: CodeEntry, origin: str = "lokalne") -> None:
         with self._db:
             self._insert(entry, origin)
+
+    # ---- profile BIOS-ów (producent + generacja) ----
+
+    def profiles(self) -> list[dict]:
+        """Wszystkie profile BIOS-ów z plików JSON, w kolejności do listy wyboru."""
+        return sorted(self._profiles.values(), key=lambda p: (p.get("order", 999), p.get("vendor", "")))
+
+    def profile(self, vendor: str) -> dict:
+        return self._profiles.get(vendor, {"vendor": vendor})
 
     def find(self, code: str, vendor: str) -> list[CodeEntry]:
         cur = self._db.execute(

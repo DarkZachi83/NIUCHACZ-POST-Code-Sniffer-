@@ -39,8 +39,21 @@ in plain language. This manual covers **using** a finished unit with a **type A*
    - **USB:** select **USB (COM)**; set the port in **Tools → Settings… → COM port (USB)**
      (Windows: `COM3`…, Linux: `/dev/ttyUSB0`).
 4. Click **Connect**. A green **connected** appears in the top right corner.
-5. Set the BIOS vendor on the toolbar (**BIOS:** AMI / Award / Phoenix) – the code descriptions depend on it.
-   The boot screen tells you: "American Megatrends" = AMI, "Award" = Award.
+5. Choose the BIOS maker and generation on the toolbar (**BIOS:**) – the code descriptions depend on it.
+   The same code means different things in a 1990 BIOS and a 2005 one. After you choose an item, a hint
+   at the bottom of the window tells you how to recognise it:
+
+   | Item | When |
+   |---|---|
+   | AMI 286 (to 4/1990), AMI 4/1990–2/1991 | early 286/386 boards with AMI BIOS (core date on the boot screen) |
+   | AMI 386/486 (1991+) | most AMI 386 and 486 boards, including the colour "AMI BIOS Color" Setup |
+   | AMI WinBIOS | Windows-like Setup operated with a mouse (about 1994–1999) |
+   | AMIBIOS8 (2002+) | "American Megatrends" with version v02.xx / v08.xx – Pentium 4 and later |
+   | Award 4.50/4.51 | 486 and early Pentium; POST starts with codes 01, 02, 03… |
+   | Award 4.51PG/6.00 | Pentium – Pentium 4; POST starts with CF, C0, C1, C3, C5 |
+   | Phoenix 4.0 R6 | PhoenixBIOS 4.0 Release 6.x, Setup with F2 |
+
+   Not sure? Record a run and compare the first codes with the list above.
 6. Enter your report details once: **Tools → Settings…**, section *Filled in on every report*.
 
 The app starts in the system language; change it in the **Language** menu.
@@ -178,7 +191,8 @@ The *POST finished* (3 s) and *waiting for user* (5 s) times can be changed in `
 - **File → Export sequence to CSV…** – codes of the current session to CSV.
 - **Tools → Reload code database** – after editing `data/post_codes/*.json`
   (each entry: code, stage, fault, what to check – in English and Polish, source, confidence).
-  **AMI** (AMIBIOS8) is the most complete; **Award** has a few entries and **Phoenix** is empty – add your own.
+  The database covers 8 BIOS generations (AMI from 1990 to AMIBIOS8, Award 4.5x and 6.0, Phoenix 4.0); sources
+  are listed in [data/post_codes/SOURCES.md](../data/post_codes/SOURCES.md). Each file also has a beep code table.
 - **Tools → Display calibration (legacy)…** – only for cards read from the display (type B).
 - **Device → Ping** – checks that the ESP32 answers.
 - **Device → List / Download / Delete sessions on ESP32** – sessions stored in the box. Storing on the ESP32 is
@@ -204,6 +218,8 @@ The *POST finished* (3 s) and *waiting for user* (5 s) times can be changed in `
 - **PCI clock (CLK)** – 33 MHz, the ESP32 cannot read it.
 - **Codes shorter than about 0.7 µs** may be missed (time between ESP32 reads). On the ASRock 775V88 this rarely
   affects code `C1`. Full certainty needs a write counter (planned: latch pin 11).
-- **Code descriptions** come from BIOS vendor documentation; board-vendor codes (e.g. `C0`–`C7`, `61`–`70` in AMI)
-  are described in general terms or as observed on a specific board.
+- **Code descriptions** come from sources of different reliability – from BIOS makers' manuals to lists collected
+  by users; the *confidence* field in the diagnosis tells which. Board-vendor codes (e.g. `C0`–`C7`, `61`–`70` in
+  AMIBIOS8) are described in general terms or as observed on a specific board. The "likely fault / what to check"
+  hints for older BIOSes are general, based on the kind of stage.
 - **Cards without a latch** (type B) – codes from the display only, fast codes are lost; see the [card table](CARDS.md#english).

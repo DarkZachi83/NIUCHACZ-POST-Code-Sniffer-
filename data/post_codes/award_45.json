@@ -1,0 +1,1612 @@
+{
+  "vendor": "award_45",
+  "family": "Award",
+  "order": 20,
+  "label": {
+    "en": "Award 4.50/4.51",
+    "pl": "Award 4.50/4.51"
+  },
+  "recognise": {
+    "en": "Award Modular BIOS v4.50 / 4.50G / 4.50PG / early 4.51 (1993–1997). POST starts with codes 01, 02, 03…",
+    "pl": "Award Modular BIOS v4.50 / 4.50G / 4.50PG / wczesne 4.51 (1993–1997). POST zaczyna się od kodów 01, 02, 03…"
+  },
+  "boot": [
+    "01",
+    "BE",
+    "BF",
+    "C0",
+    "C1",
+    "C5",
+    "C6"
+  ],
+  "done": [
+    "FF"
+  ],
+  "_opis": {
+    "en": "POST codes of Award 4.50/4.51 (486, early Pentium). Descriptions in our own words; check the source before relying on a single code.",
+    "pl": "Kody POST: Award 4.50/4.51 (486, wczesne Pentium). Opisy własnymi słowami; przy ważnej decyzji sprawdź źródło."
+  },
+  "beeps": [
+    {
+      "pattern": "1 long, 2 short",
+      "meaning": {
+        "en": "Video error – the BIOS cannot initialize the screen",
+        "pl": "Błąd obrazu – BIOS nie może uruchomić karty graficznej"
+      },
+      "source": "sites.pitt.edu/~hunter3/ComputerHelp/BIOScodes.htm",
+      "confidence": "community_list"
+    },
+    {
+      "pattern": "repeating",
+      "meaning": {
+        "en": "Most likely a memory (RAM) problem",
+        "pl": "Najczęściej problem z pamięcią RAM"
+      },
+      "source": "sites.pitt.edu/~hunter3/ComputerHelp/BIOScodes.htm",
+      "confidence": "community_list"
+    }
+  ],
+  "entries": [
+    {
+      "code": "01",
+      "stage": {
+        "en": "Processor status (flags) test",
+        "pl": "Test stanu procesora (flagi)"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "02",
+      "stage": {
+        "en": "Processor register read/write test",
+        "pl": "Test zapisu i odczytu rejestrów procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "03",
+      "stage": {
+        "en": "Basic chip init: NMI, DMA, interrupt controllers, coprocessor off",
+        "pl": "Podstawowa inicjalizacja: NMI, DMA, kontrolery przerwań, koprocesor"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "04",
+      "stage": {
+        "en": "Memory refresh toggle test",
+        "pl": "Test przełączania odświeżania pamięci"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "05",
+      "stage": {
+        "en": "Keyboard controller initialization",
+        "pl": "Inicjalizacja kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "07",
+      "stage": {
+        "en": "CMOS interface and battery test",
+        "pl": "Test interfejsu CMOS i baterii"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "08",
+      "stage": {
+        "en": "Early chipset init, low memory setup, first 64 KB test",
+        "pl": "Wczesna inicjalizacja chipsetu, pierwsze 64 KB pamięci"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "09",
+      "stage": {
+        "en": "Early cache initialization",
+        "pl": "Wczesna inicjalizacja cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "0A",
+      "stage": {
+        "en": "Interrupt vector table setup",
+        "pl": "Ustawienie tablicy wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "0B",
+      "stage": {
+        "en": "CMOS RAM checksum test",
+        "pl": "Test sumy kontrolnej CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "0C",
+      "stage": {
+        "en": "Keyboard controller type detection",
+        "pl": "Wykrywanie typu kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "0D",
+      "stage": {
+        "en": "Video interface initialization, CPU clock detection",
+        "pl": "Inicjalizacja karty graficznej, pomiar zegara procesora"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "0E",
+      "stage": {
+        "en": "Video memory test, sign-on message, shadow RAM setup",
+        "pl": "Test pamięci obrazu, komunikat startowy, shadow RAM"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "0F",
+      "stage": {
+        "en": "DMA controller 0 test, BIOS checksum, keyboard init",
+        "pl": "Test DMA 0, suma kontrolna BIOS, inicjalizacja klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "10",
+      "stage": {
+        "en": "DMA controller 1 test",
+        "pl": "Test DMA 1"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "11",
+      "stage": {
+        "en": "DMA page register test",
+        "pl": "Test rejestrów stron DMA"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "14",
+      "stage": {
+        "en": "Timer counter 2 test",
+        "pl": "Test licznika 2 timera"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "15",
+      "stage": {
+        "en": "First 8259 interrupt controller mask test",
+        "pl": "Test maski pierwszego kontrolera przerwań 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "16",
+      "stage": {
+        "en": "Second 8259 interrupt controller mask test",
+        "pl": "Test maski drugiego kontrolera przerwań 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "17",
+      "stage": {
+        "en": "Stuck 8259 interrupt bit test",
+        "pl": "Test zablokowanych przerwań 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "18",
+      "stage": {
+        "en": "8259 interrupt function test",
+        "pl": "Test działania przerwań 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "19",
+      "stage": {
+        "en": "Stuck NMI bit test",
+        "pl": "Test zablokowanego NMI"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "1A",
+      "stage": {
+        "en": "Benchmark, CPU clock display",
+        "pl": "Pomiar szybkości, wyświetlenie zegara procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "1F",
+      "stage": {
+        "en": "EISA mode setup",
+        "pl": "Konfiguracja trybu EISA"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "20",
+      "stage": {
+        "en": "Enabling system board (slot 0)",
+        "pl": "Włączanie płyty głównej (slot 0)"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "21",
+      "stage": {
+        "en": "Enabling expansion slot 1",
+        "pl": "Włączanie slotu rozszerzeń 1"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "22",
+      "stage": {
+        "en": "Enabling expansion slot 2",
+        "pl": "Włączanie slotu rozszerzeń 2"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "23",
+      "stage": {
+        "en": "Enabling expansion slot 3",
+        "pl": "Włączanie slotu rozszerzeń 3"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "24",
+      "stage": {
+        "en": "Enabling expansion slot 4",
+        "pl": "Włączanie slotu rozszerzeń 4"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "25",
+      "stage": {
+        "en": "Enabling expansion slot 5",
+        "pl": "Włączanie slotu rozszerzeń 5"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "26",
+      "stage": {
+        "en": "Enabling expansion slot 6",
+        "pl": "Włączanie slotu rozszerzeń 6"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "27",
+      "stage": {
+        "en": "Enabling expansion slot 7",
+        "pl": "Włączanie slotu rozszerzeń 7"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "28",
+      "stage": {
+        "en": "Enabling expansion slot 8",
+        "pl": "Włączanie slotu rozszerzeń 8"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "29",
+      "stage": {
+        "en": "Enabling expansion slot 9",
+        "pl": "Włączanie slotu rozszerzeń 9"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "2A",
+      "stage": {
+        "en": "Enabling expansion slot 10",
+        "pl": "Włączanie slotu rozszerzeń 10"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "2B",
+      "stage": {
+        "en": "Enabling expansion slot 11",
+        "pl": "Włączanie slotu rozszerzeń 11"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "2C",
+      "stage": {
+        "en": "Enabling expansion slot 12",
+        "pl": "Włączanie slotu rozszerzeń 12"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "2D",
+      "stage": {
+        "en": "Enabling expansion slot 13",
+        "pl": "Włączanie slotu rozszerzeń 13"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "2E",
+      "stage": {
+        "en": "Enabling expansion slot 14",
+        "pl": "Włączanie slotu rozszerzeń 14"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "2F",
+      "stage": {
+        "en": "Enabling expansion slot 15",
+        "pl": "Włączanie slotu rozszerzeń 15"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "30",
+      "stage": {
+        "en": "Sizing base and extended memory",
+        "pl": "Liczenie pamięci podstawowej i rozszerzonej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "31",
+      "stage": {
+        "en": "Testing base and extended memory",
+        "pl": "Test pamięci podstawowej i rozszerzonej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "32",
+      "stage": {
+        "en": "EISA extended memory test",
+        "pl": "Test pamięci rozszerzonej EISA"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "3C",
+      "stage": {
+        "en": "Setup can be entered",
+        "pl": "Można wejść do Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "3D",
+      "stage": {
+        "en": "Mouse detection and initialization",
+        "pl": "Wykrywanie i inicjalizacja myszy"
+      },
+      "fault": {
+        "en": "Mouse or the PS/2 port",
+        "pl": "Mysz albo port PS/2"
+      },
+      "check": {
+        "en": "Unplug the mouse",
+        "pl": "Odłącz mysz"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "3E",
+      "stage": {
+        "en": "Cache controller setup",
+        "pl": "Konfiguracja kontrolera cache"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "40",
+      "stage": {
+        "en": "Virus protection status display",
+        "pl": "Wyświetlenie stanu ochrony antywirusowej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "41",
+      "stage": {
+        "en": "Floppy drive and controller initialization",
+        "pl": "Inicjalizacja stacji i kontrolera dyskietek"
+      },
+      "fault": {
+        "en": "Floppy drive, cable or controller",
+        "pl": "Stacja dyskietek, taśma albo kontroler"
+      },
+      "check": {
+        "en": "Disconnect the floppy drive, check the cable",
+        "pl": "Odłącz stację dyskietek, sprawdź taśmę"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "42",
+      "stage": {
+        "en": "Hard disk and controller initialization",
+        "pl": "Inicjalizacja dysku twardego i kontrolera"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "43",
+      "stage": {
+        "en": "Serial and parallel port detection",
+        "pl": "Wykrywanie portów szeregowych i równoległego"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "45",
+      "stage": {
+        "en": "Maths coprocessor detection and initialization",
+        "pl": "Wykrywanie i inicjalizacja koprocesora"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "4E",
+      "stage": {
+        "en": "Manufacturing POST loop or error messages",
+        "pl": "Pętla testów fabrycznych albo komunikaty o błędach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "4F",
+      "stage": {
+        "en": "Security (password) check",
+        "pl": "Sprawdzanie hasła"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "50",
+      "stage": {
+        "en": "Writing CMOS values, clearing screen",
+        "pl": "Zapis wartości CMOS, czyszczenie ekranu"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "51",
+      "stage": {
+        "en": "Pre-boot setup: parity, NMI, cache enable",
+        "pl": "Przygotowanie do startu: parzystość, NMI, cache"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "52",
+      "stage": {
+        "en": "Option ROM initialization",
+        "pl": "Inicjalizacja dodatkowych ROM-ów"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "53",
+      "stage": {
+        "en": "Time of day initialization",
+        "pl": "Ustawienie czasu"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "60",
+      "stage": {
+        "en": "Virus protection setup",
+        "pl": "Konfiguracja ochrony antywirusowej"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "61",
+      "stage": {
+        "en": "Boot speed setup",
+        "pl": "Ustawienie szybkości startu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "62",
+      "stage": {
+        "en": "Num Lock setup",
+        "pl": "Ustawienie Num Lock"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "63",
+      "stage": {
+        "en": "Boot attempt",
+        "pl": "Próba startu systemu"
+      },
+      "fault": {
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "B0",
+      "stage": {
+        "en": "Spurious interrupt",
+        "pl": "Nieoczekiwane przerwanie"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "B1",
+      "stage": {
+        "en": "Unclaimed NMI",
+        "pl": "Nieobsłużone przerwanie NMI"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "BE",
+      "stage": {
+        "en": "Chipset default initialization (OEM)",
+        "pl": "Domyślna inicjalizacja chipsetu (producent płyty)"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "BF",
+      "stage": {
+        "en": "Chipset initialization (OEM)",
+        "pl": "Inicjalizacja chipsetu (producent płyty)"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "C0",
+      "stage": {
+        "en": "Chipset cache off (OEM)",
+        "pl": "Wyłączenie cache chipsetu (producent płyty)"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "C1",
+      "stage": {
+        "en": "On-board memory presence test (OEM)",
+        "pl": "Wykrywanie pamięci na płycie (producent płyty)"
+      },
+      "fault": {
+        "en": "RAM missing or faulty, its slots or the memory controller",
+        "pl": "Brak albo uszkodzenie RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "C5",
+      "stage": {
+        "en": "Early shadow for fast boot (OEM)",
+        "pl": "Wczesny shadow dla szybkiego startu (producent płyty)"
+      },
+      "fault": {
+        "en": "RAM or chipset (shadow RAM)",
+        "pl": "RAM albo chipset (shadow RAM)"
+      },
+      "check": {
+        "en": "RAM, disable shadow in Setup",
+        "pl": "RAM, wyłączenie shadow w Setupie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "C6",
+      "stage": {
+        "en": "External cache presence and size test",
+        "pl": "Wykrywanie i rozmiar zewnętrznego cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E1",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E2",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E3",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E4",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E5",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E6",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E7",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E8",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "E9",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "EA",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "EB",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "EC",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "ED",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "EE",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "EF",
+      "stage": {
+        "en": "Setup pages",
+        "pl": "Strony Setupu"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    },
+    {
+      "code": "FF",
+      "stage": {
+        "en": "Boot loader",
+        "pl": "Program startowy systemu"
+      },
+      "fault": {
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "Award Modular BIOS v4.5x",
+        "pl": "Award Modular BIOS v4.5x"
+      },
+      "source": "Winford Engineering PST44 POST card manual ('AwardBIOS 4.51PG' table)",
+      "confidence": "postcard_docs"
+    }
+  ]
+}

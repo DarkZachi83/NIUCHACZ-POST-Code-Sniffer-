@@ -1,128 +1,1331 @@
 {
   "vendor": "award",
-  "_opis": {
-    "en": "Starter entries. Confidence 'unverified' = general description – confirm on your own boards and change it to 'confirmed'.",
-    "pl": "Wpisy startowe. Pewność 'unverified' = opis ogólny – potwierdź na własnych płytach i zmień na 'confirmed'."
+  "family": "Award",
+  "order": 21,
+  "label": {
+    "en": "Award 4.51PG/6.00",
+    "pl": "Award 4.51PG/6.00"
   },
+  "recognise": {
+    "en": "Award BIOS with a compressed ROM (late 4.51PG, Medallion 6.00PG, 1997–2008). POST starts with CF, C0, C1, C3, C5.",
+    "pl": "Award BIOS ze skompresowanym ROM-em (późny 4.51PG, Medallion 6.00PG, 1997–2008). POST zaczyna się od CF, C0, C1, C3, C5."
+  },
+  "boot": [
+    "CF",
+    "C0",
+    "C1",
+    "C3",
+    "C5"
+  ],
+  "done": [
+    "FF"
+  ],
+  "_opis": {
+    "en": "Award 4.51PG/6.00PG POST codes after the Gigabyte POST code definition. Descriptions in our own words.",
+    "pl": "Kody POST Award 4.51PG/6.00PG według opisu kodów Gigabyte. Opisy własnymi słowami."
+  },
+  "beeps": [
+    {
+      "pattern": "1 long, 2 short",
+      "meaning": {
+        "en": "Video error – the BIOS cannot initialize the screen",
+        "pl": "Błąd obrazu – BIOS nie może uruchomić karty graficznej"
+      },
+      "source": "sites.pitt.edu/~hunter3/ComputerHelp/BIOScodes.htm",
+      "confidence": "community_list"
+    },
+    {
+      "pattern": "repeating",
+      "meaning": {
+        "en": "Most likely a memory (RAM) problem",
+        "pl": "Najczęściej problem z pamięcią RAM"
+      },
+      "source": "sites.pitt.edu/~hunter3/ComputerHelp/BIOScodes.htm",
+      "confidence": "community_list"
+    }
+  ],
   "entries": [
     {
       "code": "CF",
       "stage": {
-        "en": "CMOS read/write test (early BIOS stage)",
-        "pl": "Test odczytu/zapisu CMOS (wczesny etap BIOS)"
+        "en": "CMOS read/write test",
+        "pl": "Test zapisu i odczytu CMOS"
       },
       "fault": {
-        "en": "Damaged RTC/CMOS chip or southbridge; the boot goes no further",
-        "pl": "Uszkodzony układ RTC/CMOS lub mostek południowy; brak startu dalej"
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
       },
       "check": {
-        "en": "CMOS battery, Clear CMOS jumper, RTC chip (e.g. Dallas), bridge power",
-        "pl": "Bateria CMOS, zworka Clear CMOS, układ RTC (np. Dallas), zasilanie mostka"
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
       },
-      "source": "opis ogólny Award",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     },
     {
       "code": "C0",
       "stage": {
-        "en": "Early chipset initialization, cache disabled",
-        "pl": "Wczesna inicjalizacja chipsetu, wyłączenie cache"
+        "en": "Early chipset init: shadow RAM and L2 cache off, basic registers",
+        "pl": "Wczesna inicjalizacja chipsetu: shadow RAM i cache L2 wyłączone, podstawowe rejestry"
       },
       "fault": {
-        "en": "Chipset, CPU or its settings (jumpers, voltage, multiplier)",
-        "pl": "Chipset, procesor lub jego ustawienia (zworki, napięcie, mnożnik)"
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
       },
       "check": {
-        "en": "CPU jumper settings, core voltage, CPU seating, capacitors near the VRM",
-        "pl": "Ustawienia zworek CPU, napięcie rdzenia, osadzenie procesora, kondensatory przy VRM"
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
       },
-      "source": "opis ogólny Award",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     },
     {
       "code": "C1",
       "stage": {
-        "en": "RAM detection and sizing",
-        "pl": "Wykrywanie i określanie rozmiaru pamięci RAM"
+        "en": "Memory and L2 cache detection",
+        "pl": "Wykrywanie pamięci i cache L2"
       },
       "fault": {
-        "en": "Missing, wrong type or faulty RAM, dirty slots",
-        "pl": "Brak, zły typ lub uszkodzona pamięć RAM, brudne sloty"
+        "en": "RAM missing or faulty, its slots or the memory controller",
+        "pl": "Brak albo uszkodzenie RAM, sloty pamięci albo kontroler pamięci"
       },
       "check": {
-        "en": "Clean the module contacts, one module in the first slot, check the type (FPM/EDO/SDRAM) and voltage",
-        "pl": "Wyczyść styki modułów, jeden moduł w pierwszym slocie, sprawdź typ (FPM/EDO/SDRAM) i napięcie"
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
       },
-      "source": "opis ogólny Award",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     },
     {
       "code": "C3",
       "stage": {
-        "en": "Decompress the BIOS code into RAM",
-        "pl": "Rozpakowanie skompresowanego kodu BIOS do RAM"
+        "en": "Decompressing the BIOS code into RAM",
+        "pl": "Rozpakowanie kodu BIOS do RAM"
       },
       "fault": {
-        "en": "Corrupted BIOS contents or RAM",
-        "pl": "Uszkodzona zawartość BIOS albo pamięć RAM"
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
       },
       "check": {
-        "en": "Another RAM module; checksum / reprogram the BIOS chip",
-        "pl": "Inny moduł RAM; suma kontrolna / przeprogramowanie kości BIOS"
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
       },
-      "source": "opis ogólny Award",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     },
     {
       "code": "C5",
       "stage": {
-        "en": "Copy the BIOS to shadow memory",
-        "pl": "Kopiowanie BIOS do pamięci shadow"
+        "en": "Copying the BIOS to E000/F000 shadow RAM",
+        "pl": "Kopiowanie BIOS-u do shadow RAM E000/F000"
       },
       "fault": {
-        "en": "RAM or the chipset shadow logic",
-        "pl": "Pamięć RAM lub logika shadow chipsetu"
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
       },
       "check": {
-        "en": "Another RAM module, cache settings, chipset",
-        "pl": "Inny moduł RAM, ustawienia cache, chipset"
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
       },
-      "source": "opis ogólny Award",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     },
     {
-      "code": "C7",
+      "code": "01",
       "stage": {
-        "en": "Stage related to memory, cache or shadow RAM",
-        "pl": "Etap związany z pamięcią, cache lub shadow RAM"
+        "en": "Expanding the Xgroup code at 1000:0",
+        "pl": "Rozpakowanie kodu Xgroup pod 1000:0"
       },
       "fault": {
-        "en": "RAM, L2 cache (COAST module/SRAM chips)",
-        "pl": "Pamięć RAM, cache L2 (moduł COAST/kości SRAM)"
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
       },
       "check": {
-        "en": "Disable/remove the L2 cache, replace RAM, cache size jumpers",
-        "pl": "Wyłącz/wyjmij cache L2, wymień RAM, zworki rozmiaru cache"
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
       },
-      "source": "lepszyserwis.pl – artykuł o karcie POST PCI/ISA",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "03",
+      "stage": {
+        "en": "Early Super I/O initialization",
+        "pl": "Wczesna inicjalizacja Super I/O"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "05",
+      "stage": {
+        "en": "Blank screen, clear CMOS error flag",
+        "pl": "Wygaszenie ekranu, kasowanie flagi błędu CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "07",
+      "stage": {
+        "en": "Clear 8042 interface, 8042 self-test",
+        "pl": "Czyszczenie interfejsu 8042, autotest 8042"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "08",
+      "stage": {
+        "en": "Keyboard controller test, keyboard interface on",
+        "pl": "Test kontrolera klawiatury, włączenie interfejsu klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "0A",
+      "stage": {
+        "en": "PS/2 mouse/keyboard port detection and swap",
+        "pl": "Wykrywanie portów PS/2 myszy i klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "0E",
+      "stage": {
+        "en": "F000 shadow segment read/write test (beeps on error)",
+        "pl": "Test zapisu i odczytu shadow F000 (sygnał dźwiękowy przy błędzie)"
+      },
+      "fault": {
+        "en": "RAM or chipset (shadow RAM)",
+        "pl": "RAM albo chipset (shadow RAM)"
+      },
+      "check": {
+        "en": "RAM, disable shadow in Setup",
+        "pl": "RAM, wyłączenie shadow w Setupie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "10",
+      "stage": {
+        "en": "Flash type detection, ESCD/DMI routines loaded",
+        "pl": "Wykrywanie typu flash, procedury ESCD/DMI"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "12",
+      "stage": {
+        "en": "CMOS interface test, RTC power status",
+        "pl": "Test interfejsu CMOS, stan zasilania RTC"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "14",
+      "stage": {
+        "en": "Programming chipset defaults",
+        "pl": "Programowanie domyślnych ustawień chipsetu"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "16",
+      "stage": {
+        "en": "Early clock generator initialization",
+        "pl": "Wczesna inicjalizacja generatora zegara"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "18",
+      "stage": {
+        "en": "CPU brand, SMI type and level detection",
+        "pl": "Wykrywanie producenta i typu procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "1B",
+      "stage": {
+        "en": "Interrupt vector table initialization",
+        "pl": "Inicjalizacja tablicy wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "1D",
+      "stage": {
+        "en": "Early power management initialization",
+        "pl": "Wczesna inicjalizacja zarządzania energią"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "1F",
+      "stage": {
+        "en": "Loading keyboard matrix (notebooks)",
+        "pl": "Ładowanie matrycy klawiatury (laptopy)"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "21",
+      "stage": {
+        "en": "Hardware power management init (notebooks)",
+        "pl": "Inicjalizacja sprzętowego zarządzania energią (laptopy)"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "23",
+      "stage": {
+        "en": "RTC check, CMOS settings loaded, resource map, early PCI init",
+        "pl": "Sprawdzenie RTC, wczytanie CMOS, mapa zasobów, wczesna inicjalizacja PCI"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "25",
+      "stage": {
+        "en": "PCI bus initialization",
+        "pl": "Inicjalizacja magistrali PCI"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "26",
+      "stage": {
+        "en": "Clock generator initialization",
+        "pl": "Inicjalizacja generatora zegara"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "27",
+      "stage": {
+        "en": "INT 09h buffer initialization",
+        "pl": "Inicjalizacja bufora klawiatury INT 09h"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "29",
+      "stage": {
+        "en": "MTRRs for 0–640 KB, APIC, CPU speed measurement",
+        "pl": "MTRR dla 0–640 KB, APIC, pomiar szybkości procesora"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "2B",
+      "stage": {
+        "en": "Running the video BIOS",
+        "pl": "Uruchomienie BIOS-u karty graficznej"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "2D",
+      "stage": {
+        "en": "Multi-language init, Award title, CPU type and speed shown",
+        "pl": "Obsługa języków, ekran Award, typ i szybkość procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "33",
+      "stage": {
+        "en": "Keyboard reset",
+        "pl": "Reset klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "3C",
+      "stage": {
+        "en": "8254 timer test",
+        "pl": "Test timera 8254"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "3E",
+      "stage": {
+        "en": "8259 interrupt mask test, channel 1",
+        "pl": "Test maski przerwań 8259, kanał 1"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "40",
+      "stage": {
+        "en": "8259 interrupt mask test, channel 2",
+        "pl": "Test maski przerwań 8259, kanał 2"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "43",
+      "stage": {
+        "en": "8259 function test",
+        "pl": "Test działania 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "47",
+      "stage": {
+        "en": "EISA slot initialization",
+        "pl": "Inicjalizacja slotów EISA"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "49",
+      "stage": {
+        "en": "Calculating total memory",
+        "pl": "Liczenie całkowitej pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "4E",
+      "stage": {
+        "en": "CPU MTRRs, P6 L2 cache and APIC init",
+        "pl": "MTRR procesora, cache L2 i APIC"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "50",
+      "stage": {
+        "en": "USB initialization",
+        "pl": "Inicjalizacja USB"
+      },
+      "fault": {
+        "en": "USB controller or device",
+        "pl": "Kontroler albo urządzenie USB"
+      },
+      "check": {
+        "en": "Unplug USB devices",
+        "pl": "Odłącz urządzenia USB"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "52",
+      "stage": {
+        "en": "Testing all memory (clearing extended memory)",
+        "pl": "Test całej pamięci (zerowanie pamięci rozszerzonej)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "55",
+      "stage": {
+        "en": "Displaying number of processors",
+        "pl": "Wyświetlenie liczby procesorów"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "57",
+      "stage": {
+        "en": "PnP logo, early ISA PnP init",
+        "pl": "Logo PnP, wczesna inicjalizacja ISA PnP"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "59",
+      "stage": {
+        "en": "Anti-virus code initialization",
+        "pl": "Inicjalizacja ochrony antywirusowej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "5B",
+      "stage": {
+        "en": "AWDFLASH-from-floppy message (optional)",
+        "pl": "Komunikat o AWDFLASH z dyskietki (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "5D",
+      "stage": {
+        "en": "On-board Super I/O and audio initialization",
+        "pl": "Inicjalizacja Super I/O i dźwięku na płycie"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "60",
+      "stage": {
+        "en": "Setup can be entered",
+        "pl": "Można wejść do Setupu"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "65",
+      "stage": {
+        "en": "PS/2 mouse initialization",
+        "pl": "Inicjalizacja myszy PS/2"
+      },
+      "fault": {
+        "en": "Mouse or the PS/2 port",
+        "pl": "Mysz albo port PS/2"
+      },
+      "check": {
+        "en": "Unplug the mouse",
+        "pl": "Odłącz mysz"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "67",
+      "stage": {
+        "en": "Memory size data for INT 15h E820h",
+        "pl": "Dane o pamięci dla INT 15h E820h"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "69",
+      "stage": {
+        "en": "Enabling L2 cache",
+        "pl": "Włączanie cache L2"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "6B",
+      "stage": {
+        "en": "Programming chipset from Setup and auto-config",
+        "pl": "Programowanie chipsetu według Setupu"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "6D",
+      "stage": {
+        "en": "Resources for ISA PnP devices, COM ports set to Auto",
+        "pl": "Zasoby dla urządzeń ISA PnP, porty COM w trybie Auto"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "6F",
+      "stage": {
+        "en": "Floppy controller initialization",
+        "pl": "Inicjalizacja kontrolera dyskietek"
+      },
+      "fault": {
+        "en": "Floppy drive, cable or controller",
+        "pl": "Stacja dyskietek, taśma albo kontroler"
+      },
+      "check": {
+        "en": "Disconnect the floppy drive, check the cable",
+        "pl": "Odłącz stację dyskietek, sprawdź taśmę"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "73",
+      "stage": {
+        "en": "Entering AWDFLASH (floppy or Alt+F2, optional)",
+        "pl": "Uruchomienie AWDFLASH (dyskietka lub Alt+F2, opcjonalnie)"
+      },
+      "fault": {
+        "en": "Floppy drive, cable or controller",
+        "pl": "Stacja dyskietek, taśma albo kontroler"
+      },
+      "check": {
+        "en": "Disconnect the floppy drive, check the cable",
+        "pl": "Odłącz stację dyskietek, sprawdź taśmę"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "75",
+      "stage": {
+        "en": "Detecting and installing IDE devices",
+        "pl": "Wykrywanie urządzeń IDE"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "77",
+      "stage": {
+        "en": "Detecting serial and parallel ports",
+        "pl": "Wykrywanie portów szeregowych i równoległego"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "7A",
+      "stage": {
+        "en": "Coprocessor detection and installation",
+        "pl": "Wykrywanie koprocesora"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "7F",
+      "stage": {
+        "en": "Text mode, error report and waiting for a key",
+        "pl": "Tryb tekstowy, raport błędów i oczekiwanie na klawisz"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs",
+      "kind": "wait"
+    },
+    {
+      "code": "82",
+      "stage": {
+        "en": "Power management hook, password prompt if set",
+        "pl": "Zarządzanie energią, pytanie o hasło (jeśli ustawione)"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs",
+      "kind": "wait"
+    },
+    {
+      "code": "83",
+      "stage": {
+        "en": "Saving stack data to CMOS",
+        "pl": "Zapis danych stosu do CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "84",
+      "stage": {
+        "en": "ISA PnP boot device initialization",
+        "pl": "Inicjalizacja urządzeń startowych ISA PnP"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "85",
+      "stage": {
+        "en": "Final USB init, ACPI tables, option ROMs, PCI IRQs, APM",
+        "pl": "Końcowa inicjalizacja USB, tablice ACPI, ROM-y kart, przerwania PCI, APM"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "93",
+      "stage": {
+        "en": "Reading the hard disk boot sector (anti-virus)",
+        "pl": "Odczyt sektora startowego dysku (antywirus)"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "94",
+      "stage": {
+        "en": "Final chipset and power management setup, summary screen",
+        "pl": "Końcowa konfiguracja chipsetu i zasilania, ekran podsumowania"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "95",
+      "stage": {
+        "en": "Daylight saving, keyboard LEDs and typematic rate",
+        "pl": "Czas letni, diody i szybkość powtarzania klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
+    },
+    {
+      "code": "96",
+      "stage": {
+        "en": "MP table, ESCD, CMOS century, DOS timer, IRQ routing table",
+        "pl": "Tablica MP, ESCD, wiek w CMOS, zegar DOS, tablica przerwań"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     },
     {
       "code": "FF",
       "stage": {
-        "en": "End of POST – control passed to the boot loader (or no code at all)",
-        "pl": "Koniec POST – przekazanie sterowania do bootloadera (lub brak jakiegokolwiek kodu)"
+        "en": "Boot attempt (INT 19h)",
+        "pl": "Próba startu systemu (INT 19h)"
       },
       "fault": {
-        "en": "If FF shows from power-on: the BIOS does not start (CPU, power, BIOS chip, reset)",
-        "pl": "Jeśli FF świeci od włączenia: BIOS nie startuje (CPU, zasilanie, kość BIOS, reset)"
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
       },
       "check": {
-        "en": "RESET and CLK LEDs on the card, PSU voltages, CPU and BIOS chip seating",
-        "pl": "Diody RESET i CLK na karcie, napięcia zasilacza, osadzenie CPU i kości BIOS"
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
       },
-      "source": "opis ogólny Award",
-      "confidence": "unverified"
+      "bios_version": {
+        "en": "Award 4.51PG / 6.00PG",
+        "pl": "Award 4.51PG / 6.00PG"
+      },
+      "source": "Gigabyte GA-G1975X POST Code Definition (Award), 2005",
+      "confidence": "oem_docs"
     }
   ]
 }

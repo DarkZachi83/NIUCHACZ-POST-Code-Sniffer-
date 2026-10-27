@@ -1,0 +1,2597 @@
+{
+  "vendor": "ami_win",
+  "family": "AMI",
+  "order": 13,
+  "label": {
+    "en": "AMI WinBIOS",
+    "pl": "AMI WinBIOS"
+  },
+  "recognise": {
+    "en": "AMI WinBIOS: Windows-like Setup operated with a mouse; 486, Pentium, Pentium II boards. Boot-block codes C2–DD.",
+    "pl": "AMI WinBIOS: Setup w stylu Windows obsługiwany myszą; płyty 486, Pentium, Pentium II. Kody bloku startowego C2–DD."
+  },
+  "boot": [
+    "C2",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "CA",
+    "CB",
+    "CD",
+    "CE",
+    "CF",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "DD",
+    "01"
+  ],
+  "done": [
+    "00"
+  ],
+  "_opis": {
+    "en": "POST codes of AMI WinBIOS (1994–1999). Descriptions in our own words; check the source before relying on a single code.",
+    "pl": "Kody POST: AMI WinBIOS (1994–1999). Opisy własnymi słowami; przy ważnej decyzji sprawdź źródło."
+  },
+  "beeps": [
+    {
+      "pattern": "1 short",
+      "meaning": {
+        "en": "Memory refresh timer error",
+        "pl": "Błąd timera odświeżania pamięci"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "2 short",
+      "meaning": {
+        "en": "Parity error",
+        "pl": "Błąd parzystości pamięci"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "3 short",
+      "meaning": {
+        "en": "Main memory read/write test error",
+        "pl": "Błąd testu zapisu/odczytu pamięci głównej"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "4 short",
+      "meaning": {
+        "en": "System timer failure",
+        "pl": "Uszkodzony zegar systemowy"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "5 short",
+      "meaning": {
+        "en": "Processor error",
+        "pl": "Błąd procesora"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "6 short",
+      "meaning": {
+        "en": "Keyboard controller self-test error (A20)",
+        "pl": "Błąd autotestu kontrolera klawiatury (A20)"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "7 short",
+      "meaning": {
+        "en": "General exception error (processor)",
+        "pl": "Wyjątek procesora"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "8 short",
+      "meaning": {
+        "en": "Display memory error",
+        "pl": "Błąd pamięci karty graficznej"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "9 short",
+      "meaning": {
+        "en": "ROM BIOS checksum error",
+        "pl": "Błąd sumy kontrolnej BIOS ROM"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "10 short",
+      "meaning": {
+        "en": "CMOS shutdown register read/write error",
+        "pl": "Błąd rejestru shutdown w CMOS"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "11 short",
+      "meaning": {
+        "en": "Cache memory bad",
+        "pl": "Uszkodzona pamięć cache"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    }
+  ],
+  "entries": [
+    {
+      "code": "01",
+      "stage": {
+        "en": "NMI disabled",
+        "pl": "NMI wyłączone"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "02",
+      "stage": {
+        "en": "Power-on delay starting",
+        "pl": "Start opóźnienia po włączeniu zasilania"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "03",
+      "stage": {
+        "en": "Soft reset or power-on determined",
+        "pl": "Ustalony restart czy włączenie zasilania"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "05",
+      "stage": {
+        "en": "Disabling cache",
+        "pl": "Wyłączanie cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "06",
+      "stage": {
+        "en": "Uncompressing POST code",
+        "pl": "Rozpakowywanie kodu POST"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "08",
+      "stage": {
+        "en": "CMOS checksum and CMOS initialization",
+        "pl": "Suma kontrolna i inicjalizacja CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0A",
+      "stage": {
+        "en": "CMOS date and time initialization",
+        "pl": "Inicjalizacja daty i czasu w CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0B",
+      "stage": {
+        "en": "Initialization before keyboard self-test",
+        "pl": "Przygotowanie przed autotestem klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0C",
+      "stage": {
+        "en": "Self-test command to keyboard controller",
+        "pl": "Komenda autotestu do kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0D",
+      "stage": {
+        "en": "Verifying keyboard self-test",
+        "pl": "Sprawdzanie autotestu klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0E",
+      "stage": {
+        "en": "Initialization after keyboard controller self-test",
+        "pl": "Konfiguracja po autoteście kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0F",
+      "stage": {
+        "en": "Writing keyboard command byte",
+        "pl": "Zapis bajtu komend klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "10",
+      "stage": {
+        "en": "Keyboard pin 23/24 block/unblock command",
+        "pl": "Komenda blokowania pinów 23/24 kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "11",
+      "stage": {
+        "en": "Checking for the INS key",
+        "pl": "Sprawdzanie klawisza INS"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "12",
+      "stage": {
+        "en": "Disabling DMA and interrupt controllers",
+        "pl": "Wyłączanie DMA i kontrolerów przerwań"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "13",
+      "stage": {
+        "en": "Chipset initialization",
+        "pl": "Inicjalizacja chipsetu"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "14",
+      "stage": {
+        "en": "8254 timer test",
+        "pl": "Test timera 8254"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "19",
+      "stage": {
+        "en": "Memory refresh test",
+        "pl": "Test odświeżania pamięci"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "20",
+      "stage": {
+        "en": "First 64 KB memory test",
+        "pl": "Test pierwszych 64 KB pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "21",
+      "stage": {
+        "en": "Address line test passed, parity toggle next",
+        "pl": "Test linii adresowych zaliczony, następna parzystość"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "22",
+      "stage": {
+        "en": "Parity done, sequential read/write test next",
+        "pl": "Parzystość zakończona, następny test sekwencyjny zapisu i odczytu"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "23",
+      "stage": {
+        "en": "BIOS stack set, setup before interrupt vectors",
+        "pl": "Stos BIOS ustawiony, przygotowanie wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "24",
+      "stage": {
+        "en": "Interrupt vector initialization",
+        "pl": "Inicjalizacja wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "25",
+      "stage": {
+        "en": "Reading 8042 input port, clearing password",
+        "pl": "Odczyt portu wejściowego 8042, kasowanie hasła"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "26",
+      "stage": {
+        "en": "Turbo switch data initialized",
+        "pl": "Dane przełącznika turbo zainicjowane"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "27",
+      "stage": {
+        "en": "Initialization before setting video mode",
+        "pl": "Przygotowanie przed ustawieniem trybu obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "28",
+      "stage": {
+        "en": "Setting video mode",
+        "pl": "Ustawianie trybu obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2A",
+      "stage": {
+        "en": "Bus initialization",
+        "pl": "Inicjalizacja magistral"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2B",
+      "stage": {
+        "en": "Setup before the video check",
+        "pl": "Przygotowanie przed sprawdzeniem karty graficznej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2C",
+      "stage": {
+        "en": "Passing control to the video ROM",
+        "pl": "Przekazanie sterowania do ROM-u karty graficznej"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2D",
+      "stage": {
+        "en": "Processing after the video ROM",
+        "pl": "Konfiguracja po ROM-ie karty graficznej"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2E",
+      "stage": {
+        "en": "Display memory read/write test if no EGA/VGA",
+        "pl": "Test pamięci obrazu, jeśli nie ma EGA/VGA"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2F",
+      "stage": {
+        "en": "No EGA/VGA found, display memory test starting",
+        "pl": "Brak EGA/VGA, start testu pamięci obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "30",
+      "stage": {
+        "en": "Retrace check",
+        "pl": "Test powrotu wiązki"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "31",
+      "stage": {
+        "en": "Alternate display memory read/write check",
+        "pl": "Test pamięci drugiej karty graficznej"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "32",
+      "stage": {
+        "en": "Alternate display retrace check",
+        "pl": "Test powrotu wiązki drugiej karty"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "34",
+      "stage": {
+        "en": "Setting display mode",
+        "pl": "Ustawianie trybu obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "37",
+      "stage": {
+        "en": "Displaying the power-on message",
+        "pl": "Wyświetlanie komunikatu startowego"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "38",
+      "stage": {
+        "en": "Initializing bus types",
+        "pl": "Inicjalizacja typów magistral"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "39",
+      "stage": {
+        "en": "Displaying bus initialization errors",
+        "pl": "Wyświetlanie błędów inicjalizacji magistral"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "3A",
+      "stage": {
+        "en": "Displaying the 'Hit DEL' message",
+        "pl": "Wyświetlanie komunikatu o klawiszu DEL"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "3B",
+      "stage": {
+        "en": "Protected mode memory test",
+        "pl": "Test pamięci w trybie chronionym"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "40",
+      "stage": {
+        "en": "Preparing descriptor tables",
+        "pl": "Przygotowanie tablic deskryptorów"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "42",
+      "stage": {
+        "en": "Entering protected mode for the memory test",
+        "pl": "Wejście w tryb chroniony dla testu pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "43",
+      "stage": {
+        "en": "Enabling interrupts for diagnostics",
+        "pl": "Włączanie przerwań do diagnostyki"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "44",
+      "stage": {
+        "en": "Preparing the 0:0 wrap-around test",
+        "pl": "Przygotowanie testu zawinięcia adresu 0:0"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "45",
+      "stage": {
+        "en": "Checking wrap-around, finding total memory",
+        "pl": "Sprawdzanie zawinięcia adresu, liczenie pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "46",
+      "stage": {
+        "en": "Memory write test",
+        "pl": "Test zapisu pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "47",
+      "stage": {
+        "en": "Base 640 KB memory write test",
+        "pl": "Test zapisu pamięci 640 KB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "48",
+      "stage": {
+        "en": "Finding memory below 1 MB",
+        "pl": "Szukanie pamięci poniżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "49",
+      "stage": {
+        "en": "Finding memory above 1 MB",
+        "pl": "Szukanie pamięci powyżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4B",
+      "stage": {
+        "en": "Soft reset: clearing memory below 1 MB",
+        "pl": "Restart: czyszczenie pamięci poniżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4C",
+      "stage": {
+        "en": "Clearing memory above 1 MB",
+        "pl": "Czyszczenie pamięci powyżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4D",
+      "stage": {
+        "en": "Saving memory size",
+        "pl": "Zapis rozmiaru pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4E",
+      "stage": {
+        "en": "Displaying first 64 KB memory size",
+        "pl": "Wyświetlanie pierwszych 64 KB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4F",
+      "stage": {
+        "en": "Sequential and random memory test",
+        "pl": "Test sekwencyjny i losowy pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "50",
+      "stage": {
+        "en": "Memory size displayed",
+        "pl": "Rozmiar pamięci wyświetlony"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "51",
+      "stage": {
+        "en": "Memory test above 1 MB",
+        "pl": "Test pamięci powyżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "52",
+      "stage": {
+        "en": "Saving memory size information",
+        "pl": "Zapis informacji o rozmiarze pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "53",
+      "stage": {
+        "en": "Entering real mode",
+        "pl": "Wejście w tryb rzeczywisty"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "54",
+      "stage": {
+        "en": "Disabling the A20 gate",
+        "pl": "Wyłączanie bramki A20"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "57",
+      "stage": {
+        "en": "Adjusting memory size",
+        "pl": "Korekta rozmiaru pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "58",
+      "stage": {
+        "en": "Clearing 'Hit DEL' message",
+        "pl": "Usuwanie komunikatu o DEL"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "59",
+      "stage": {
+        "en": "DMA and interrupt controller test",
+        "pl": "Test DMA i kontrolera przerwań"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "60",
+      "stage": {
+        "en": "DMA unit 1 base register test",
+        "pl": "Test rejestrów bazowych DMA nr 1"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "62",
+      "stage": {
+        "en": "DMA unit 2 base register test",
+        "pl": "Test rejestrów bazowych DMA nr 2"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "65",
+      "stage": {
+        "en": "Programming DMA units 1 and 2",
+        "pl": "Programowanie układów DMA 1 i 2"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "66",
+      "stage": {
+        "en": "Initializing the 8259 interrupt controller",
+        "pl": "Inicjalizacja kontrolera przerwań 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "67",
+      "stage": {
+        "en": "Keyboard test",
+        "pl": "Test klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "80",
+      "stage": {
+        "en": "Stuck key and keyboard self-test",
+        "pl": "Test zablokowanych klawiszy i autotest klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "81",
+      "stage": {
+        "en": "Keyboard controller test",
+        "pl": "Test kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "82",
+      "stage": {
+        "en": "Writing keyboard command byte, initializing buffer",
+        "pl": "Zapis bajtu komend klawiatury, inicjalizacja bufora"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "83",
+      "stage": {
+        "en": "Checking the keyboard lock key",
+        "pl": "Sprawdzanie stacyjki blokady klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "84",
+      "stage": {
+        "en": "Comparing memory size with CMOS",
+        "pl": "Porównanie rozmiaru pamięci z CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "85",
+      "stage": {
+        "en": "Showing errors, checking password",
+        "pl": "Wyświetlanie błędów, sprawdzanie hasła"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "86",
+      "stage": {
+        "en": "Programming before setup",
+        "pl": "Przygotowanie przed Setupem"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "87",
+      "stage": {
+        "en": "In CMOS setup",
+        "pl": "Setup otwarty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list",
+      "kind": "wait"
+    },
+    {
+      "code": "88",
+      "stage": {
+        "en": "Programming after setup",
+        "pl": "Konfiguracja po Setupie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "89",
+      "stage": {
+        "en": "Power-on screen",
+        "pl": "Ekran startowy"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8B",
+      "stage": {
+        "en": "Shadowing main and video BIOS",
+        "pl": "Kopiowanie BIOS-u płyty i karty graficznej do shadow RAM"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8C",
+      "stage": {
+        "en": "Setup options after CMOS setup",
+        "pl": "Opcje z Setupu po jego zamknięciu"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8D",
+      "stage": {
+        "en": "Initializing the mouse",
+        "pl": "Inicjalizacja myszy"
+      },
+      "fault": {
+        "en": "Mouse or the PS/2 port",
+        "pl": "Mysz albo port PS/2"
+      },
+      "check": {
+        "en": "Unplug the mouse",
+        "pl": "Odłącz mysz"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8E",
+      "stage": {
+        "en": "Resetting the hard disk controller",
+        "pl": "Reset kontrolera dysku twardego"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8F",
+      "stage": {
+        "en": "Floppy setup",
+        "pl": "Konfiguracja stacji dyskietek"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "91",
+      "stage": {
+        "en": "Hard disk setup",
+        "pl": "Konfiguracja dysku twardego"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "94",
+      "stage": {
+        "en": "Base and extended memory size",
+        "pl": "Rozmiar pamięci podstawowej i rozszerzonej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "95",
+      "stage": {
+        "en": "Initializing PCI/VLB option ROMs from C800",
+        "pl": "Inicjalizacja ROM-ów kart PCI/VLB od C800"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "96",
+      "stage": {
+        "en": "Initialization before C800 option ROMs",
+        "pl": "Przygotowanie przed ROM-ami od C800"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "97",
+      "stage": {
+        "en": "Passing control to option ROMs",
+        "pl": "Przekazanie sterowania do dodatkowych ROM-ów"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "98",
+      "stage": {
+        "en": "Processing after option ROMs",
+        "pl": "Konfiguracja po dodatkowych ROM-ach"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "99",
+      "stage": {
+        "en": "Setting timer data area and printer base address",
+        "pl": "Ustawianie danych timera i adresu portu drukarki"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9A",
+      "stage": {
+        "en": "Setting serial port (RS-232) base address",
+        "pl": "Ustawianie adresów portów szeregowych"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9B",
+      "stage": {
+        "en": "Initialization before the coprocessor",
+        "pl": "Przygotowanie przed koprocesorem"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9C",
+      "stage": {
+        "en": "Coprocessor initialization",
+        "pl": "Inicjalizacja koprocesora"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9D",
+      "stage": {
+        "en": "Initialization after the coprocessor",
+        "pl": "Konfiguracja po koprocesorze"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9E",
+      "stage": {
+        "en": "Checking extended keyboard, ID and Num Lock",
+        "pl": "Sprawdzanie klawiatury rozszerzonej, ID i Num Lock"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9F",
+      "stage": {
+        "en": "Issuing keyboard ID command",
+        "pl": "Wysłanie komendy ID klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A0",
+      "stage": {
+        "en": "Resetting keyboard ID flag",
+        "pl": "Kasowanie flagi ID klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A1",
+      "stage": {
+        "en": "Cache memory test",
+        "pl": "Test pamięci cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A2",
+      "stage": {
+        "en": "Displaying soft errors",
+        "pl": "Wyświetlanie błędów"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A4",
+      "stage": {
+        "en": "Programming memory wait states",
+        "pl": "Programowanie cykli oczekiwania pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A5",
+      "stage": {
+        "en": "Clearing screen, enabling parity and NMI",
+        "pl": "Czyszczenie ekranu, włączanie parzystości i NMI"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A7",
+      "stage": {
+        "en": "Initialization before the E000 ROM",
+        "pl": "Przygotowanie przed ROM-em E000"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A8",
+      "stage": {
+        "en": "Passing control to the E000 ROM",
+        "pl": "Przekazanie sterowania do ROM-u E000"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A9",
+      "stage": {
+        "en": "Initialization after the E000 ROM",
+        "pl": "Konfiguracja po ROM-ie E000"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "AA",
+      "stage": {
+        "en": "Displaying the system configuration",
+        "pl": "Wyświetlanie konfiguracji systemu"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "00",
+      "stage": {
+        "en": "System configuration shown, control passed to the boot loader (INT 19h)",
+        "pl": "Konfiguracja wyświetlona, przekazanie sterowania do programu startowego (INT 19h)"
+      },
+      "fault": {
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "7F",
+      "stage": {
+        "en": "Enabling extended NMI sources",
+        "pl": "Włączanie dodatkowych źródeł NMI"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "B0",
+      "stage": {
+        "en": "Uncompressing SETUP code for the hot key",
+        "pl": "Rozpakowywanie kodu Setupu dla klawisza wejścia"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "B1",
+      "stage": {
+        "en": "Copying code to its run area",
+        "pl": "Kopiowanie kodu w docelowe miejsce"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "C2",
+      "stage": {
+        "en": "Boot block: NMI disabled, power-on delay",
+        "pl": "Blok startowy: NMI wyłączone, opóźnienie po włączeniu"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "C5",
+      "stage": {
+        "en": "Boot block: ROM enabled, cache disabled",
+        "pl": "Blok startowy: ROM włączony, cache wyłączony"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "C6",
+      "stage": {
+        "en": "Boot block: BIOS ROM checksum",
+        "pl": "Blok startowy: suma kontrolna BIOS ROM"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "C7",
+      "stage": {
+        "en": "Boot block: CMOS shutdown register test",
+        "pl": "Blok startowy: test rejestru shutdown CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "C8",
+      "stage": {
+        "en": "Boot block: CMOS shutdown",
+        "pl": "Blok startowy: shutdown CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "CA",
+      "stage": {
+        "en": "Boot block: CMOS date and time initialization",
+        "pl": "Blok startowy: inicjalizacja daty i czasu CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "CB",
+      "stage": {
+        "en": "Boot block: initialization before keyboard self-test",
+        "pl": "Blok startowy: przygotowanie przed autotestem klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "CD",
+      "stage": {
+        "en": "Boot block: self-test command to keyboard controller",
+        "pl": "Blok startowy: komenda autotestu do kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "CE",
+      "stage": {
+        "en": "Boot block: initialization after keyboard self-test",
+        "pl": "Blok startowy: konfiguracja po autoteście klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "CF",
+      "stage": {
+        "en": "Boot block: writing keyboard command byte",
+        "pl": "Blok startowy: zapis bajtu komend klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "D1",
+      "stage": {
+        "en": "Boot block: checking for the INS key",
+        "pl": "Blok startowy: sprawdzanie klawisza INS"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "D2",
+      "stage": {
+        "en": "Boot block: disabling DMA and interrupt controllers",
+        "pl": "Blok startowy: wyłączanie DMA i kontrolerów przerwań"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "D3",
+      "stage": {
+        "en": "Boot block: chipset initialization, memory auto-detection",
+        "pl": "Blok startowy: inicjalizacja chipsetu, wykrywanie pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "D4",
+      "stage": {
+        "en": "Boot block: uncompressing runtime code",
+        "pl": "Blok startowy: rozpakowywanie kodu runtime"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "D5",
+      "stage": {
+        "en": "Boot block: runtime code uncompressed",
+        "pl": "Blok startowy: kod runtime rozpakowany"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    },
+    {
+      "code": "DD",
+      "stage": {
+        "en": "Boot block: control to shadow RAM at F000",
+        "pl": "Blok startowy: przejście do shadow RAM F000"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI WinBIOS",
+        "pl": "AMI WinBIOS"
+      },
+      "source": "dosdays.co.uk/topics/bios_ami.php (WinBIOS column, no source given) + AMI tables by core date",
+      "confidence": "community_list"
+    }
+  ]
+}

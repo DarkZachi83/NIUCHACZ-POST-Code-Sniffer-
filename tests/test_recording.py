@@ -17,7 +17,9 @@ from niuchacz.session import recording as rec_mod
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class RecordingTest(unittest.TestCase):
+class ControllerCase(unittest.TestCase):
+    """Kontroler z bazą kodów i sztucznym zegarem (bez testów – dziedziczą go klasy poniżej)."""
+
     def setUp(self):
         set_language("en")
         self.tmp = tempfile.TemporaryDirectory()
@@ -55,6 +57,8 @@ class RecordingTest(unittest.TestCase):
         self.now[0] += seconds
         self.c.pump()
 
+
+class RecordingTest(ControllerCase):
     def test_nothing_recorded_without_rec(self):
         self.reset(); self.codes("D0", "D4", "2A", "00"); self.wait(5)
         self.assertEqual(rec_mod.IDLE, self.c.rec.state)
@@ -177,3 +181,37 @@ class RecordingTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BiosProfilesTest(ControllerCase):
+    """Starsze BIOS-y: profile z plików bazy (etykieta, kody startu, kody końca)."""
+
+    def test_profiles_listed_in_order(self):
+        ids = [p["vendor"] for p in self.c.bios_profiles()]
+        self.assertEqual(["ami_1990", "ami_1991", "ami_1992", "ami_win", "ami", "award_45", "award", "phoenix"], ids)
+        self.assertEqual("AMI 386/486 (1991+)", self.c.vendor_label("ami_1992", "en"))
+
+    def test_phoenix_boot_block_is_one_start_and_c0_ends_post(self):
+        self.c.update_settings({"bios_vendor": "phoenix"})
+        self.c.arm_recording()
+        self.codes("E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "02", "03", "04", "06", "08", "16",
+                   "20", "28", "42", "4A", "52", "60", "90", "B2", "B4", "C0")
+        self.wait(4)
+        rec = self.c.rec.last
+        self.assertEqual("rec.end_done", rec.end_key)
+        self.assertEqual(1, len(rec.starts))
+        self.assertIn("C0", rec.result)
+
+    def test_award45_restart_detected_by_code_01(self):
+        self.c.update_settings({"bios_vendor": "award_45"})
+        self.codes("BF", "C0", "01", "02", "03", "05", "08")
+        first = self.c.recorder.current
+        self.codes("01", "02")
+        self.assertIsNot(first, self.c.recorder.current)
+        self.assertEqual(["BF", "C0", "01", "02", "03", "05", "08"], first.codes)
+
+    def test_old_ami_description_and_wait(self):
+        entries = self.c.diagnosis.repository.find("87", "ami_1992")
+        self.assertEqual("wait", entries[0].kind)
+        self.assertEqual("community_list", entries[0].confidence)
+        self.assertTrue(self.c.diagnosis.repository.find("16", "phoenix")[0].source.startswith("PhoenixBIOS 4.0"))

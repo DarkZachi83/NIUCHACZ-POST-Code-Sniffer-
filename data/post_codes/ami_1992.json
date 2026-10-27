@@ -1,0 +1,2681 @@
+{
+  "vendor": "ami_1992",
+  "family": "AMI",
+  "order": 12,
+  "label": {
+    "en": "AMI 386/486 (1991+)",
+    "pl": "AMI 386/486 (od 1991)"
+  },
+  "recognise": {
+    "en": "AMI BIOS from 1991 on, incl. the blue/colour Setup ('AMI BIOS Color') – most 386 and 486 boards. No WinBIOS mouse Setup.",
+    "pl": "AMI BIOS od 1991, w tym kolorowy Setup („AMI BIOS Color”) – większość płyt 386 i 486. Bez Setupu WinBIOS obsługiwanego myszą."
+  },
+  "boot": [
+    "01"
+  ],
+  "done": [
+    "00"
+  ],
+  "_opis": {
+    "en": "POST codes of AMI 386/486 (core from 2/1991, Color BIOS). Descriptions in our own words; check the source before relying on a single code.",
+    "pl": "Kody POST: AMI 386/486 (rdzeń od 2/1991, Color BIOS). Opisy własnymi słowami; przy ważnej decyzji sprawdź źródło."
+  },
+  "beeps": [
+    {
+      "pattern": "1 short",
+      "meaning": {
+        "en": "Memory refresh timer error",
+        "pl": "Błąd timera odświeżania pamięci"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "2 short",
+      "meaning": {
+        "en": "Parity error",
+        "pl": "Błąd parzystości pamięci"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "3 short",
+      "meaning": {
+        "en": "Main memory read/write test error",
+        "pl": "Błąd testu zapisu/odczytu pamięci głównej"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "4 short",
+      "meaning": {
+        "en": "System timer failure",
+        "pl": "Uszkodzony zegar systemowy"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "5 short",
+      "meaning": {
+        "en": "Processor error",
+        "pl": "Błąd procesora"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "6 short",
+      "meaning": {
+        "en": "Keyboard controller self-test error (A20)",
+        "pl": "Błąd autotestu kontrolera klawiatury (A20)"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "7 short",
+      "meaning": {
+        "en": "General exception error (processor)",
+        "pl": "Wyjątek procesora"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "8 short",
+      "meaning": {
+        "en": "Display memory error",
+        "pl": "Błąd pamięci karty graficznej"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "9 short",
+      "meaning": {
+        "en": "ROM BIOS checksum error",
+        "pl": "Błąd sumy kontrolnej BIOS ROM"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "10 short",
+      "meaning": {
+        "en": "CMOS shutdown register read/write error",
+        "pl": "Błąd rejestru shutdown w CMOS"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    },
+    {
+      "pattern": "11 short",
+      "meaning": {
+        "en": "Cache memory bad",
+        "pl": "Uszkodzona pamięć cache"
+      },
+      "source": "ASRock FAQ 'Beep Code' (AMI BIOS), asrock.com/support/faq.pl.asp?id=2",
+      "confidence": "oem_docs"
+    }
+  ],
+  "entries": [
+    {
+      "code": "01",
+      "stage": {
+        "en": "NMI disabled, processor register test next",
+        "pl": "NMI wyłączone, następny test rejestrów procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "02",
+      "stage": {
+        "en": "Power-on delay starting",
+        "pl": "Start opóźnienia po włączeniu zasilania"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "03",
+      "stage": {
+        "en": "Power-on delay done, initialization before keyboard self-test",
+        "pl": "Opóźnienie zakończone, przygotowanie przed autotestem klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "04",
+      "stage": {
+        "en": "Reading keyboard SYS bit (soft reset or power-on)",
+        "pl": "Odczyt bitu SYS klawiatury (restart czy włączenie zasilania)"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "05",
+      "stage": {
+        "en": "Soft reset/power-on determined, enabling ROM",
+        "pl": "Ustalony restart/włączenie zasilania, włączanie ROM"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "06",
+      "stage": {
+        "en": "Calculating the BIOS ROM checksum",
+        "pl": "Liczenie sumy kontrolnej BIOS ROM"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "07",
+      "stage": {
+        "en": "Checksum OK, keyboard self-test (BAT) command issued",
+        "pl": "Suma poprawna, wysłany autotest klawiatury (BAT)"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "08",
+      "stage": {
+        "en": "Verifying the keyboard self-test result",
+        "pl": "Sprawdzanie wyniku autotestu klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "09",
+      "stage": {
+        "en": "Keyboard self-test OK, keyboard command byte next",
+        "pl": "Autotest klawiatury w porządku, następny bajt komend klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0A",
+      "stage": {
+        "en": "Writing the keyboard command byte",
+        "pl": "Zapis bajtu komend klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0B",
+      "stage": {
+        "en": "Keyboard pin 23/24 block/unblock command",
+        "pl": "Komenda blokowania pinów 23/24 kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0C",
+      "stage": {
+        "en": "Keyboard NOP command next",
+        "pl": "Następna komenda NOP do kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0D",
+      "stage": {
+        "en": "CMOS shutdown register test next",
+        "pl": "Następny test rejestru shutdown w CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0E",
+      "stage": {
+        "en": "CMOS shutdown register OK, calculating CMOS checksum",
+        "pl": "Rejestr shutdown CMOS w porządku, liczenie sumy CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "0F",
+      "stage": {
+        "en": "CMOS checksum done, diagnostic byte written, CMOS init if needed",
+        "pl": "Suma CMOS policzona, zapis bajtu diagnostycznego, ewentualna inicjalizacja CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "10",
+      "stage": {
+        "en": "CMOS initialized, date/time status register next",
+        "pl": "CMOS zainicjowany, następny rejestr daty i czasu"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "11",
+      "stage": {
+        "en": "Disabling DMA and interrupt controllers",
+        "pl": "Wyłączanie DMA i kontrolerów przerwań"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "12",
+      "stage": {
+        "en": "Disabling video, initializing port B",
+        "pl": "Wyłączanie obrazu, inicjalizacja portu B"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "13",
+      "stage": {
+        "en": "Chipset initialization and memory detection",
+        "pl": "Inicjalizacja chipsetu i wykrywanie pamięci"
+      },
+      "fault": {
+        "en": "RAM missing or faulty, its slots or the memory controller",
+        "pl": "Brak albo uszkodzenie RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "14",
+      "stage": {
+        "en": "8254 timer test next",
+        "pl": "Następny test timera 8254"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "15",
+      "stage": {
+        "en": "Timer channel 2 test halfway",
+        "pl": "Test kanału 2 timera w połowie"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "16",
+      "stage": {
+        "en": "Timer channel 2 done, channel 1 next",
+        "pl": "Kanał 2 timera zakończony, następny kanał 1"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "17",
+      "stage": {
+        "en": "Timer channel 1 done, channel 0 next",
+        "pl": "Kanał 1 timera zakończony, następny kanał 0"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "18",
+      "stage": {
+        "en": "Timer channel 0 done, memory refresh starting",
+        "pl": "Kanał 0 timera zakończony, start odświeżania pamięci"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "19",
+      "stage": {
+        "en": "Memory refresh started, refresh test next",
+        "pl": "Odświeżanie uruchomione, następny test odświeżania"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "1A",
+      "stage": {
+        "en": "Checking 15 µs refresh on/off time",
+        "pl": "Sprawdzanie czasu 15 µs odświeżania"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "1B",
+      "stage": {
+        "en": "30 µs refresh test done, first 64 KB memory test next",
+        "pl": "Test odświeżania 30 µs zakończony, następny test pierwszych 64 KB"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "20",
+      "stage": {
+        "en": "First 64 KB memory test starting, address lines next",
+        "pl": "Start testu pierwszych 64 KB, następne linie adresowe"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "21",
+      "stage": {
+        "en": "Address line test passed, parity toggle next",
+        "pl": "Test linii adresowych zaliczony, następna parzystość"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "22",
+      "stage": {
+        "en": "Parity done, sequential read/write test next",
+        "pl": "Parzystość zakończona, następny test sekwencyjny zapisu i odczytu"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "23",
+      "stage": {
+        "en": "First 64 KB read/write test passed, setup before interrupt vectors",
+        "pl": "Test pierwszych 64 KB zaliczony, przygotowanie wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "24",
+      "stage": {
+        "en": "Interrupt vector initialization starting",
+        "pl": "Start inicjalizacji wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "25",
+      "stage": {
+        "en": "Interrupt vectors set, reading 8042 port for turbo switch",
+        "pl": "Wektory ustawione, odczyt portu 8042 dla przełącznika turbo"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "26",
+      "stage": {
+        "en": "Turbo switch data initialized",
+        "pl": "Dane przełącznika turbo zainicjowane"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "27",
+      "stage": {
+        "en": "Post-vector initialization, monochrome mode next",
+        "pl": "Inicjalizacja po wektorach, następny tryb mono"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "28",
+      "stage": {
+        "en": "Monochrome mode set, colour mode next",
+        "pl": "Tryb mono ustawiony, następny tryb kolorowy"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "29",
+      "stage": {
+        "en": "Colour mode set",
+        "pl": "Tryb kolorowy ustawiony"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2A",
+      "stage": {
+        "en": "Parity toggle before the optional video ROM",
+        "pl": "Parzystość przed ROM-em karty graficznej"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2B",
+      "stage": {
+        "en": "Processing before the video ROM",
+        "pl": "Przygotowanie przed ROM-em karty graficznej"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2C",
+      "stage": {
+        "en": "Looking for an optional video ROM and passing control to it",
+        "pl": "Szukanie ROM-u karty graficznej i przekazanie mu sterowania"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2D",
+      "stage": {
+        "en": "Back from the video ROM, post-video processing",
+        "pl": "Powrót z ROM-u karty graficznej, dalsza obsługa obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2E",
+      "stage": {
+        "en": "Display memory read/write test if no EGA/VGA",
+        "pl": "Test pamięci obrazu, jeśli nie ma EGA/VGA"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "2F",
+      "stage": {
+        "en": "No EGA/VGA found, display memory test starting",
+        "pl": "Brak EGA/VGA, start testu pamięci obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "30",
+      "stage": {
+        "en": "Display memory test passed, retrace check next",
+        "pl": "Test pamięci obrazu zaliczony, następny test powrotu wiązki"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "31",
+      "stage": {
+        "en": "Display memory or retrace failed, alternate display test next",
+        "pl": "Błąd pamięci obrazu lub powrotu wiązki, następny test drugiej karty"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "32",
+      "stage": {
+        "en": "Alternate display memory passed, alternate retrace check next",
+        "pl": "Pamięć drugiej karty w porządku, następny jej powrót wiązki"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "33",
+      "stage": {
+        "en": "Video checks done, verifying display type (switch/card)",
+        "pl": "Testy obrazu zakończone, sprawdzanie typu wyświetlacza"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "34",
+      "stage": {
+        "en": "Display adapter verified, setting display mode",
+        "pl": "Karta graficzna sprawdzona, ustawianie trybu obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "35",
+      "stage": {
+        "en": "Display mode set, BIOS ROM data area check next",
+        "pl": "Tryb obrazu ustawiony, następny test obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "36",
+      "stage": {
+        "en": "Setting the cursor for the power-on message",
+        "pl": "Ustawianie kursora dla komunikatu startowego"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "37",
+      "stage": {
+        "en": "Displaying the power-on message",
+        "pl": "Wyświetlanie komunikatu startowego"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "38",
+      "stage": {
+        "en": "Power-on message shown, reading cursor position",
+        "pl": "Komunikat wyświetlony, odczyt pozycji kursora"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "39",
+      "stage": {
+        "en": "Displaying the reference string",
+        "pl": "Wyświetlanie numeru BIOS-u"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "3A",
+      "stage": {
+        "en": "Displaying the 'Hit DEL' message",
+        "pl": "Wyświetlanie komunikatu o klawiszu DEL"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "3B",
+      "stage": {
+        "en": "Protected mode memory test next",
+        "pl": "Następny test pamięci w trybie chronionym"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "40",
+      "stage": {
+        "en": "Preparing the protected mode test",
+        "pl": "Przygotowanie testu w trybie chronionym"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "41",
+      "stage": {
+        "en": "Preparing descriptor tables",
+        "pl": "Przygotowanie tablic deskryptorów"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "42",
+      "stage": {
+        "en": "Entering protected mode for the memory test",
+        "pl": "Wejście w tryb chroniony dla testu pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "43",
+      "stage": {
+        "en": "In protected mode, enabling interrupts for diagnostics",
+        "pl": "Tryb chroniony, włączanie przerwań do diagnostyki"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "44",
+      "stage": {
+        "en": "Initializing data for the 0:0 wrap-around test",
+        "pl": "Przygotowanie testu zawinięcia adresu 0:0"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "45",
+      "stage": {
+        "en": "Checking address wrap-around and total memory size",
+        "pl": "Sprawdzanie zawinięcia adresu i całkowitej pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "46",
+      "stage": {
+        "en": "Memory size calculated, writing test patterns",
+        "pl": "Pamięć policzona, zapis wzorców testowych"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "47",
+      "stage": {
+        "en": "Pattern written to extended memory, now to base 640 KB",
+        "pl": "Wzorzec zapisany powyżej 1 MB, teraz w 640 KB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "48",
+      "stage": {
+        "en": "Finding memory below 1 MB",
+        "pl": "Szukanie pamięci poniżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "49",
+      "stage": {
+        "en": "Finding memory above 1 MB",
+        "pl": "Szukanie pamięci powyżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4A",
+      "stage": {
+        "en": "BIOS ROM data area check",
+        "pl": "Test obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4B",
+      "stage": {
+        "en": "Clearing memory below 1 MB (soft reset)",
+        "pl": "Czyszczenie pamięci poniżej 1 MB (restart)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4C",
+      "stage": {
+        "en": "Clearing memory above 1 MB (soft reset)",
+        "pl": "Czyszczenie pamięci powyżej 1 MB (restart)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4D",
+      "stage": {
+        "en": "Saving memory size (soft reset)",
+        "pl": "Zapis rozmiaru pamięci (restart)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4E",
+      "stage": {
+        "en": "Memory test started, first 64 KB shown",
+        "pl": "Start testu pamięci, wyświetlone pierwsze 64 KB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "4F",
+      "stage": {
+        "en": "Memory size display, sequential/random test",
+        "pl": "Wyświetlanie rozmiaru, test sekwencyjny i losowy"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "50",
+      "stage": {
+        "en": "Memory below 1 MB tested, adjusting for shadow/relocation",
+        "pl": "Pamięć poniżej 1 MB sprawdzona, korekta o shadow"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "51",
+      "stage": {
+        "en": "Memory test above 1 MB",
+        "pl": "Test pamięci powyżej 1 MB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "52",
+      "stage": {
+        "en": "Memory above 1 MB tested, preparing to return to real mode",
+        "pl": "Pamięć powyżej 1 MB sprawdzona, przygotowanie powrotu do trybu rzeczywistego"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "53",
+      "stage": {
+        "en": "Registers and memory size saved, entering real mode",
+        "pl": "Rejestry i rozmiar zapisane, wejście w tryb rzeczywisty"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "54",
+      "stage": {
+        "en": "Back in real mode, restoring registers",
+        "pl": "Powrót do trybu rzeczywistego, odtwarzanie rejestrów"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "55",
+      "stage": {
+        "en": "Registers restored, disabling the A20 gate",
+        "pl": "Rejestry odtworzone, wyłączanie bramki A20"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "56",
+      "stage": {
+        "en": "A20 disabled, BIOS data area check",
+        "pl": "A20 wyłączona, test obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "57",
+      "stage": {
+        "en": "BIOS data area check halfway",
+        "pl": "Test obszaru danych BIOS w połowie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "58",
+      "stage": {
+        "en": "BIOS data area check done, clearing 'Hit DEL' message",
+        "pl": "Test obszaru danych zakończony, usuwanie komunikatu o DEL"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "59",
+      "stage": {
+        "en": "DMA and interrupt controller test starting",
+        "pl": "Start testu DMA i kontrolera przerwań"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "60",
+      "stage": {
+        "en": "DMA page register test passed",
+        "pl": "Test rejestrów stron DMA zaliczony"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "61",
+      "stage": {
+        "en": "DMA unit 1 base register test",
+        "pl": "Test rejestrów bazowych DMA nr 1"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "62",
+      "stage": {
+        "en": "DMA unit 1 passed, unit 2 next",
+        "pl": "DMA nr 1 zaliczone, następne DMA nr 2"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "63",
+      "stage": {
+        "en": "DMA unit 2 passed, BIOS data area check",
+        "pl": "DMA nr 2 zaliczone, test obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "64",
+      "stage": {
+        "en": "BIOS data area check halfway",
+        "pl": "Test obszaru danych BIOS w połowie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "65",
+      "stage": {
+        "en": "Programming DMA units 1 and 2",
+        "pl": "Programowanie układów DMA 1 i 2"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "66",
+      "stage": {
+        "en": "Initializing the 8259 interrupt controller",
+        "pl": "Inicjalizacja kontrolera przerwań 8259"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "67",
+      "stage": {
+        "en": "8259 initialized, keyboard test next",
+        "pl": "8259 zainicjowany, następny test klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "80",
+      "stage": {
+        "en": "Keyboard test: clear buffer, check stuck keys, reset",
+        "pl": "Test klawiatury: bufor, zablokowane klawisze, reset"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "81",
+      "stage": {
+        "en": "Keyboard reset error or stuck key; interface test next",
+        "pl": "Błąd resetu klawiatury lub zablokowany klawisz; następny test interfejsu"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "82",
+      "stage": {
+        "en": "Writing keyboard command byte, initializing buffer",
+        "pl": "Zapis bajtu komend klawiatury, inicjalizacja bufora"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "83",
+      "stage": {
+        "en": "Checking the keyboard lock key",
+        "pl": "Sprawdzanie stacyjki blokady klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "84",
+      "stage": {
+        "en": "Comparing memory size with CMOS",
+        "pl": "Porównanie rozmiaru pamięci z CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "85",
+      "stage": {
+        "en": "Showing errors, checking password",
+        "pl": "Wyświetlanie błędów, sprawdzanie hasła"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list",
+      "kind": "wait"
+    },
+    {
+      "code": "86",
+      "stage": {
+        "en": "Programming before CMOS setup",
+        "pl": "Przygotowanie przed Setupem"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "87",
+      "stage": {
+        "en": "In CMOS setup",
+        "pl": "Setup otwarty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list",
+      "kind": "wait"
+    },
+    {
+      "code": "88",
+      "stage": {
+        "en": "Back from setup, programming after setup",
+        "pl": "Powrót z Setupu, konfiguracja po Setupie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "89",
+      "stage": {
+        "en": "Displaying the power-on screen message",
+        "pl": "Wyświetlanie ekranu startowego"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8A",
+      "stage": {
+        "en": "First screen message shown, next message",
+        "pl": "Pierwszy komunikat wyświetlony, następny"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8B",
+      "stage": {
+        "en": "Shadowing main and video BIOS",
+        "pl": "Kopiowanie BIOS-u płyty i karty graficznej do shadow RAM"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8C",
+      "stage": {
+        "en": "Programming setup options",
+        "pl": "Programowanie opcji z Setupu"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8D",
+      "stage": {
+        "en": "Mouse check and initialization",
+        "pl": "Sprawdzanie i inicjalizacja myszy"
+      },
+      "fault": {
+        "en": "Mouse or the PS/2 port",
+        "pl": "Mysz albo port PS/2"
+      },
+      "check": {
+        "en": "Unplug the mouse",
+        "pl": "Odłącz mysz"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8E",
+      "stage": {
+        "en": "Resetting hard disk and floppy",
+        "pl": "Reset dysku twardego i stacji dyskietek"
+      },
+      "fault": {
+        "en": "Floppy drive, cable or controller",
+        "pl": "Stacja dyskietek, taśma albo kontroler"
+      },
+      "check": {
+        "en": "Disconnect the floppy drive, check the cable",
+        "pl": "Odłącz stację dyskietek, sprawdź taśmę"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "8F",
+      "stage": {
+        "en": "Floppy setup",
+        "pl": "Konfiguracja stacji dyskietek"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "90",
+      "stage": {
+        "en": "Hard disk presence test",
+        "pl": "Wykrywanie dysku twardego"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "91",
+      "stage": {
+        "en": "Hard disk setup",
+        "pl": "Konfiguracja dysku twardego"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "92",
+      "stage": {
+        "en": "BIOS data area check",
+        "pl": "Test obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "93",
+      "stage": {
+        "en": "BIOS data area check halfway",
+        "pl": "Test obszaru danych BIOS w połowie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "94",
+      "stage": {
+        "en": "Setting base and extended memory size",
+        "pl": "Ustawianie rozmiaru pamięci podstawowej i rozszerzonej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "95",
+      "stage": {
+        "en": "Memory size adjusted, verifying display memory",
+        "pl": "Rozmiar pamięci skorygowany, sprawdzanie pamięci obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "96",
+      "stage": {
+        "en": "Initialization before C800 option ROMs",
+        "pl": "Przygotowanie przed dodatkowymi ROM-ami od C800"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "97",
+      "stage": {
+        "en": "Checking and running option ROMs",
+        "pl": "Wyszukiwanie i uruchamianie dodatkowych ROM-ów"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "98",
+      "stage": {
+        "en": "Option ROMs done, post-ROM processing",
+        "pl": "Dodatkowe ROM-y obsłużone, dalsza konfiguracja"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "99",
+      "stage": {
+        "en": "Setting timer data area and printer base address",
+        "pl": "Ustawianie danych timera i adresu portu drukarki"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9A",
+      "stage": {
+        "en": "Setting serial port (RS-232) base addresses",
+        "pl": "Ustawianie adresów portów szeregowych (RS-232)"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9B",
+      "stage": {
+        "en": "Initialization before the coprocessor",
+        "pl": "Przygotowanie przed koprocesorem"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9C",
+      "stage": {
+        "en": "Initializing the maths coprocessor",
+        "pl": "Inicjalizacja koprocesora arytmetycznego"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9D",
+      "stage": {
+        "en": "Initialization after the coprocessor",
+        "pl": "Konfiguracja po koprocesorze"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9E",
+      "stage": {
+        "en": "Checking extended keyboard, keyboard ID and Num Lock",
+        "pl": "Sprawdzanie klawiatury rozszerzonej, jej ID i Num Lock"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "9F",
+      "stage": {
+        "en": "Issuing keyboard ID command",
+        "pl": "Wysłanie komendy identyfikacji klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A0",
+      "stage": {
+        "en": "Resetting keyboard ID flag",
+        "pl": "Kasowanie flagi ID klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A1",
+      "stage": {
+        "en": "Cache memory test",
+        "pl": "Test pamięci cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A2",
+      "stage": {
+        "en": "Displaying soft errors",
+        "pl": "Wyświetlanie błędów"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A3",
+      "stage": {
+        "en": "Setting keyboard typematic rate",
+        "pl": "Ustawianie szybkości powtarzania klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A4",
+      "stage": {
+        "en": "Programming memory wait states",
+        "pl": "Programowanie cykli oczekiwania pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A5",
+      "stage": {
+        "en": "Clearing the screen",
+        "pl": "Czyszczenie ekranu"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A6",
+      "stage": {
+        "en": "Enabling parity and NMI",
+        "pl": "Włączanie parzystości i NMI"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A7",
+      "stage": {
+        "en": "Initialization before the E000 ROM",
+        "pl": "Przygotowanie przed ROM-em E000"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A8",
+      "stage": {
+        "en": "Passing control to the ROM at E000",
+        "pl": "Przekazanie sterowania do ROM-u E000"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "A9",
+      "stage": {
+        "en": "Back from the E000 ROM",
+        "pl": "Powrót z ROM-u E000"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "AA",
+      "stage": {
+        "en": "Displaying the system configuration",
+        "pl": "Wyświetlanie konfiguracji systemu"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    },
+    {
+      "code": "00",
+      "stage": {
+        "en": "System configuration shown, control passed to the boot loader (INT 19h)",
+        "pl": "Konfiguracja wyświetlona, przekazanie sterowania do programu startowego (INT 19h)"
+      },
+      "fault": {
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "AMI BIOS, core from 2/15/1991 (also after 6/6/1992)",
+        "pl": "AMI BIOS, rdzeń from 2/15/1991 (także po 6/6/1992)"
+      },
+      "source": "AMI POST checkpoint tables by BIOS core date (files.retropc.se/drivers_1/EMO/BIOS/AMI-POST.html)",
+      "confidence": "community_list"
+    }
+  ]
+}

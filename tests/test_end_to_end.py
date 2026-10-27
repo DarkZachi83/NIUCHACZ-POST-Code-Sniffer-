@@ -124,7 +124,7 @@ class ReportTest(unittest.TestCase):
                               technician="Rafał", notes="Płyta bez RAM, do sprawdzenia sloty SIMM. " * 3)
             text = ctrl.report_text(session, meta)
             for needle in ("2026/014", "ASUS P/I-P55T2P4", "pudełko 3", "Rafał", "Award",
-                           "PRZEBIEG POST (3 kodów)", "Wykrywanie i określanie rozmiaru pamięci RAM",
+                           "PRZEBIEG POST (3 kodów)", "Wykrywanie pamięci i cache L2",
                            "DIAGNOZA OSTATNIEGO KODU", "Prawdopodobna usterka", "sloty SIMM"):
                 self.assertIn(needle, text)
             self.assertTrue(all(len(line) <= WIDTH for line in text.splitlines()), "linia za długa do druku")

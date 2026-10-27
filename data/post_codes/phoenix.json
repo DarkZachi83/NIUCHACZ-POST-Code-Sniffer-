@@ -1,8 +1,3076 @@
 {
   "vendor": "phoenix",
-  "_opis": {
-    "en": "Phoenix database – to be filled from measurements and by the community.",
-    "pl": "Baza Phoenix – do uzupełnienia pomiarami i przez społeczność."
+  "family": "Phoenix",
+  "order": 30,
+  "label": {
+    "en": "Phoenix 4.0 R6",
+    "pl": "Phoenix 4.0 R6"
   },
-  "entries": []
+  "recognise": {
+    "en": "PhoenixBIOS 4.0 Release 6.x (late 1990s – 2000s), Setup entered with F2. Boot block codes E0–F7.",
+    "pl": "PhoenixBIOS 4.0 Release 6.x (koniec lat 90. – 2000), Setup klawiszem F2. Kody bloku startowego E0–F7."
+  },
+  "boot": [
+    "E0",
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8",
+    "E9",
+    "EA",
+    "EB",
+    "EC",
+    "ED",
+    "EE",
+    "EF",
+    "F0",
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "02"
+  ],
+  "done": [
+    "C0"
+  ],
+  "_opis": {
+    "en": "PhoenixBIOS 4.0 Release 6.x test points after Phoenix's own user manual. Descriptions in our own words.",
+    "pl": "Punkty kontrolne PhoenixBIOS 4.0 Release 6.x według podręcznika Phoenix. Opisy własnymi słowami."
+  },
+  "beeps": [
+    {
+      "pattern": "1-2-2-3",
+      "meaning": {
+        "en": "BIOS ROM checksum (code 16)",
+        "pl": "Suma kontrolna BIOS ROM (kod 16)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "1-3-1-1",
+      "meaning": {
+        "en": "DRAM refresh test (code 20)",
+        "pl": "Test odświeżania DRAM (kod 20)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "1-3-1-3",
+      "meaning": {
+        "en": "8742 keyboard controller test (code 22)",
+        "pl": "Test kontrolera klawiatury 8742 (kod 22)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "1-3-4-1",
+      "meaning": {
+        "en": "RAM failure on an address line (code 2C)",
+        "pl": "Błąd RAM na linii adresowej (kod 2C)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "1-3-4-3",
+      "meaning": {
+        "en": "RAM failure on data bits, low byte (code 2E)",
+        "pl": "Błąd RAM na bitach danych (kod 2E)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "2-1-2-3",
+      "meaning": {
+        "en": "ROM copyright notice check (code 46)",
+        "pl": "Sprawdzenie napisu copyright w ROM (kod 46)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "2-2-3-1",
+      "meaning": {
+        "en": "Unexpected interrupts (code 58)",
+        "pl": "Nieoczekiwane przerwania (kod 58)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "1 long, 2 short",
+      "meaning": {
+        "en": "Video configuration failed or option ROM checksum error",
+        "pl": "Błąd konfiguracji obrazu albo sumy ROM karty"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "pattern": "1 short",
+      "meaning": {
+        "en": "Normal: one beep before boot (code B4)",
+        "pl": "Normalnie: jeden sygnał przed startem (kod B4)"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    }
+  ],
+  "entries": [
+    {
+      "code": "02",
+      "stage": {
+        "en": "Verify real mode",
+        "pl": "Sprawdzenie trybu rzeczywistego"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "03",
+      "stage": {
+        "en": "Disable NMI",
+        "pl": "Wyłączenie NMI"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "04",
+      "stage": {
+        "en": "Get CPU type",
+        "pl": "Rozpoznanie typu procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "06",
+      "stage": {
+        "en": "Initialize system hardware",
+        "pl": "Inicjalizacja sprzętu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "07",
+      "stage": {
+        "en": "Disable shadow, run from ROM",
+        "pl": "Wyłączenie shadow, praca z ROM-u"
+      },
+      "fault": {
+        "en": "RAM or chipset (shadow RAM)",
+        "pl": "RAM albo chipset (shadow RAM)"
+      },
+      "check": {
+        "en": "RAM, disable shadow in Setup",
+        "pl": "RAM, wyłączenie shadow w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "08",
+      "stage": {
+        "en": "Initialize chipset with initial POST values",
+        "pl": "Inicjalizacja chipsetu wartościami startowymi"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "09",
+      "stage": {
+        "en": "Set IN-POST flag",
+        "pl": "Ustawienie flagi „w trakcie POST”"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "0A",
+      "stage": {
+        "en": "Initialize CPU registers",
+        "pl": "Inicjalizacja rejestrów procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "0B",
+      "stage": {
+        "en": "Enable CPU cache",
+        "pl": "Włączenie cache procesora"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "0C",
+      "stage": {
+        "en": "Initialize caches",
+        "pl": "Inicjalizacja cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "0E",
+      "stage": {
+        "en": "Initialize I/O component",
+        "pl": "Inicjalizacja układów wejścia/wyjścia"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "0F",
+      "stage": {
+        "en": "Initialize local-bus IDE",
+        "pl": "Inicjalizacja IDE na magistrali lokalnej"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "10",
+      "stage": {
+        "en": "Initialize power management",
+        "pl": "Inicjalizacja zarządzania energią"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "11",
+      "stage": {
+        "en": "Load alternate registers with initial values",
+        "pl": "Ładowanie rejestrów dodatkowych wartościami startowymi"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "12",
+      "stage": {
+        "en": "Restore CPU control word (warm boot)",
+        "pl": "Odtworzenie słowa sterującego procesora (gorący restart)"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "13",
+      "stage": {
+        "en": "Initialize PCI bus-mastering devices",
+        "pl": "Inicjalizacja urządzeń PCI bus master"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "14",
+      "stage": {
+        "en": "Initialize keyboard controller",
+        "pl": "Inicjalizacja kontrolera klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "16",
+      "stage": {
+        "en": "BIOS ROM checksum (beeps 1-2-2-3 on error)",
+        "pl": "Suma kontrolna BIOS ROM (przy błędzie 1-2-2-3)"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "17",
+      "stage": {
+        "en": "Initialize cache before memory sizing",
+        "pl": "Inicjalizacja cache przed liczeniem pamięci"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "18",
+      "stage": {
+        "en": "8254 timer initialization",
+        "pl": "Inicjalizacja timera 8254"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "1A",
+      "stage": {
+        "en": "8237 DMA controller initialization",
+        "pl": "Inicjalizacja kontrolera DMA 8237"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "1C",
+      "stage": {
+        "en": "Reset programmable interrupt controller",
+        "pl": "Reset kontrolera przerwań"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "20",
+      "stage": {
+        "en": "Test DRAM refresh (beeps 1-3-1-1 on error)",
+        "pl": "Test odświeżania DRAM (przy błędzie 1-3-1-1)"
+      },
+      "fault": {
+        "en": "Memory refresh: timer, chipset or RAM",
+        "pl": "Odświeżanie pamięci: timer, chipset albo RAM"
+      },
+      "check": {
+        "en": "RAM, chipset, 8254 timer on old boards",
+        "pl": "RAM, chipset, timer 8254 na starych płytach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "22",
+      "stage": {
+        "en": "Test 8742 keyboard controller (beeps 1-3-1-3 on error)",
+        "pl": "Test kontrolera klawiatury 8742 (przy błędzie 1-3-1-3)"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "24",
+      "stage": {
+        "en": "Set ES segment register to 4 GB",
+        "pl": "Ustawienie rejestru ES na 4 GB"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "28",
+      "stage": {
+        "en": "Auto-size DRAM",
+        "pl": "Automatyczne liczenie DRAM"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "29",
+      "stage": {
+        "en": "Initialize POST memory manager",
+        "pl": "Inicjalizacja menedżera pamięci POST"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "2A",
+      "stage": {
+        "en": "Clear 512 KB base RAM",
+        "pl": "Zerowanie 512 KB pamięci podstawowej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "2C",
+      "stage": {
+        "en": "RAM failure on an address line (beeps 1-3-4-1)",
+        "pl": "Błąd RAM na linii adresowej (sygnał 1-3-4-1)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "2E",
+      "stage": {
+        "en": "RAM failure on data bits of the low byte (beeps 1-3-4-3)",
+        "pl": "Błąd RAM na bitach danych młodszego bajtu (sygnał 1-3-4-3)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "2F",
+      "stage": {
+        "en": "Enable cache before system BIOS shadow",
+        "pl": "Włączenie cache przed shadow BIOS-u"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "32",
+      "stage": {
+        "en": "Test CPU bus clock frequency",
+        "pl": "Test częstotliwości zegara magistrali procesora"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "33",
+      "stage": {
+        "en": "Initialize Phoenix Dispatch Manager",
+        "pl": "Inicjalizacja Phoenix Dispatch Manager"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "36",
+      "stage": {
+        "en": "Warm start shutdown",
+        "pl": "Shutdown przy gorącym restarcie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "38",
+      "stage": {
+        "en": "Shadow system BIOS ROM",
+        "pl": "Kopiowanie BIOS-u do shadow RAM"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "3A",
+      "stage": {
+        "en": "Auto-size cache",
+        "pl": "Automatyczne liczenie cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "3C",
+      "stage": {
+        "en": "Advanced chipset register configuration",
+        "pl": "Zaawansowana konfiguracja rejestrów chipsetu"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "3D",
+      "stage": {
+        "en": "Load alternate registers with CMOS values",
+        "pl": "Ładowanie rejestrów dodatkowych wartościami z CMOS"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "41",
+      "stage": {
+        "en": "Initialize extended memory for RomPilot",
+        "pl": "Inicjalizacja pamięci rozszerzonej dla RomPilot"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "42",
+      "stage": {
+        "en": "Initialize interrupt vectors",
+        "pl": "Inicjalizacja wektorów przerwań"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "45",
+      "stage": {
+        "en": "POST device initialization",
+        "pl": "Inicjalizacja urządzeń POST"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "46",
+      "stage": {
+        "en": "Check ROM copyright notice (beeps 2-1-2-3 on error)",
+        "pl": "Sprawdzenie napisu copyright w ROM (przy błędzie 2-1-2-3)"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "47",
+      "stage": {
+        "en": "Initialize I2O support",
+        "pl": "Inicjalizacja obsługi I2O"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "48",
+      "stage": {
+        "en": "Check video configuration against CMOS",
+        "pl": "Porównanie konfiguracji karty graficznej z CMOS"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "49",
+      "stage": {
+        "en": "Initialize PCI bus and devices",
+        "pl": "Inicjalizacja magistrali PCI i urządzeń"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "4A",
+      "stage": {
+        "en": "Initialize all video adapters",
+        "pl": "Inicjalizacja kart graficznych"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "4B",
+      "stage": {
+        "en": "QuietBoot start (optional)",
+        "pl": "Start QuietBoot (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "4C",
+      "stage": {
+        "en": "Shadow video BIOS ROM",
+        "pl": "Kopiowanie BIOS-u karty graficznej do shadow RAM"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "4E",
+      "stage": {
+        "en": "Display BIOS copyright notice",
+        "pl": "Wyświetlenie informacji o BIOS-ie"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "4F",
+      "stage": {
+        "en": "Initialize MultiBoot",
+        "pl": "Inicjalizacja MultiBoot"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "50",
+      "stage": {
+        "en": "Display CPU type and speed",
+        "pl": "Wyświetlenie typu i szybkości procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "51",
+      "stage": {
+        "en": "Initialize EISA board",
+        "pl": "Inicjalizacja płyty EISA"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "52",
+      "stage": {
+        "en": "Test keyboard",
+        "pl": "Test klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "54",
+      "stage": {
+        "en": "Set key click if enabled",
+        "pl": "Ustawienie kliknięcia klawiszy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "55",
+      "stage": {
+        "en": "Enable USB devices",
+        "pl": "Włączenie urządzeń USB"
+      },
+      "fault": {
+        "en": "USB controller or device",
+        "pl": "Kontroler albo urządzenie USB"
+      },
+      "check": {
+        "en": "Unplug USB devices",
+        "pl": "Odłącz urządzenia USB"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "58",
+      "stage": {
+        "en": "Test for unexpected interrupts (beeps 2-2-3-1 on error)",
+        "pl": "Test nieoczekiwanych przerwań (przy błędzie 2-2-3-1)"
+      },
+      "fault": {
+        "en": "Interrupt controller (chipset) or a card raising interrupts",
+        "pl": "Kontroler przerwań (chipset) albo karta zgłaszająca przerwania"
+      },
+      "check": {
+        "en": "Remove expansion cards, chipset / 8259 chips on old boards",
+        "pl": "Wyjmij karty rozszerzeń, chipset / układy 8259 na starych płytach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "59",
+      "stage": {
+        "en": "Initialize POST display service",
+        "pl": "Inicjalizacja wyświetlania POST"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "5A",
+      "stage": {
+        "en": "Display 'Press F2 to enter SETUP'",
+        "pl": "Wyświetlenie „Press F2 to enter SETUP”"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "5B",
+      "stage": {
+        "en": "Disable CPU cache",
+        "pl": "Wyłączenie cache procesora"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "5C",
+      "stage": {
+        "en": "Test RAM between 512 and 640 KB",
+        "pl": "Test pamięci między 512 a 640 KB"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "60",
+      "stage": {
+        "en": "Test extended memory",
+        "pl": "Test pamięci rozszerzonej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "62",
+      "stage": {
+        "en": "Test extended memory address lines",
+        "pl": "Test linii adresowych pamięci rozszerzonej"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "64",
+      "stage": {
+        "en": "Jump to UserPatch1",
+        "pl": "Skok do UserPatch1"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "66",
+      "stage": {
+        "en": "Configure advanced cache registers",
+        "pl": "Konfiguracja rejestrów cache"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "67",
+      "stage": {
+        "en": "Initialize multiprocessor APIC",
+        "pl": "Inicjalizacja APIC wieloprocesorowego"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "68",
+      "stage": {
+        "en": "Enable external and CPU caches",
+        "pl": "Włączenie cache zewnętrznego i procesora"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "69",
+      "stage": {
+        "en": "Set up System Management Mode (SMM) area",
+        "pl": "Przygotowanie obszaru SMM"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "6A",
+      "stage": {
+        "en": "Display external L2 cache size",
+        "pl": "Wyświetlenie rozmiaru cache L2"
+      },
+      "fault": {
+        "en": "Cache memory or its controller",
+        "pl": "Pamięć cache albo jej kontroler"
+      },
+      "check": {
+        "en": "Cache chips / module, disable cache in Setup",
+        "pl": "Kości / moduł cache, wyłączenie cache w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "6B",
+      "stage": {
+        "en": "Load custom defaults (optional)",
+        "pl": "Ładowanie ustawień własnych (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "6C",
+      "stage": {
+        "en": "Display shadow-area message",
+        "pl": "Komunikat o obszarach shadow"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "6E",
+      "stage": {
+        "en": "Display possible high address for UMB recovery",
+        "pl": "Wyświetlenie adresu odzysku UMB"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "70",
+      "stage": {
+        "en": "Display error messages",
+        "pl": "Wyświetlenie komunikatów o błędach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "72",
+      "stage": {
+        "en": "Check for configuration errors",
+        "pl": "Sprawdzenie błędów konfiguracji"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "76",
+      "stage": {
+        "en": "Check for keyboard errors",
+        "pl": "Sprawdzenie błędów klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "7C",
+      "stage": {
+        "en": "Set up hardware interrupt vectors",
+        "pl": "Ustawienie wektorów przerwań sprzętowych"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "7D",
+      "stage": {
+        "en": "Initialize Intelligent System Monitoring",
+        "pl": "Inicjalizacja monitorowania systemu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "7E",
+      "stage": {
+        "en": "Initialize coprocessor if present",
+        "pl": "Inicjalizacja koprocesora"
+      },
+      "fault": {
+        "en": "Maths coprocessor or its socket",
+        "pl": "Koprocesor albo jego podstawka"
+      },
+      "check": {
+        "en": "Remove the coprocessor and retry",
+        "pl": "Wyjmij koprocesor i spróbuj ponownie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "80",
+      "stage": {
+        "en": "Disable on-board Super I/O ports and IRQs",
+        "pl": "Wyłączenie portów i przerwań Super I/O"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "81",
+      "stage": {
+        "en": "Late POST device initialization",
+        "pl": "Późna inicjalizacja urządzeń"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "82",
+      "stage": {
+        "en": "Detect and install external RS-232 ports",
+        "pl": "Wykrywanie zewnętrznych portów szeregowych"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "83",
+      "stage": {
+        "en": "Configure non-MCD IDE controllers",
+        "pl": "Konfiguracja dodatkowych kontrolerów IDE"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "84",
+      "stage": {
+        "en": "Detect and install external parallel ports",
+        "pl": "Wykrywanie zewnętrznych portów równoległych"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "85",
+      "stage": {
+        "en": "Initialize PC-compatible PnP ISA devices",
+        "pl": "Inicjalizacja urządzeń ISA PnP"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "86",
+      "stage": {
+        "en": "Re-initialize on-board I/O ports",
+        "pl": "Ponowna inicjalizacja portów na płycie"
+      },
+      "fault": {
+        "en": "Super I/O chip or ports",
+        "pl": "Układ Super I/O albo porty"
+      },
+      "check": {
+        "en": "Super I/O chip and its supply, disconnect port devices",
+        "pl": "Układ Super I/O i jego zasilanie, odłącz urządzenia od portów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "87",
+      "stage": {
+        "en": "Configure motherboard configurable devices (optional)",
+        "pl": "Konfiguracja urządzeń płyty (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "88",
+      "stage": {
+        "en": "Initialize BIOS data area",
+        "pl": "Inicjalizacja obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "89",
+      "stage": {
+        "en": "Enable NMI",
+        "pl": "Włączenie NMI"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "8A",
+      "stage": {
+        "en": "Initialize extended BIOS data area",
+        "pl": "Inicjalizacja rozszerzonego obszaru danych BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "8B",
+      "stage": {
+        "en": "Test and initialize PS/2 mouse",
+        "pl": "Test i inicjalizacja myszy PS/2"
+      },
+      "fault": {
+        "en": "Mouse or the PS/2 port",
+        "pl": "Mysz albo port PS/2"
+      },
+      "check": {
+        "en": "Unplug the mouse",
+        "pl": "Odłącz mysz"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "8C",
+      "stage": {
+        "en": "Initialize floppy controller",
+        "pl": "Inicjalizacja kontrolera dyskietek"
+      },
+      "fault": {
+        "en": "Floppy drive, cable or controller",
+        "pl": "Stacja dyskietek, taśma albo kontroler"
+      },
+      "check": {
+        "en": "Disconnect the floppy drive, check the cable",
+        "pl": "Odłącz stację dyskietek, sprawdź taśmę"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "8F",
+      "stage": {
+        "en": "Determine number of ATA drives (optional)",
+        "pl": "Liczenie dysków ATA (opcjonalnie)"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "90",
+      "stage": {
+        "en": "Initialize hard disk controllers",
+        "pl": "Inicjalizacja kontrolerów dysków"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "91",
+      "stage": {
+        "en": "Initialize local-bus hard disk controllers",
+        "pl": "Inicjalizacja kontrolerów dysków na magistrali lokalnej"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "92",
+      "stage": {
+        "en": "Jump to UserPatch2",
+        "pl": "Skok do UserPatch2"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "93",
+      "stage": {
+        "en": "Build MP table",
+        "pl": "Budowa tablicy MP"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "95",
+      "stage": {
+        "en": "Install CD-ROM for boot",
+        "pl": "Przygotowanie startu z CD-ROM"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "96",
+      "stage": {
+        "en": "Clear huge ES segment register",
+        "pl": "Czyszczenie rejestru ES"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "97",
+      "stage": {
+        "en": "Fix up multiprocessor table",
+        "pl": "Poprawki tablicy MP"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "98",
+      "stage": {
+        "en": "Search for option ROMs (1 long, 2 short beeps on checksum error)",
+        "pl": "Szukanie ROM-ów kart (1 długi, 2 krótkie przy błędzie sumy)"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "99",
+      "stage": {
+        "en": "Check for SMART drive (optional)",
+        "pl": "Sprawdzenie SMART dysku (opcjonalnie)"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "9A",
+      "stage": {
+        "en": "Shadow option ROMs",
+        "pl": "Kopiowanie ROM-ów kart do shadow RAM"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "9C",
+      "stage": {
+        "en": "Set up power management",
+        "pl": "Konfiguracja zarządzania energią"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "9D",
+      "stage": {
+        "en": "Initialize security engine (optional)",
+        "pl": "Inicjalizacja zabezpieczeń (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "9E",
+      "stage": {
+        "en": "Enable hardware interrupts",
+        "pl": "Włączenie przerwań sprzętowych"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "9F",
+      "stage": {
+        "en": "Determine number of ATA and SCSI drives",
+        "pl": "Liczenie dysków ATA i SCSI"
+      },
+      "fault": {
+        "en": "Disk, cable or disk controller",
+        "pl": "Dysk, taśma albo kontroler dysków"
+      },
+      "check": {
+        "en": "Disconnect drives one by one, check cables",
+        "pl": "Odłączaj dyski po kolei, sprawdź taśmy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "A0",
+      "stage": {
+        "en": "Set time of day",
+        "pl": "Ustawienie czasu"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "A2",
+      "stage": {
+        "en": "Check key lock",
+        "pl": "Sprawdzenie stacyjki blokady"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "A4",
+      "stage": {
+        "en": "Initialize typematic rate",
+        "pl": "Ustawienie szybkości powtarzania klawiatury"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "A8",
+      "stage": {
+        "en": "Erase F2 prompt",
+        "pl": "Usunięcie napisu o F2"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "AA",
+      "stage": {
+        "en": "Scan for F2 key stroke",
+        "pl": "Sprawdzanie naciśnięcia F2"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "AC",
+      "stage": {
+        "en": "Enter SETUP",
+        "pl": "Wejście do Setupu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs",
+      "kind": "wait"
+    },
+    {
+      "code": "AE",
+      "stage": {
+        "en": "Clear boot flag",
+        "pl": "Kasowanie flagi startu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B0",
+      "stage": {
+        "en": "Check for errors",
+        "pl": "Sprawdzenie błędów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B1",
+      "stage": {
+        "en": "Inform RomPilot about end of POST",
+        "pl": "Powiadomienie RomPilot o końcu POST"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B2",
+      "stage": {
+        "en": "POST done – prepare to boot the operating system",
+        "pl": "POST zakończony – przygotowanie startu systemu"
+      },
+      "fault": {
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B4",
+      "stage": {
+        "en": "One short beep before boot",
+        "pl": "Jeden krótki sygnał przed startem"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B5",
+      "stage": {
+        "en": "Terminate QuietBoot (optional)",
+        "pl": "Koniec QuietBoot (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B6",
+      "stage": {
+        "en": "Check password (optional)",
+        "pl": "Sprawdzenie hasła (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs",
+      "kind": "wait"
+    },
+    {
+      "code": "B7",
+      "stage": {
+        "en": "Initialize ACPI BIOS",
+        "pl": "Inicjalizacja ACPI"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "B9",
+      "stage": {
+        "en": "Prepare boot",
+        "pl": "Przygotowanie startu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "BA",
+      "stage": {
+        "en": "Initialize SMBIOS",
+        "pl": "Inicjalizacja SMBIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "BB",
+      "stage": {
+        "en": "Initialize PnP option ROMs",
+        "pl": "Inicjalizacja ROM-ów kart PnP"
+      },
+      "fault": {
+        "en": "Expansion card or its ROM",
+        "pl": "Karta rozszerzeń albo jej ROM"
+      },
+      "check": {
+        "en": "Remove all cards except graphics, then add back one by one",
+        "pl": "Wyjmij wszystkie karty poza graficzną i dokładaj po jednej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "BC",
+      "stage": {
+        "en": "Clear parity checkers",
+        "pl": "Kasowanie kontroli parzystości"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "BD",
+      "stage": {
+        "en": "Display MultiBoot menu",
+        "pl": "Menu MultiBoot"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "BE",
+      "stage": {
+        "en": "Clear screen (optional)",
+        "pl": "Czyszczenie ekranu (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "BF",
+      "stage": {
+        "en": "Check virus and backup reminders",
+        "pl": "Przypomnienia o wirusach i kopii"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C0",
+      "stage": {
+        "en": "Try to boot with INT 19h",
+        "pl": "Próba startu systemu przez INT 19h"
+      },
+      "fault": {
+        "en": "Nothing after POST: disk, OS or boot device",
+        "pl": "Brak startu po POST: dysk, system albo urządzenie startowe"
+      },
+      "check": {
+        "en": "Disk, boot order, boot media",
+        "pl": "Dysk, kolejność startu, nośnik"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C1",
+      "stage": {
+        "en": "Initialize POST Error Manager",
+        "pl": "Inicjalizacja menedżera błędów POST"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C2",
+      "stage": {
+        "en": "Initialize error logging",
+        "pl": "Inicjalizacja zapisu błędów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C3",
+      "stage": {
+        "en": "Initialize error display function",
+        "pl": "Inicjalizacja wyświetlania błędów"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C4",
+      "stage": {
+        "en": "Initialize system error handler",
+        "pl": "Inicjalizacja obsługi błędów systemu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C5",
+      "stage": {
+        "en": "PnP dual CMOS (optional)",
+        "pl": "Podwójny CMOS PnP (opcjonalnie)"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C6",
+      "stage": {
+        "en": "Initialize notebook dock (optional)",
+        "pl": "Inicjalizacja stacji dokującej (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C7",
+      "stage": {
+        "en": "Initialize notebook dock late",
+        "pl": "Późna inicjalizacja stacji dokującej"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C8",
+      "stage": {
+        "en": "Force check (optional)",
+        "pl": "Wymuszona kontrola (opcjonalnie)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "C9",
+      "stage": {
+        "en": "Extended checksum (optional)",
+        "pl": "Rozszerzona suma kontrolna (opcjonalnie)"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "CA",
+      "stage": {
+        "en": "Redirect INT 15h for remote keyboard",
+        "pl": "Przekierowanie INT 15h (zdalna klawiatura)"
+      },
+      "fault": {
+        "en": "Keyboard controller (8042 / Super I/O) or the keyboard",
+        "pl": "Kontroler klawiatury (8042 / Super I/O) albo klawiatura"
+      },
+      "check": {
+        "en": "Keyboard and its socket, 8042 or Super I/O chip and its supply",
+        "pl": "Klawiatura i gniazdo, układ 8042 lub Super I/O i jego zasilanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "CB",
+      "stage": {
+        "en": "Redirect INT 13h to memory technology devices",
+        "pl": "Przekierowanie INT 13h (ROM, RAM, PCMCIA, dysk szeregowy)"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "CC",
+      "stage": {
+        "en": "Redirect INT 10h for remote serial video",
+        "pl": "Przekierowanie INT 10h (zdalny obraz)"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "CD",
+      "stage": {
+        "en": "Re-map I/O and memory for PCMCIA",
+        "pl": "Przemapowanie I/O i pamięci dla PCMCIA"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "CE",
+      "stage": {
+        "en": "Initialize digitizer and display message",
+        "pl": "Inicjalizacja digitizera"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "D2",
+      "stage": {
+        "en": "Unknown interrupt",
+        "pl": "Nieznane przerwanie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E0",
+      "stage": {
+        "en": "Boot block: initialize the chipset",
+        "pl": "Blok startowy: inicjalizacja chipsetu"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E1",
+      "stage": {
+        "en": "Boot block: initialize the bridge",
+        "pl": "Blok startowy: inicjalizacja mostka"
+      },
+      "fault": {
+        "en": "Chipset, clock generator or supply",
+        "pl": "Chipset, generator zegara albo zasilanie"
+      },
+      "check": {
+        "en": "Chipset supply and clocks, clock generator, CMOS clear",
+        "pl": "Zasilanie i zegary chipsetu, generator zegara, wyczyszczenie CMOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E2",
+      "stage": {
+        "en": "Boot block: initialize the CPU",
+        "pl": "Blok startowy: inicjalizacja procesora"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E3",
+      "stage": {
+        "en": "Boot block: initialize system timer",
+        "pl": "Blok startowy: inicjalizacja timera"
+      },
+      "fault": {
+        "en": "System timer (chipset)",
+        "pl": "Zegar systemowy (chipset)"
+      },
+      "check": {
+        "en": "Chipset, 8253/8254 chip and its crystal on old boards",
+        "pl": "Chipset, układ 8253/8254 i kwarc na starych płytach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E4",
+      "stage": {
+        "en": "Boot block: initialize system I/O",
+        "pl": "Blok startowy: inicjalizacja wejścia/wyjścia"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E5",
+      "stage": {
+        "en": "Boot block: check forced recovery boot",
+        "pl": "Blok startowy: sprawdzenie wymuszonego trybu odzysku"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E6",
+      "stage": {
+        "en": "Boot block: BIOS ROM checksum",
+        "pl": "Blok startowy: suma kontrolna BIOS ROM"
+      },
+      "fault": {
+        "en": "BIOS chip contents",
+        "pl": "Zawartość kości BIOS"
+      },
+      "check": {
+        "en": "Reprogram or replace the BIOS chip",
+        "pl": "Przeprogramuj albo wymień kość BIOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E7",
+      "stage": {
+        "en": "Boot block: go to main BIOS",
+        "pl": "Blok startowy: przejście do głównego BIOS-u"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E8",
+      "stage": {
+        "en": "Boot block: set huge segment",
+        "pl": "Blok startowy: ustawienie segmentu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "E9",
+      "stage": {
+        "en": "Boot block: initialize multiprocessor",
+        "pl": "Blok startowy: inicjalizacja wielu procesorów"
+      },
+      "fault": {
+        "en": "Processor, its supply or the chipset",
+        "pl": "Procesor, jego zasilanie albo chipset"
+      },
+      "check": {
+        "en": "CPU and socket, VRM voltage, CPU settings (jumpers)",
+        "pl": "Procesor i podstawka, napięcie VRM, ustawienia procesora (zworki)"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "EA",
+      "stage": {
+        "en": "Boot block: initialize OEM special code",
+        "pl": "Blok startowy: kod producenta płyty"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "EB",
+      "stage": {
+        "en": "Boot block: initialize PIC and DMA",
+        "pl": "Blok startowy: inicjalizacja przerwań i DMA"
+      },
+      "fault": {
+        "en": "DMA controller (chipset)",
+        "pl": "Kontroler DMA (chipset)"
+      },
+      "check": {
+        "en": "Chipset / south bridge, 8237 chips on old boards",
+        "pl": "Chipset / mostek południowy, układy 8237 na starych płytach"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "EC",
+      "stage": {
+        "en": "Boot block: initialize memory type",
+        "pl": "Blok startowy: typ pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "ED",
+      "stage": {
+        "en": "Boot block: initialize memory size",
+        "pl": "Blok startowy: rozmiar pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "EE",
+      "stage": {
+        "en": "Boot block: shadow boot block",
+        "pl": "Blok startowy: kopiowanie bloku startowego"
+      },
+      "fault": {
+        "en": "RAM or chipset (shadow RAM)",
+        "pl": "RAM albo chipset (shadow RAM)"
+      },
+      "check": {
+        "en": "RAM, disable shadow in Setup",
+        "pl": "RAM, wyłączenie shadow w Setupie"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "EF",
+      "stage": {
+        "en": "Boot block: system memory test",
+        "pl": "Blok startowy: test pamięci"
+      },
+      "fault": {
+        "en": "RAM, its slots or the memory controller",
+        "pl": "RAM, sloty pamięci albo kontroler pamięci"
+      },
+      "check": {
+        "en": "RAM modules and slots, memory voltage, chipset",
+        "pl": "Moduły i sloty RAM, napięcie pamięci, chipset"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F0",
+      "stage": {
+        "en": "Boot block: initialize interrupt vectors",
+        "pl": "Blok startowy: wektory przerwań"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F1",
+      "stage": {
+        "en": "Boot block: initialize real-time clock",
+        "pl": "Blok startowy: zegar czasu rzeczywistego"
+      },
+      "fault": {
+        "en": "CMOS / RTC or its battery",
+        "pl": "CMOS / RTC albo jego bateria"
+      },
+      "check": {
+        "en": "Battery, clear CMOS, RTC chip and crystal",
+        "pl": "Bateria, wyczyszczenie CMOS, układ RTC i jego kwarc"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F2",
+      "stage": {
+        "en": "Boot block: initialize video",
+        "pl": "Blok startowy: inicjalizacja obrazu"
+      },
+      "fault": {
+        "en": "Graphics card",
+        "pl": "Karta graficzna"
+      },
+      "check": {
+        "en": "Graphics card, its slot and video BIOS; try another card",
+        "pl": "Karta graficzna, jej slot i BIOS karty; spróbuj innej karty"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F3",
+      "stage": {
+        "en": "Boot block: initialize System Management Manager",
+        "pl": "Blok startowy: menedżer zarządzania systemem"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F4",
+      "stage": {
+        "en": "Boot block: output one beep",
+        "pl": "Blok startowy: jeden sygnał dźwiękowy"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F5",
+      "stage": {
+        "en": "Boot block: clear huge segment",
+        "pl": "Blok startowy: czyszczenie segmentu"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F6",
+      "stage": {
+        "en": "Boot block: boot to mini DOS",
+        "pl": "Blok startowy: start mini DOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    },
+    {
+      "code": "F7",
+      "stage": {
+        "en": "Boot block: boot to full DOS",
+        "pl": "Blok startowy: start pełnego DOS"
+      },
+      "bios_version": {
+        "en": "PhoenixBIOS 4.0 Release 6.x",
+        "pl": "PhoenixBIOS 4.0 Release 6.x"
+      },
+      "source": "PhoenixBIOS 4.0 User's Manual (2000), ch. 4 'Test Points and Beep Codes'",
+      "confidence": "vendor_docs"
+    }
+  ]
 }

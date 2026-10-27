@@ -40,8 +40,21 @@ na zrozumiały język. Ta instrukcja opisuje **obsługę** gotowego urządzenia 
    - **USB:** wybierz **USB (COM)**; port ustawisz w **Narzędzia → Ustawienia… → Port COM (USB)**
      (Windows: `COM3`…, Linux: `/dev/ttyUSB0`).
 4. Kliknij **Połącz**. W prawym górnym rogu pojawi się zielone **połączony**.
-5. Ustaw producenta BIOS-u na pasku (**BIOS:** AMI / Award / Phoenix) – od tego zależą opisy kodów.
-   Producenta poznasz po ekranie startowym płyty („American Megatrends” = AMI, „Award” = Award).
+5. Wybierz na pasku **BIOS:** producenta i generację BIOS-u – od tego zależą opisy kodów.
+   Ten sam kod znaczy co innego w BIOS-ie z 1990 i z 2005 roku. Po wybraniu pozycji na dole okna
+   pojawia się podpowiedź, jak ją rozpoznać:
+
+   | Pozycja | Kiedy |
+   |---|---|
+   | AMI 286 (do 4/1990), AMI 4/1990–2/1991 | wczesne płyty 286/386 z AMI BIOS (data rdzenia na ekranie startowym) |
+   | AMI 386/486 (od 1991) | większość płyt 386 i 486 z AMI, także kolorowy Setup „AMI BIOS Color” |
+   | AMI WinBIOS | Setup w stylu Windows, obsługiwany myszą (ok. 1994–1999) |
+   | AMIBIOS8 (od 2002) | „American Megatrends” z wersją v02.xx / v08.xx – Pentium 4 i nowsze |
+   | Award 4.50/4.51 | 486 i wczesne Pentium; POST zaczyna się od kodów 01, 02, 03… |
+   | Award 4.51PG/6.00 | Pentium – Pentium 4; POST zaczyna się od CF, C0, C1, C3, C5 |
+   | Phoenix 4.0 R6 | PhoenixBIOS 4.0 Release 6.x, Setup klawiszem F2 |
+
+   Nie wiesz, który? Nagraj przebieg i porównaj pierwsze kody z opisami powyżej.
 6. Wpisz raz swoje dane do raportów: **Narzędzia → Ustawienia…**, sekcja *Dane wpisywane do każdego raportu*.
 
 Program uruchamia się w języku systemu; zmienisz go w menu **Język**.
@@ -178,7 +191,8 @@ Czasy *POST zakończony* (3 s) i *czeka na użytkownika* (5 s) można zmienić w
 - **Plik → Eksportuj sekwencję CSV…** – kody bieżącej sesji do CSV.
 - **Narzędzia → Przeładuj bazę kodów** – po edycji opisów w `data/post_codes/*.json`
   (każdy wpis: kod, etap, usterka, co sprawdzić – po polsku i angielsku, źródło, pewność).
-  Najpełniejsza jest baza **AMI** (AMIBIOS8); **Award** ma kilka wpisów, **Phoenix** jest pusty – dopiszesz własne.
+  Baza obejmuje 8 generacji BIOS-ów (AMI od 1990 do AMIBIOS8, Award 4.5x i 6.0, Phoenix 4.0); źródła są
+  w [data/post_codes/SOURCES.md](../data/post_codes/SOURCES.md). Każdy plik ma też tabelę sygnałów dźwiękowych (beep).
 - **Narzędzia → Kalibracja wyświetlacza (stara metoda)…** – tylko dla kart, z których czytamy wyświetlacz (typ B).
 - **Urządzenie → Ping** – sprawdza, czy ESP32 odpowiada.
 - **Urządzenie → Lista / Pobierz / Usuń sesje z ESP32** – sesje zapisane w pamięci pudełka. Zapis na ESP32
@@ -204,6 +218,8 @@ Czasy *POST zakończony* (3 s) i *czeka na użytkownika* (5 s) można zmienić w
 - **Zegar PCI (CLK)** – 33 MHz, ESP32 go nie odczyta.
 - **Kody krótsze niż ok. 0,7 µs** mogą nie zostać złapane (odstęp między odczytami ESP32). Na płycie ASRock
   775V88 dotyczy to rzadko kodu `C1`. Pełną pewność da licznik zapisów (planowany: pin 11 zatrzasku).
-- **Opisy kodów** pochodzą z dokumentacji producentów BIOS-u; kody producentów płyt (np. `C0`–`C7`, `61`–`70`
-  w AMI) są opisane ogólnie albo jako zaobserwowane na konkretnej płycie.
+- **Opisy kodów** pochodzą z dokumentów o różnej wiarygodności – od podręczników producentów BIOS-u po listy
+  zebrane przez użytkowników; pole *pewność* w diagnozie mówi, z którego. Kody producentów płyt (np. `C0`–`C7`,
+  `61`–`70` w AMIBIOS8) są opisane ogólnie albo jako zaobserwowane na konkretnej płycie. Podpowiedzi
+  „prawdopodobna usterka / co sprawdzić” przy starszych BIOS-ach są ogólne, według rodzaju etapu.
 - **Karty bez zatrzasku** (typ B) – kody tylko z wyświetlacza, szybkie kody giną; patrz [tabela kart](CARDS.md#polski).

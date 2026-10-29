@@ -13,12 +13,18 @@
   🚧 <b>Work in progress / Prace trwają</b> – it works, it is not finished. / Działa, ale nie jest skończone.
 </p>
 
+<p align="center">
+  ⭐ <b>Like NIUCHACZ? Please leave a star</b> – it costs one click and tells me the project is worth continuing.<br>
+  <sub>Cloned it or tried it on your own board? I'd love to hear how it went – open an
+  <a href="https://github.com/DarkZachi83/NIUCHACZ-POST-Code-Sniffer-/issues">issue</a> with your board and BIOS.</sub>
+</p>
+
 **[English](#english) · [Polski](#polski)**
 
 <p align="center">
-  <img src="docs/img/app.png" alt="NIUCHACZ app – replay of a real POST run" width="800"><br>
-  <sub>Replay of a real POST run (ASRock 775V88, AMIBIOS8): 53 codes in 11 seconds. /
-  Odtworzenie prawdziwego przebiegu POST: 53 kody w 11 sekund.</sub>
+  <img src="docs/img/manual/en_05_golden_ok.png" alt="NIUCHACZ app – replay of a real POST run" width="800"><br>
+  <sub>Replay of a real POST run (ASRock 775V88, AMIBIOS8): 82 codes per boot, saved by REC and matched against a golden run. /
+  Odtworzenie prawdziwego przebiegu POST: 82 kody na start, zapisane przez REC i zgodne ze wzorcem.</sub>
 </p>
 
 ---

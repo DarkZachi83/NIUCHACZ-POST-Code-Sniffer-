@@ -18,7 +18,8 @@ from niuchacz.knowledge.diagnosis_service import DiagnosisService
 from niuchacz.knowledge.repository import CodeRepository
 from niuchacz.transport.factory import create_transport
 
-ROOT = Path(__file__).resolve().parent
+# Wersja z PyInstallera (Windows .exe): dane obok pliku .exe, żeby dało się je edytować i zapisywać
+ROOT = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent
 PATHS = {
     "config": ROOT / "config",
     "codes": ROOT / "data" / "post_codes",

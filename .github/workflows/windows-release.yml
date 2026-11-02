@@ -1,0 +1,71 @@
+# Wydanie dla Windows: buduje NIUCHACZ.exe (PyInstaller) na serwerze GitHuba z Windowsem,
+# uruchamia testy i publikuje paczkę ZIP w zakładce Releases.
+# Uruchomienie: wypchnij znacznik wersji, np.  git tag v0.1.0 && git push origin v0.1.0
+# (albo ręcznie: zakładka Actions -> Windows release -> Run workflow – wtedy tylko artefakt, bez wydania).
+name: Windows release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pyserial pyinstaller
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -t .
+
+      - name: Build NIUCHACZ.exe
+        run: >
+          pyinstaller --noconfirm --windowed --name NIUCHACZ
+          --icon assets/niuchacz.ico
+          --add-data "niuchacz/i18n/*.json;niuchacz/i18n"
+          --hidden-import serial.tools.list_ports
+          main.py
+
+      - name: Assemble package
+        shell: pwsh
+        run: |
+          $ver = if ($env:GITHUB_REF_TYPE -eq "tag") { $env:GITHUB_REF_NAME } else { "dev-$($env:GITHUB_SHA.Substring(0,7))" }
+          $dst = "dist/NIUCHACZ"
+          Copy-Item -Recurse assets, config, firmware, enclosure "$dst/"
+          New-Item -ItemType Directory -Force "$dst/data", "$dst/data/golden_runs", "$dst/reports", "$dst/docs" | Out-Null
+          Copy-Item -Recurse data/post_codes "$dst/data/"
+          Copy-Item -Recurse docs/* "$dst/docs/"
+          Copy-Item README.md, LICENSE "$dst/"
+          Compress-Archive -Path "$dst" -DestinationPath "NIUCHACZ-$ver-windows-x64.zip"
+          "ZIP=NIUCHACZ-$ver-windows-x64.zip" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Smoke test (exe starts and stays up)
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath "dist/NIUCHACZ/NIUCHACZ.exe" -PassThru
+          Start-Sleep -Seconds 10
+          if ($p.HasExited) { Write-Error "NIUCHACZ.exe exited with code $($p.ExitCode)"; exit 1 }
+          Stop-Process -Id $p.Id
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NIUCHACZ-windows-x64
+          path: ${{ env.ZIP }}
+
+      - name: Publish GitHub release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          gh release create "$env:GITHUB_REF_NAME" "$env:ZIP" --title "NIUCHACZ $env:GITHUB_REF_NAME" --notes-file docs/RELEASE_NOTES.md

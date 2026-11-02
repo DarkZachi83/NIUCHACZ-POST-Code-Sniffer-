@@ -14,6 +14,11 @@
 </p>
 
 <p align="center">
+  🪟 <b><a href="https://github.com/DarkZachi83/NIUCHACZ-POST-Code-Sniffer-/releases/latest">Download for Windows</a></b>
+  – unzip and run <code>NIUCHACZ.exe</code>, no Python needed. / Pobierz dla Windows – rozpakuj i uruchom.
+</p>
+
+<p align="center">
   ⭐ <b>Like NIUCHACZ? Please leave a star</b> – it costs one click and tells me the project is worth continuing.<br>
   <sub>Cloned it or tried it on your own board? I'd love to hear how it went – open an
   <a href="https://github.com/DarkZachi83/NIUCHACZ-POST-Code-Sniffer-/issues">issue</a> with your board and BIOS.</sub>

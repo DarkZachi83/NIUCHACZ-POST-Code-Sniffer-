@@ -1,12 +1,16 @@
 # Wydanie dla Windows: buduje NIUCHACZ.exe (PyInstaller) na serwerze GitHuba z Windowsem,
 # uruchamia testy i publikuje paczkę ZIP w zakładce Releases.
-# Uruchomienie: wypchnij znacznik wersji, np.  git tag v0.1.0 && git push origin v0.1.0
-# (albo ręcznie: zakładka Actions -> Windows release -> Run workflow – wtedy tylko artefakt, bez wydania).
+# Nowe wydanie: zmień __version__ w niuchacz/__init__.py i wypchnij na main. Automat sam utworzy
+# znacznik v<wersja> i wydanie; jeśli wydanie o tym numerze już jest, zbuduje tylko artefakt.
+# Ręcznie: zakładka Actions -> Windows release -> Run workflow.
 name: Windows release
 
 on:
   push:
-    tags: ["v*"]
+    branches: [main]
+    paths:
+      - "niuchacz/__init__.py"
+      - ".github/workflows/windows-release.yml"
   workflow_dispatch:
 
 permissions:
@@ -36,10 +40,22 @@ jobs:
           --hidden-import serial.tools.list_ports
           main.py
 
+      - name: Version
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $v = (Select-String -Path niuchacz/__init__.py -Pattern '__version__ = "(.+)"').Matches[0].Groups[1].Value
+          "TAG=v$v" | Out-File -FilePath $env:GITHUB_ENV -Append
+          gh release view "v$v" *> $null
+          $new = if ($LASTEXITCODE -eq 0) { "false" } else { "true" }
+          "NEW_RELEASE=$new" | Out-File -FilePath $env:GITHUB_ENV -Append
+          $global:LASTEXITCODE = 0
+
       - name: Assemble package
         shell: pwsh
         run: |
-          $ver = if ($env:GITHUB_REF_TYPE -eq "tag") { $env:GITHUB_REF_NAME } else { "dev-$($env:GITHUB_SHA.Substring(0,7))" }
+          $ver = $env:TAG
           $dst = "dist/NIUCHACZ"
           Copy-Item -Recurse assets, config, firmware, enclosure "$dst/"
           New-Item -ItemType Directory -Force "$dst/data", "$dst/data/golden_runs", "$dst/reports", "$dst/docs" | Out-Null
@@ -63,9 +79,9 @@ jobs:
           path: ${{ env.ZIP }}
 
       - name: Publish GitHub release
-        if: github.ref_type == 'tag'
+        if: env.NEW_RELEASE == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: pwsh
         run: |
-          gh release create "$env:GITHUB_REF_NAME" "$env:ZIP" --title "NIUCHACZ $env:GITHUB_REF_NAME" --notes-file docs/RELEASE_NOTES.md
+          gh release create "$env:TAG" "$env:ZIP" --target "$env:GITHUB_SHA" --title "NIUCHACZ $env:TAG" --notes-file docs/RELEASE_NOTES.md
